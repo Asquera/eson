@@ -1,0 +1,1 @@
+{"query":{"filtered":{"query":{"match_all":{}},"filter":{"type":{"value":"my_type"}}}}}

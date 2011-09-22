@@ -1,0 +1,1 @@
+{:query => {:constant_score => {:filter => {:missing => {:field => "user"}}}}}

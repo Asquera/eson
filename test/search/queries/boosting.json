@@ -1,0 +1,1 @@
+{"query":{"boosting":{"positive":{"term":{"field1":1}},"negative":{"term":{"field1":2}},"negative_boost":0.2}}}

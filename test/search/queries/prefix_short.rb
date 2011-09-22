@@ -1,0 +1,1 @@
+{:query => {:prefix => {"user" => "sh"}}}

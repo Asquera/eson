@@ -1,0 +1,1 @@
+{"query":{"constant_score":{"filter":{"exists":{"field":"user"}}}}}

@@ -1,0 +1,1 @@
+{:query => {:wildcard => {"user" => {:value => "kim*y", :boost => 2.0}}}}
