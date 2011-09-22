@@ -1,7 +1,7 @@
 module ElasticSearch
   module HTTP
     module SimpleSearch
-      extend Shared::SimpleSearch
+      include Shared::SimpleSearch
       extend API
       
       request_method :get
