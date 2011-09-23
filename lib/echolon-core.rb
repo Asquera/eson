@@ -3,7 +3,6 @@
 require 'multi_json'
 
 require 'elasticsearch/modules/response_parser'
-require 'elasticsearch/modules/query_plugin'
 
 require 'elasticsearch/node'
 
