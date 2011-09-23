@@ -1,4 +1,5 @@
 require 'echolon-core'
+require 'elasticsearch/modules/query_plugin'
 
 require 'elasticsearch/search/node'
 require 'elasticsearch/search/query'
