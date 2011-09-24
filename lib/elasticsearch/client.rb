@@ -60,8 +60,8 @@ module ElasticSearch
       request(protocol::Get, args)
     end
     
-    def search(args = {}, &block)
-      request(protocol::Search, args, &block)
+    def search(args = {}, immediate = true, &block)
+      request(protocol::Search, args, immediate, &block)
     end
     alias :query :search
     
