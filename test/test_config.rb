@@ -14,6 +14,8 @@ require 'echolon-http'
 require 'echolon-search'
 require 'node/external'
 
+ElasticSearch::Node.default_config(:testing)
+
 module Node
   module External
     def self.instance
