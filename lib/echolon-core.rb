@@ -2,14 +2,14 @@
 
 require 'multi_json'
 
-require 'elasticsearch/modules/response_parser'
-
 require 'elasticsearch/node'
 
 require 'elasticsearch/client'
 require 'elasticsearch/request'
 require 'elasticsearch/chainable'
 require 'elasticsearch/api'
+require 'elasticsearch/response'
+require 'elasticsearch/error'
 
 require 'elasticsearch/shared/core/index'
 require 'elasticsearch/shared/core/get'
@@ -24,7 +24,6 @@ require 'elasticsearch/shared/cluster/state'
 require 'elasticsearch/shared/cluster/nodes'
 require 'elasticsearch/shared/cluster/stats'
 require 'elasticsearch/shared/cluster/shutdown'
-
 
 require 'elasticsearch/shared/indices/aliases'
 require 'elasticsearch/shared/indices/analyze'
