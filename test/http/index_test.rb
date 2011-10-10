@@ -6,7 +6,7 @@ context 'HTTP client quick api' do
   helper(:client) do
     ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
                               :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::ResponseParser], 
+                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::StatusHandler], 
                               :logger => 'test/test.log')
   end
   

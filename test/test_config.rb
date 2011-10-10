@@ -11,6 +11,7 @@ end
 Bundler.require(:test, :default)
 
 require 'echolon-http'
+require 'echolon-search'
 
 require 'node/external'
 

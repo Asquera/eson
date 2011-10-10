@@ -6,8 +6,20 @@ context 'HTTP client indices API' do
   helper(:client) do
     ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
                               :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::ResponseParser], 
+                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::StatusHandler], 
                               :logger => 'test/test.log')
+  end
+  
+  context "missing index" do
+    asserts {
+      client.get :index => "missing", :type => "foo", :id => 1
+    }.raises(ElasticSearch::Error)
+  end
+  
+  context "missing handler" do
+    asserts {
+       client.get :index => "missing"
+    }.raises(ElasticSearch::Error)
   end
   
   context "delete index" do

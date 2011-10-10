@@ -16,17 +16,27 @@ module ElasticSearch
       def call
         resource = base_resource
                 
-        case request_method
-        when :get
-          resource.get fill
-        when :delete
-          #resource.options[:payload] = source if source
-          resource.delete fill
-        when :post
-          resource.post(fill, source)
-        when :put
-          resource.put(fill, source)
+        response = (
+          case request_method
+          when :get
+            resource.get fill
+          when :delete
+            #resource.options[:payload] = source if source
+            resource.delete fill
+          when :post
+            resource.post(fill, source)
+          when :put
+            resource.put(fill, source)
+          end
+        )
+        
+        begin
+          map = MultiJson.decode(response.body) if response.body
+        rescue MultiJson::DecodeError
+          map = {:error => response.body}
         end
+        
+        ElasticSearch::Response.new(response, map)
       end
       
       def fill
