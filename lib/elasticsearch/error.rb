@@ -8,4 +8,7 @@ module ElasticSearch
       self.response = response
     end
   end
+  
+  NotFoundError = Class.new(Error)
+  IndexNotFoundError = Class.new(NotFoundError)
 end
