@@ -22,16 +22,16 @@ context 'HTTP client quick api' do
     context "get request" do
       setup do
         client.get :type => "bar", 
-                   :id => 1
+                   :id => 600
       end
       
-      asserts("id") { topic["_id"] }.equals("1")
+      asserts("id") { topic["_id"] }.equals("600")
     end
     
     context "delete" do
       setup do
         client.delete :type => "bar", 
-                      :id => 20
+                      :id => 600
       end
       
       asserts("ok") { topic["ok"] }
