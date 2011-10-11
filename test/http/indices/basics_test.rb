@@ -13,13 +13,23 @@ context 'HTTP client indices API' do
   context "missing index" do
     asserts {
       client.get :index => "missing", :type => "foo", :id => 1
-    }.raises(ElasticSearch::Error)
+    }.raises(ElasticSearch::IndexNotFoundError)
   end
   
   context "missing handler" do
     asserts {
        client.get :index => "missing"
     }.raises(ElasticSearch::Error)
+  end
+  
+  context "existing index" do
+    setup do
+      client.create_index :index => "existing"
+    end
+    
+    asserts {
+      client.get :index => "existing", :type => "foo", :id => 1
+    }.raises(ElasticSearch::NotFoundError)
   end
   
   context "delete index" do
