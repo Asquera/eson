@@ -30,13 +30,13 @@ module ElasticSearch
           end
         )
         
-        begin
-          map = MultiJson.decode(response.body) if response.body
-        rescue MultiJson::DecodeError
-          map = {:error => response.body}
-        end
-        
-        ElasticSearch::Response.new(response, map)
+        #begin
+        #  map = MultiJson.decode(response.body) if response.body
+        #rescue MultiJson::DecodeError
+        #  map = {:error => response.body}
+        #end
+        #
+        #ElasticSearch::Response.new(response, map)
       end
       
       def fill

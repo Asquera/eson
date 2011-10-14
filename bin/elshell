@@ -4,6 +4,7 @@ $LOAD_PATH << File.join(File.dirname(File.dirname(__FILE__)), "lib")
 
 require 'echolon-http'
 require 'echolon-search'
+require 'echolon-types'
 
 require 'elsearch-node'
 
