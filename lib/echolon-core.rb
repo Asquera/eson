@@ -8,7 +8,7 @@ require 'elasticsearch/client'
 require 'elasticsearch/request'
 require 'elasticsearch/chainable'
 require 'elasticsearch/api'
-require 'elasticsearch/response'
+#require 'elasticsearch/response'
 require 'elasticsearch/error'
 
 require 'elasticsearch/shared/core/index'
