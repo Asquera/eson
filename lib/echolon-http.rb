@@ -1,6 +1,5 @@
 require 'echolon-core'
 
-require 'rest-client'
 require 'addressable/template'
 
 require 'elasticsearch/http'
