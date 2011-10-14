@@ -43,7 +43,10 @@ module ElasticSearch
                  :indices_boost,
                  :explain,
                  :version,
-                 :min_score
+                 :min_score,
+                 :q,
+                 :df,
+                 :analyzer
                  
       def types
         if @types
