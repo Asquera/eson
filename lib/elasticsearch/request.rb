@@ -74,16 +74,12 @@ module ElasticSearch
                 
         return nil if pairs.empty?
         
-        unless pairs.length == 1 && pairs[0][0] == :query
-          obj = {}
-          
-          pairs.each do |p, v|
-            obj[p] = v
-          end
-        else
-          obj = pairs[0][1]
-        end
+        obj = {}
         
+        pairs.each do |p, v|
+          obj[p] = v
+        end
+
         return encode(obj)
       end
     end
