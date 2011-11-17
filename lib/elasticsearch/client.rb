@@ -38,6 +38,14 @@ module ElasticSearch
       protocol.logger
     end
     
+    def auth?
+      !!opts[:auth]
+    end
+    
+    def auth
+      opts[:auth]
+    end
+    
     def index_name
       @index_name || default_index
     end
@@ -202,6 +210,7 @@ module ElasticSearch
             yield r
           end
           
+          # this should honor auto_call as well
           r.call
         else
           if block_given?

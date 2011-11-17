@@ -11,7 +11,7 @@ module ElasticSearch
                  :type
       
       source_param :doc, :query
-            
+      
     end
   end
 end
