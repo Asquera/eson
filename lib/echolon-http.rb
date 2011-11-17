@@ -46,3 +46,4 @@ require 'elasticsearch/http/indices/delete_template'
 require 'elasticsearch/http/indices/update_settings'
 
 require 'elasticsearch/modules/status_handler'
+require 'elasticsearch/modules/response_parser'

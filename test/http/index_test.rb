@@ -6,7 +6,7 @@ context 'HTTP client quick api' do
   helper(:client) do
     ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
                               :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::StatusHandler], 
+                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::StatusHandler, ElasticSearch::ResponseParser], 
                               :logger => 'test/test.log')
   end
   
@@ -41,24 +41,27 @@ context 'HTTP client quick api' do
   
   context "percolate" do
     setup do
-      client.percolate :type => 'kuku',
-                       :query => {
-                          :query => {
-                             :term => {
-                                :field1 => "value1"
-                             }
-                          }
-                       }
+      begin
+        client.create_index :index => 'test'
+        client.percolate :index => 'test',
+                         :type => 'kuku',
+                         :query => {
+                           :match_all => { }
+                         }
+      rescue Exception => e
+        pry e
+      end
       client.refresh
     end
     
     asserts("ok") { topic["ok"] }
     asserts("responds to percolation requests") do
       (
-          h = client.percolate :type => "type1",
-                               :doc => {
-                                 :field1 => "value1"
-                               }
+        client.percolate :index => 'test',
+                                    :type => "type1",
+                                    :doc => {
+                                      :test => "foo"
+                                    }
       )["matches"]
     end.equals(["kuku"])
   end

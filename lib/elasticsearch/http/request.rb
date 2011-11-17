@@ -6,11 +6,14 @@ module ElasticSearch
       attr_accessor :request_method
       
       def base_resource
-        Faraday.new(:url => client.node) do |builder|
+        conn = Faraday.new(:url => client.node) do |builder|
           builder.use Faraday::Response::Logger, ElasticSearch::HTTP.logger
           
           builder.adapter :net_http
         end
+        
+        conn.basic_auth(*client.auth) if client.auth?
+        conn
       end
       
       def call

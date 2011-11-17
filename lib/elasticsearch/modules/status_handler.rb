@@ -7,8 +7,8 @@ module ElasticSearch
     def handle(response)
       case response.status
       when 404
-        if response["error"] && /IndexMissingException/.match(response["error"])
-          raise ElasticSearch::IndexNotFoundError.new(response["error"], response)
+        if /IndexMissingException/.match(response.body)
+          raise ElasticSearch::IndexNotFoundError.new(response.body, response)
         else
           raise ElasticSearch::NotFoundError.new(response, response)
         end

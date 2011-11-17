@@ -6,8 +6,16 @@ context 'HTTP client indices API' do
   helper(:client) do
     ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
                               :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::StatusHandler], 
-                              :logger => 'test/test.log')
+                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::StatusHandler, ElasticSearch::ResponseParser], 
+                              :logger => 'test/test.log',
+                              :auth => ['Aladdin', 'open sesame'])
+  end
+  
+  context "http auth" do
+    asserts {
+      request = client.search({}, false)
+      request.base_resource.headers['Authorization']
+    }.equals('Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==')
   end
   
   context "missing index" do

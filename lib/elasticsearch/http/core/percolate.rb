@@ -6,7 +6,7 @@ module ElasticSearch
 
       def path
         if query
-          '_percolator/{index}/{type}'
+          '/_percolator/{index}/{type}'
         else
           '/{index}/{type}/_percolate'
         end 
@@ -14,7 +14,7 @@ module ElasticSearch
       
       def request_method
         if doc
-          :get
+          :post
         else
           :put
         end
