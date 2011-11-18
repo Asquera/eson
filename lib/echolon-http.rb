@@ -4,6 +4,10 @@ require 'addressable/template'
 
 require 'elasticsearch/http'
 
+require 'elasticsearch/modules/status_handler'
+require 'elasticsearch/modules/response_parser'
+
+require 'elasticsearch/http/client'
 require 'elasticsearch/http/request'
 require 'elasticsearch/http/api'
 
@@ -44,6 +48,3 @@ require 'elasticsearch/http/indices/put_template'
 require 'elasticsearch/http/indices/get_template'
 require 'elasticsearch/http/indices/delete_template'
 require 'elasticsearch/http/indices/update_settings'
-
-require 'elasticsearch/modules/status_handler'
-require 'elasticsearch/modules/response_parser'
