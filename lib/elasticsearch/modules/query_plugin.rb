@@ -8,9 +8,7 @@ module ElasticSearch
     
     def call(*args)
       if query.respond_to? :to_query_hash
-        query.to_query_hash.each do |k,v|
-          self.send("#{k}=", v)
-        end
+        self.params = query.to_query_hash
       end
       
       super(*args)
