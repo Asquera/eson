@@ -18,6 +18,7 @@ require 'elasticsearch/shared/core/search'
 require 'elasticsearch/shared/core/bulk'
 require 'elasticsearch/shared/core/percolate'
 require 'elasticsearch/shared/core/simple_search'
+require 'elasticsearch/shared/core/more_like_this'
 
 require 'elasticsearch/shared/cluster/health'
 require 'elasticsearch/shared/cluster/state'
