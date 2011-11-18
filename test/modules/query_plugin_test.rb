@@ -15,7 +15,9 @@ context "QueryPlugin" do
     client.refresh
     client.search do |search|
       search.query do |q|
-        q.match_all
+        q.query do |qs|
+          qs.match_all
+        end
       end
     end
   end
