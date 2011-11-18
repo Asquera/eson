@@ -15,6 +15,12 @@ module ElasticSearch
         end
       end
     end
+
+    def params=(params)
+      params.each do |k,v|
+        self.send("#{k}=", v)
+      end
+    end
     
     def pluggable?(api, plugin, client)
       if plugin.respond_to? :plugin_for
