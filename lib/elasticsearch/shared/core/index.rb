@@ -5,12 +5,12 @@ module ElasticSearch
 
       multi_index false
       
-      source_param :item
+      source_param :doc
       
       parameters(
         :type, 
         :id,
-        :item,
+        :doc,
         :version,
         :op_type,
         :routing,
@@ -21,6 +21,13 @@ module ElasticSearch
         :refresh,
         :timeout
       )
+      
+      alias :document :doc
+      
+      def item=(item)
+        warn("item= is deprecated and replaced by doc=")
+        self.doc = item
+      end
     end
   end
 end
