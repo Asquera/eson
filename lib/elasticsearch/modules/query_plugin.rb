@@ -1,8 +1,11 @@
 module ElasticSearch
   module QueryPlugin
     def query
-      @query ||= ElasticSearch::Search::BaseQuery.new
-      yield @query if block_given?
+      if block_given?
+        @query ||= ElasticSearch::Search::BaseQuery.new
+        yield @query
+      end
+      
       @query
     end
     
