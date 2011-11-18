@@ -41,16 +41,12 @@ context 'HTTP client quick api' do
   
   context "percolate" do
     setup do
-      begin
-        client.create_index :index => 'test'
-        client.percolate :index => 'test',
-                         :type => 'kuku',
-                         :query => {
-                           :match_all => { }
-                         }
-      rescue Exception => e
-        pry e
-      end
+      client.create_index :index => 'test'
+      client.percolate :index => 'test',
+                       :type => 'kuku',
+                       :query => {
+                         :match_all => { }
+                       }
       client.refresh
     end
     

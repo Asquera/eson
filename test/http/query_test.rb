@@ -24,7 +24,7 @@ context 'HTTP client quickapi' do
   context "count query" do
     setup do 
       client.count :query => {
-        "term" => { "user" => "kimchy" }
+        :match_all => { }
       }
     end
     
@@ -33,7 +33,11 @@ context 'HTTP client quickapi' do
   end
   
   context "mlt query" do
-    setup do 
+    setup do
+      client.index :item => {"test" =>  "bar"}, 
+                   :type => "bar", 
+                   :id => 200
+                   
       client.more_like_this :index => 'default', :type => "bar", :id => 200
     end
     

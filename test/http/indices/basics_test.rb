@@ -33,6 +33,7 @@ context 'HTTP client indices API' do
   context "existing index" do
     setup do
       client.create_index :index => "existing"
+      client.refresh
     end
     
     asserts {
@@ -181,6 +182,7 @@ context 'HTTP client indices API' do
     setup do
       client.create_index :index => 'for_closing'
       client.close_index :index => 'for_closing'
+      client.refresh
     end
     
     asserts("ok") { topic["ok"] }

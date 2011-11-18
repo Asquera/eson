@@ -17,6 +17,10 @@ module ElasticSearch
       def path
         path = bare_path + "_count"
       end
+      
+      def source
+        MultiJson.encode(query)
+      end
     end
   end
 end
