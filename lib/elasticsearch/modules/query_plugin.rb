@@ -1,12 +1,8 @@
 module ElasticSearch
   module QueryPlugin
     def query
-      if block_given?
-        @query ||= ElasticSearch::Search::BaseQuery.new
-        yield @query if block_given?
-        @query
-      end
-      
+      @query ||= ElasticSearch::Search::BaseQuery.new
+      yield @query if block_given?
       @query
     end
     
@@ -18,6 +14,14 @@ module ElasticSearch
       end
       
       super(*args)
+    end
+    
+    def method_missing(sym, *args, &block)
+      if query.query.respond_to? sym
+        query.query.send(sym, *args, &block)
+      else
+        super
+      end
     end
     
     def self.plugin_for(protocol)

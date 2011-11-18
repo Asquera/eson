@@ -14,11 +14,7 @@ context "QueryPlugin" do
     client.create_index :index => "default"
     client.refresh
     client.search do |search|
-      search.query do |q|
-        q.query do |qs|
-          qs.match_all
-        end
-      end
+      search.match_all
     end
   end
   
