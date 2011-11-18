@@ -12,10 +12,8 @@ context 'HTTP client quickapi' do
   
   context "query" do
     setup do
-      q = client.query :type => "bar", :query => {
-        :query => {
-          "term" => { "user" => "kimchy" }
-        }
+      client.query :type => "bar", :query => {
+        "term" => { "user" => "kimchy" }
       }
     end
     
