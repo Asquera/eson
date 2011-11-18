@@ -210,7 +210,6 @@ module ElasticSearch
             yield r
           end
           
-          # this should honor auto_call as well
           r.call
         else
           if block_given?
