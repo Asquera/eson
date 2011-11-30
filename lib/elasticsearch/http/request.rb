@@ -9,7 +9,7 @@ module ElasticSearch
         conn = Faraday.new(:url => client.node) do |builder|
           builder.use Faraday::Response::Logger, ElasticSearch::HTTP.logger
           
-          builder.adapter :net_http
+          builder.adapter :typhoeus
         end
         
         conn.basic_auth(*client.auth) if client.auth?
