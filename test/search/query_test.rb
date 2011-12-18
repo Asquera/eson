@@ -15,8 +15,8 @@ context "Queries" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.term "user", :value => "kimchy", :boost => 2.0
+      q.query do
+        term "user", :value => "kimchy", :boost => 2.0
       end
       q
     end    
@@ -27,8 +27,8 @@ context "Queries" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.wildcard "user", :value => "kim*y", :boost => 2.0
+      q.query do
+        wildcard "user", :value => "kim*y", :boost => 2.0
       end
       q
     end
@@ -39,8 +39,8 @@ context "Queries" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.wildcard "user" => "kim*y"
+      q.query do
+        wildcard "user" => "kim*y"
       end
       q
     end
@@ -255,8 +255,8 @@ context "Queries" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.field "name.first" => "+something -else"
+      q.query do
+        field "name.first" => "+something -else"
       end
       q
     end
@@ -267,10 +267,10 @@ context "Queries" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.flt :fields => ["name.first", "name.last"],
-                  :like_text => "text like this one",
-                  :max_query_terms => 12
+      q.query do
+        flt :fields => ["name.first", "name.last"],
+            :like_text => "text like this one",
+            :max_query_terms => 12
       end
       q
     end
@@ -282,10 +282,10 @@ context "Queries" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.flt_field "name.first",
-                        :like_text => "text like this one",
-                        :max_query_terms => 12
+      q.query do
+        flt_field "name.first",
+                  :like_text => "text like this one",
+                  :max_query_terms => 12
       end
       q
     end
@@ -296,8 +296,8 @@ context "Queries" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.fuzzy :user => "ki"
+      q.query do
+        fuzzy :user => "ki"
       end
       q
     end
@@ -308,8 +308,8 @@ context "Queries" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.fuzzy :user, :value => "ki", :boost => 1.0
+      q.query do
+        fuzzy :user, :value => "ki", :boost => 1.0
       end
       q
     end
@@ -377,10 +377,10 @@ context "Queries" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.mlt_field "name.first",
-                        :like_text => "text like this one",
-                        :max_query_terms => 12
+      q.query do
+        mlt_field "name.first",
+                  :like_text => "text like this one",
+                  :max_query_terms => 12
       end
       q
     end
@@ -392,9 +392,9 @@ context "Queries" do
   
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.query_string :default_field => "content",
-                       :query => "this AND that OR thus"
+      q.query do
+        query_string :default_field => "content",
+                     :query => "this AND that OR thus"
       end
       q
     end
@@ -405,8 +405,8 @@ context "Queries" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.query_string "this AND that OR thus"
+      q.query do
+        query_string "this AND that OR thus"
       end
       q
     end
@@ -417,10 +417,10 @@ context "Queries" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.query_string :fields => ["content", "name^5"],
-                           :query => "this AND that OR thus",
-                           :use_dis_max => true
+      q.query do
+        query_string :fields => ["content", "name^5"],
+                     :query => "this AND that OR thus",
+                     :use_dis_max => true
       end
       q
     end
@@ -431,11 +431,9 @@ context "Queries" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.top_children :blog_tag, :score => "max" do |c|
-          c.query do |qu|
-            qu.term :tag => "something"
-          end
+      q.query do
+        top_children :blog_tag, :score => "max" do
+          query { term :tag => "something" }
         end
       end
       q

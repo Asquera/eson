@@ -4,11 +4,11 @@ module ElasticSearch
       include Filters
       include Queries
       include Facets
-      
+
       def group_to_query_hash(base = true)
         if filters.empty? && facets.empty?
           hash = queries.to_query_hash
-        elsif !queries && !filters.empty?          
+        elsif !queries && !filters.empty?
           if base
             hash = { 
                      :filtered => {
@@ -18,8 +18,6 @@ module ElasticSearch
                    }
           else
             hash = filters.to_query_hash
-                    
-                   
           end
         elsif queries.length > 0 && filters.length > 0
           hash = {
@@ -35,15 +33,14 @@ module ElasticSearch
             :facets => facets.to_query_hash
           }
         end
-        
-        
+
         base ? {:query => hash} : hash
       end
-      
+
       def to_query_hash(base = true)
         group_to_query_hash(base)
       end
-      
+
       def to_hash
         to_query_hash
       end

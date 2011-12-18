@@ -13,7 +13,7 @@ module ElasticSearch
         end
         
         def initialize
-          yield self if block_given?
+          instance_exec(self, &Proc.new) if block_given?
         end
         
         def to_query_hash
@@ -40,7 +40,7 @@ module ElasticSearch
         FilterMethods.__send__(:define_method, name) do |*args, &block|
           o = klass.new(*args)
           o.context = :filter
-          block[o] if block
+          o.instance_exec(o, &block) if block
           filters << o
         end
       end

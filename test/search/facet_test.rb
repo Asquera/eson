@@ -14,11 +14,11 @@ context "Facets" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.match_all
+      q.query do
+        match_all
       end
-      q.facets do |f|
-        f.terms :tags, :field => :tags, :size => 10, :order => :term
+      q.facets do
+        terms :tags, :field => :tags, :size => 10, :order => :term
       end
       q
     end
@@ -30,14 +30,14 @@ context "Facets" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.match_all
+      q.query do
+        match_all
       end
-      q.facets do |f|
-        f.range :range1, :age, { :to => 50 }, 
-                               { :from => 20, :to => 70 },
-                               { :from => 70, :to => 120 },
-                               { :from => 150 }
+      q.facets do
+        range :range1, :age, { :to => 50 }, 
+                             { :from => 20, :to => 70 },
+                             { :from => 70, :to => 120 },
+                             { :from => 150 }
       end
       q
     end
@@ -48,11 +48,11 @@ context "Facets" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.match_all
+      q.query do
+        match_all
       end
-      q.facets do |f|
-        f.histogram :hist1, :field => :age, :interval => 100
+      q.facets do
+        histogram :hist1, :field => :age, :interval => 100
       end
       q
     end
@@ -66,11 +66,11 @@ context "Facets" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.match_all
+      q.query do
+        match_all
       end
-      q.facets do |f|
-        f.date_histogram :hist1, :field => :time, :interval => "day"
+      q.facets do
+        date_histogram :hist1, :field => :time, :interval => "day"
       end
       q
     end
@@ -81,12 +81,12 @@ context "Facets" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.match_all
+      q.query do
+        match_all
       end
-      q.facets do |f|
-        f.query :wow_facet do |w|
-          w.term :tag => "wow"
+      q.facets do
+        query :wow_facet do
+          term :tag => "wow"
         end
       end
       q
@@ -98,12 +98,12 @@ context "Facets" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.match_all
+      q.query do
+        match_all
       end
-      q.facets do |f|
-        f.filter :wow_facet do |fi|
-          fi.term :tag => "wow"
+      q.facets do
+        filter :wow_facet do
+          term :tag => "wow"
         end
       end
       q
@@ -116,11 +116,11 @@ context "Facets" do
   
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.match_all
+      q.query do
+        match_all
       end
-      q.facets do |f|
-        f.statistical :stat1, {:field => :field1}
+      q.facets do
+        statistical :stat1, {:field => :field1}
       end
       q
     end
@@ -131,12 +131,12 @@ context "Facets" do
     
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.match_all
+      q.query do
+        match_all
       end
-      q.facets do |f|
-        f.terms_stats :tag_price_stats, {:key_field => :tag,
-                                         :value_field => :price }
+      q.facets do
+        terms_stats :tag_price_stats, {:key_field => :tag,
+                                       :value_field => :price }
       end
       q
     end
