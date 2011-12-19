@@ -19,7 +19,7 @@ context "Queries" do
         term "user", :value => "kimchy", :boost => 2.0
       end
       q
-    end    
+    end
   end
   
   context "#wildcard" do
