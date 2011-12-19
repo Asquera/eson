@@ -4,7 +4,7 @@ module ElasticSearch
     attr_accessor :index_name
     attr_accessor :default_index
     attr_accessor :protocol
-    attr_accessor :plugins  
+    attr_accessor :plugins
     attr_accessor :opts
     
     DEFAULT_OPTS = {
