@@ -14,10 +14,13 @@ context "QueryPlugin" do
     client.create_index :index => "default"
     client.refresh
     client.search do |search|
-      search.match_all
+      search.query {
+        query {
+          match_all
+        }
+      }
     end
   end
   
   asserts("has hits") { topic["hits"] }
-  
 end
