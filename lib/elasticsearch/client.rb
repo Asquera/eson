@@ -81,8 +81,8 @@ module ElasticSearch
       request(protocol::Count, args)
     end
     
-    def percolate(args = {})
-      request(protocol::Percolate, args)
+    def percolate(args = {}, immediate = true, &block)
+      request(protocol::Percolate, args, immediate, &block)
     end
     
     def bulk(args = {})
