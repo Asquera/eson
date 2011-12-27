@@ -1,7 +1,7 @@
 module ElasticSearch
   module ResponseParser
     class JSONParseError < ElasticSearch::Error
-      attr_accessor :source, :response
+      attr_accessor :source
     end
     
     def call(*args)
@@ -11,10 +11,9 @@ module ElasticSearch
     def parse(response)
       begin
         MultiJson.decode(response.body) if response.body
-      rescue MultiJson::DecodeError
-        error = JSONParseError.new
+      rescue MultiJson::DecodeError => e
+        error = JSONParseError.new(e.message, response)
         error.source = response.body
-        error.response = response
         raise error
       end
       
