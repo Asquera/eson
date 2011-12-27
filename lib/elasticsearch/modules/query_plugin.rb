@@ -10,7 +10,7 @@ module ElasticSearch
     end
     
     def call(*args)
-      if query.respond_to?(:to_query_hash) && !self.q
+      if query.respond_to?(:to_query_hash) && (!self.respond_to?(:q) || !self.q)
         self.params = query.to_query_hash
       end
       
@@ -27,7 +27,8 @@ module ElasticSearch
     
     def self.plugin_for(protocol)
       [protocol::Search,
-       protocol::Count]
+       protocol::Count,
+       protocol::Percolate]
     end
   end
 end
