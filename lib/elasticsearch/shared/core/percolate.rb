@@ -5,7 +5,7 @@ module ElasticSearch
       
       multi_index false
       
-      parameters :query, 
+      parameters :query,
                  :doc,
                  :prefer_local,
                  :type

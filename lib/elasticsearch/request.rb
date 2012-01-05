@@ -60,7 +60,7 @@ module ElasticSearch
     
     def source_from_params
       return nil unless self.respond_to? :source_param
-      
+
       if Symbol === source_param
         obj = self.send source_param
         if (String === obj || obj.nil?)
@@ -69,7 +69,7 @@ module ElasticSearch
           return encode(obj)
         end
       else
-        pairs = source_param.map do |p| 
+        pairs = source_param.map do |p|
           if v = self.send(p)
             [p, v]
           else
@@ -77,11 +77,11 @@ module ElasticSearch
           end
         end
         pairs.compact!
-                
+
         return nil if pairs.empty?
-        
+
         obj = {}
-        
+
         pairs.each do |p, v|
           obj[p] = v
         end
