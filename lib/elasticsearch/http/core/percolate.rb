@@ -9,7 +9,7 @@ module ElasticSearch
           '/_percolator/{index}/{type}'
         else
           '/{index}/{type}/_percolate'
-        end 
+        end
       end
       
       def request_method
@@ -19,7 +19,6 @@ module ElasticSearch
           :put
         end
       end
-      
     end
   end
 end
