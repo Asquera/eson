@@ -28,11 +28,11 @@ module ElasticSearch
       attr_accessor :filters
 
       def filters
-        unless @filters
-          @filters = FilterArray.new
-        end
+        @filters ||= FilterArray.new
 
-        @filters.define_filters(&Proc.new) if block_given?
+        if block_given?
+          @filters.define_filters(&Proc.new)
+        end
 
         @filters
       end

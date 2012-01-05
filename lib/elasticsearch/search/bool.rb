@@ -17,17 +17,17 @@ module ElasticSearch
       end
 
       def must(&block)
-        q = (conditions[:must] ||= BaseQuery.new)
+        q = (conditions[:must] ||= SubQuery.new)
         q.send(context, &block)
       end
 
       def must_not(&block)
-        q = (conditions[:must_not] ||= BaseQuery.new)
+        q = (conditions[:must_not] ||= SubQuery.new)
         q.send(context, &block)
       end
 
       def should(&block)
-        q = (conditions[:should] ||= BaseQuery.new)
+        q = (conditions[:should] ||= SubQuery.new)
         q.send(context, &block)
       end
 

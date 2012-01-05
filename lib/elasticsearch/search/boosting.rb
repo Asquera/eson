@@ -16,12 +16,12 @@ module ElasticSearch
       end
       
       def positive(&block)
-        q = (boosts[:positive] ||= BaseQuery.new)
+        q = (boosts[:positive] ||= SubQuery.new)
         q.query(&block)
       end
       
       def negative(&block)
-        q = (boosts[:negative] ||= BaseQuery.new)
+        q = (boosts[:negative] ||= SubQuery.new)
         q.query(&block)
       end
       

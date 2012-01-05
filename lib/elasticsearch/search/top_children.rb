@@ -16,7 +16,7 @@ module ElasticSearch
       
       def to_query_hash
         {
-          name => group_to_query_hash.merge(options)
+          name => {:query => group_to_query_hash}.merge(options)
         }
       end
       

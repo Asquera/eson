@@ -316,23 +316,23 @@ context "Queries" do
   
   end
   
-  #context "#has_child query" do
-  #  query_name "test/search/queries/has_child"
-  #  set :type, "blog_tag"
-  #  set :index, "has_child_query"
-  #  
-  #  setup do
-  #    q = ElasticSearch::Search::BaseQuery.new
-  #    q.query do |query|
-  #      query.has_child :blog_tag do |c|
-  #        c.query do |qu|
-  #          qu.term :tag => "something"
-  #        end
-  #      end
-  #    end
-  #    q
-  #  end
-  #end
+  context "#has_child query" do
+    query_name "test/search/queries/has_child"
+    set :type, "blog_tag"
+    set :index, "has_child_query"
+    
+    setup do
+      q = ElasticSearch::Search::BaseQuery.new
+      q.query do |query|
+        query.has_child :blog_tag do |c|
+          c.query do |qu|
+            qu.term :tag => "something"
+          end
+        end
+      end
+      q
+    end
+  end
   
   context "complex #has_child query" do
     query_name "test/search/queries/has_child_complex"
@@ -438,5 +438,20 @@ context "Queries" do
       end
       q
     end
+  end
+
+  context "query with filter and facets" do
+    q = ElasticSearch::Search::BaseQuery.new
+    q.query do
+      match_all
+    end
+    q.filters do
+      range :age, :from => 10, :to => 20
+    end
+    q.facets do
+      histogram :hist1, :field => :age, :interval => 2
+    end
+    
+    
   end
 end

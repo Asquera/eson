@@ -23,8 +23,13 @@ context "Filter" do
         end
       end
       q
-    end  
+    end
   end
+
+  #context "multiple filters" do
+  #  query_name "test/search/filters/multiple"
+  #  
+  #end
 
   context "#missing" do
     query_name "test/search/filters/missing"
@@ -218,7 +223,6 @@ context "Filter" do
       end
       q
     end
-  
   end
 end
   

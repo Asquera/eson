@@ -12,6 +12,7 @@ require 'elasticsearch/search/query_group'
 require 'elasticsearch/search/field_based'
 
 require 'elasticsearch/search/base_query'
+require 'elasticsearch/search/sub_query'
 require 'elasticsearch/search/bool'
 require 'elasticsearch/search/query_field'
 require 'elasticsearch/search/term'
