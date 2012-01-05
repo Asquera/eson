@@ -35,7 +35,7 @@ module ElasticSearch
         result = {}
 
         conditions.each do |k,v|
-          result[k] = v.to_query_hash(false)
+          result[k] = v.to_query_hash
         end
 
         {name => result.merge(options)}

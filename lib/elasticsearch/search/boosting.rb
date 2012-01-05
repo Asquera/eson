@@ -29,7 +29,7 @@ module ElasticSearch
         result = {}
         
         boosts.each do |k,v|
-          result[k] = v.to_query_hash(false)
+          result[k] = v.to_query_hash
         end
         
         {name => result.merge(options)}

@@ -1,10 +1,9 @@
 module ElasticSearch
   module Search
     class TopChildren
-      include QueryGroup
-      
       include Query
       include Filter
+      include QueryGroup
       
       short_name :top_children
       
@@ -16,7 +15,7 @@ module ElasticSearch
       
       def to_query_hash
         {
-          name => {:query => group_to_query_hash}.merge(options)
+          name => {:query => super}.merge(options)
         }
       end
       

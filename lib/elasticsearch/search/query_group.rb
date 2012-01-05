@@ -4,7 +4,7 @@ module ElasticSearch
       include Filters
       include Queries
 
-      def group_to_query_hash(base = true)
+      def to_query_hash
         if queries && filters && queries.any? && filters.any?
           hash = {
             :filtered => {
@@ -23,10 +23,6 @@ module ElasticSearch
         end
 
         hash
-      end
-
-      def to_query_hash(base = true)
-        group_to_query_hash(base)
       end
 
       def to_hash

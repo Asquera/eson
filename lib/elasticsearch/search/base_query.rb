@@ -4,7 +4,7 @@ module ElasticSearch
       include QueryGroup
       include Facets
 
-      def group_to_query_hash(base = true)
+      def to_query_hash
         if (!queries || queries.empty?)
           hash = {:query => {:match_all => {}}}
         else
