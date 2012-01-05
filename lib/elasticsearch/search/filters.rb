@@ -2,20 +2,20 @@ module ElasticSearch
   module Search
     module Filters
       module FilterMethods
-        
+
       end
-      
-      FILTERS = Class.new(Array) do
+
+      class FilterArray < Array
         include FilterMethods
-        
+
         def filters
           self
         end
-        
-        def initialize
+
+        def define_filters
           instance_exec(self, &Proc.new) if block_given?
         end
-        
+
         def to_query_hash
           if length == 1
             first.to_query_hash
@@ -24,18 +24,24 @@ module ElasticSearch
           end
         end
       end
-      
+
       attr_accessor :filters
-      
-      def filters(&block)
-        @filters ||= FILTERS.new(&block)
+
+      def filters
+        unless @filters
+          @filters = FilterArray.new
+        end
+
+        @filters.define_filters(&Proc.new) if block_given?
+
+        @filters
       end
       alias :filter :filters
-      
+
       def filters?
         @filters && !(@filters.empty?)
       end
-      
+
       def self.register(name, klass)
         FilterMethods.__send__(:define_method, name) do |*args, &block|
           o = klass.new(*args)
@@ -44,11 +50,11 @@ module ElasticSearch
           filters << o
         end
       end
-      
+
       def to_query_hash
         others = super if defined?(super)
-        
-        if filters? 
+
+        if filters?
           { :filter => filters.to_query_hash }.tap do |h|
             h.merge!(others) if others
           end

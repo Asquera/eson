@@ -2,17 +2,17 @@ require './test/test_config'
 
 context "Filter" do
   helper(:node) { Node::External.instance }
-  
+
   helper(:client) do
     ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
                               :protocol => ElasticSearch::HTTP, 
                               :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::ResponseParser], 
                               :logger => 'test/test.log')
   end
-  
+
   context "#exists" do
     query_name "test/search/filters/exists"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -25,10 +25,10 @@ context "Filter" do
       q
     end  
   end
-  
+
   context "#missing" do
     query_name "test/search/filters/missing"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -40,13 +40,13 @@ context "Filter" do
       end
       q
     end
-    
+
   end
-  
+
   context "#numeric_range" do
     query_name "test/search/filters/numeric_range"
     set :index, "foo"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -58,12 +58,12 @@ context "Filter" do
       end
       q
     end
-    
+
   end
-  
+
   context "#type" do
     query_name "test/search/filters/type"
-  
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.filter do
@@ -72,11 +72,10 @@ context "Filter" do
       q
     end
   end
-  
-  
+
   context '#range filter' do
     query_name "test/search/filters/range"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.filter do
@@ -84,12 +83,11 @@ context "Filter" do
       end
       q
     end
-  
   end
-  
+
   context '#match_all with #ids filter' do
     query_name "test/search/filters/ids"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -100,23 +98,22 @@ context "Filter" do
       end
       q
     end
-  
+
   end
-  
-  
+
   context "#bool filter" do
     query_name "test/search/filters/bool"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
         match_all
       end
-      
+
       q.filter do
         options = {:minimum_number_should_match => 1,
                    :boost => 1.0}
-      
+
         bool do
           must do
             term "user", :value => "kimchy"
@@ -130,15 +127,14 @@ context "Filter" do
           end
         end
       end
-      
       q
     end
   end
-  
+
   context "#has_child filter" do
     query_name "test/search/filters/has_child"
     set :type, "blog"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.filter do
@@ -151,8 +147,7 @@ context "Filter" do
       q
     end
   end
-  
-  
+
   context "#and filter" do
     query_name "test/search/queries/and_filter"
     
