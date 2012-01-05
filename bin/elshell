@@ -15,15 +15,7 @@ require 'addressable/template'
 
 require 'pry'
 
-#node = ElasticSearch::Node::External.new
-
-c = ElasticSearch::Client.new(:server => "http://127.0.0.1:9200", 
-                              :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::ResponseParser], 
-                              :logger => Logger.new($stdout))
-
-at_exit do
-  node.close  
-end
+c = ElasticSearch::HTTP::Client.new(:server => 'http://localhost:9200',
+                                    :logger => Logger.new($stdout))
 
 c.pry
