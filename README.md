@@ -120,4 +120,3 @@ At the moment, the following features are missing:
 
 * facet_filter
 * geo queries
-* nested queries
