@@ -7,20 +7,20 @@ module ElasticSearch
             name
           end
           Filters.register name, self
-          
+
           if defined? super
             super
           end
         end
       end
-      
+
       def self.included(base)
         base.class_eval do
           extend ClassMethods
           include Node unless base.kind_of? Node
         end
       end
-      
+
     end
   end
 end

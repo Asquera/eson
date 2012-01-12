@@ -1,1 +1,1 @@
-{"query":{"nested":{"path":"obj1","score_mode":"avg","query":{"match_all":{}},"filter":{"range":{"age":{"from":10,"to":20}}}}}}
+{"query":{"nested":{"query":{"filtered":{"query":{"match_all":{}},"filter":{"exists":{"field":"user"}}}},"path":"obj1","score_mode":"avg"}}}

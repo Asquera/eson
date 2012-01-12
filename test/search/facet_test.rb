@@ -1,17 +1,17 @@
 require './test/test_config'
 context "Facets" do
   helper(:node) { Node::External.instance }
-  
+
   helper(:client) do
-    ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
-                              :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::ResponseParser], 
+    ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}",
+                              :protocol => ElasticSearch::HTTP,
+                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::StatusHandler, ElasticSearch::ResponseParser],
                               :logger => 'test/test.log')
   end
-  
+
   context '#match_all with #terms facet' do
     set :query_name, "test/search/facets/terms"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -22,12 +22,12 @@ context "Facets" do
       end
       q
     end
-  
+
   end
-  
+
   context '#match_all with #range facet' do
     set :query_name, "test/search/facets/range"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do

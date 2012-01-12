@@ -15,10 +15,7 @@ module ElasticSearch
 
       def to_query_hash
         {
-          name => options.merge({
-            :query => queries.to_query_hash,
-            :filter => filters.to_query_hash
-          })
+          name => {:query => super}.merge(options)
         }
       end
     end

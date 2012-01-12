@@ -2,17 +2,22 @@ require './test/test_config'
 
 context "Queries" do
   helper(:node) { Node::External.instance }
-  
+
   helper(:client) do
-    ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
-                              :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::ResponseParser], 
+    ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}",
+                              :protocol => ElasticSearch::HTTP,
+                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::StatusHandler, ElasticSearch::ResponseParser],
                               :logger => 'test/test.log')
   end
-  
+
+  setup do
+    client.create_index :index => "default" rescue nil
+    client.refresh
+  end
+
   context "#term" do
     query_name "test/search/queries/term"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -21,10 +26,10 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#wildcard" do
     query_name "test/search/queries/wildcard"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -33,10 +38,10 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#wildcard short style" do
     query_name "test/search/queries/wildcard_short"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -45,10 +50,10 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#prefix" do
     query_name "test/search/queries/prefix"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do |query|
@@ -57,10 +62,10 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#prefix short style" do
     query_name "test/search/queries/prefix_short"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do |query|
@@ -69,10 +74,10 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#match_all" do
     query_name "test/search/queries/match_all"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do |query|
@@ -81,34 +86,34 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#terms" do
     query_name "test/search/queries/terms"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do |query|
         query.terms({:tags => ['blue', 'pill'], :minimum_match => 2})
       end
       q
-    end  
+    end
   end
-  
+
   context "#ids" do
     query_name "test/search/queries/ids"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do |query|
         query.ids("user", [1,2,3,4,5,6,7])
       end
       q
-    end  
+    end
   end
-  
+
   context '#range query' do
     query_name "test/search/queries/range"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do |query|
@@ -117,26 +122,26 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#constant_score query" do
     query_name "test/search/queries/constant_score"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do |query|
         query.constant_score :boost => 2.0 do |c|
           c.query do |que|
             que.term "user", :value => "kimchy"
-          end          
+          end
         end
       end
       q
     end
   end
-  
+
   context "#constant_store query with filter" do
     query_name "test/search/queries/constant_score_filter"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do |query|
@@ -149,12 +154,12 @@ context "Queries" do
       q
     end
   end
-  
+
   #TODO: please use elasticsearch 16.2 for this
-  
+
   context "#text query" do
     query_name "test/search/queries/text"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do |query|
@@ -163,16 +168,16 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#bool query" do
     query_name "test/search/queries/bool"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|      
+      q.query do |query|
         options = {:minimum_number_should_match => 1,
                    :boost => 1.0}
-        
+
         query.bool do |b|
           b.must do |m|
             m.term "user", :value => "kimchy"
@@ -188,13 +193,12 @@ context "Queries" do
       end
       q
     end
-    
   end
-  
-  # TODO: check if elasticsearch is correct here
+
+
   context "#boosting query" do
     query_name "test/search/queries/boosting"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do |query|
@@ -210,10 +214,10 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#custom_score query" do
     query_name "test/search/queries/custom_score"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do |query|
@@ -230,12 +234,11 @@ context "Queries" do
       end
       q
     end
-  
   end
-  
+
   context "#dis_max query" do
     query_name "test/search/queries/dis_max"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do |query|
@@ -249,10 +252,10 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#field query" do
     query_name "test/search/queries/field"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -261,10 +264,10 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#flt query" do
     query_name "test/search/queries/flt"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -274,12 +277,12 @@ context "Queries" do
       end
       q
     end
-  
+
   end
-  
+
   context "#flt_field query" do
     query_name "test/search/queries/flt_field"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -290,10 +293,10 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#fuzzy simple query" do
     query_name "test/search/queries/fuzzy_simple"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -302,10 +305,10 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#fuzzy complex query" do
     query_name "test/search/queries/fuzzy_complex"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -313,32 +316,32 @@ context "Queries" do
       end
       q
     end
-  
+
   end
-  
-  context "#has_child query" do
-    query_name "test/search/queries/has_child"
-    set :type, "blog_tag"
-    set :index, "has_child_query"
-    
-    setup do
-      q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.has_child :blog_tag do |c|
-          c.query do |qu|
-            qu.term :tag => "something"
-          end
-        end
-      end
-      q
-    end
-  end
-  
-  #context "complex #has_child query" do
-  #  query_name "test/search/queries/has_child_complex"
+
+  #context "#has_child query" do
+  #  query_name "test/search/queries/has_child"
   #  set :type, "blog_tag"
-  #  set :index, "complex_has_child_query"
-  #  
+  #  set :index, "has_child_query"
+
+  #  setup do
+  #    q = ElasticSearch::Search::BaseQuery.new
+  #    q.query do |query|
+  #      query.has_child :blog_tag do |c|
+  #        c.query do |qu|
+  #          qu.term :tag => "something"
+  #        end
+  #      end
+  #    end
+  #    q
+  #  end
+  #end
+
+  #context "complex #has_child query" do
+  #  query_name "test/search/queries/has_child"
+  #  set :type, "blog_tag"
+  #  set :index, "has_child_query"
+
   #  setup do
   #    q = ElasticSearch::Search::BaseQuery.new
   #    q.query do |query|
@@ -372,7 +375,7 @@ context "Queries" do
 
   context "#mlt_field query" do
     query_name "test/search/queries/mlt_field"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -382,12 +385,11 @@ context "Queries" do
       end
       q
     end
-  
   end
-  
+
   context "#query_string" do
     query_name "test/search/queries/query_string"
-  
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -397,10 +399,10 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#query_string" do
     query_name "test/search/queries/query_string_without_default_field"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -409,10 +411,10 @@ context "Queries" do
       q
     end
   end
-  
+
   context "#query_string with multiple fields" do
     query_name "test/search/queries/query_string_with_multiple_fields"
-    
+
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.query do
@@ -423,20 +425,20 @@ context "Queries" do
       q
     end
   end
-  
-  #context "#top_children query" do
-  #  query_name "test/search/queries/top_children"
-  #  
-  #  setup do
-  #    q = ElasticSearch::Search::BaseQuery.new
-  #    q.query do
-  #      top_children :blog_tag, :score => "max" do
-  #        query { term :tag => "something" }
-  #      end
-  #    end
-  #    q
-  #  end
-  #end
+
+  context "#top_children query" do
+    query_name "test/search/queries/top_children"
+
+    setup do
+      q = ElasticSearch::Search::BaseQuery.new
+      q.query do
+        top_children :blog_tag, :score => "max" do
+          query { term :tag => "something" }
+        end
+      end
+      q
+    end
+  end
 
   context "query with filter and facets" do
     query_name "test/search/queries/filters_and_facets"
@@ -467,7 +469,7 @@ context "Queries" do
               match_all
             end
             filters do
-              range :age, :from => 10, :to => 20
+              exists :field => "user"
             end
           end
         end
