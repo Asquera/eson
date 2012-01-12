@@ -1,14 +1,14 @@
 module ElasticSearch
   class Request
     attr_accessor :api, :client
-    
+
     attr_accessor :pretty, :source, :index, :indices, :case
-    
+
     def initialize(api, plugins, client)
       self.api = api
       self.client = client
       self.extend(api)
-      
+
       Array(plugins).each do |p|
         if pluggable?(api, p, client)
           self.extend(p)
@@ -21,7 +21,7 @@ module ElasticSearch
         self.send("#{k}=", v)
       end
     end
-    
+
     def pluggable?(api, plugin, client)
       if plugin.respond_to? :plugin_for
         plugin.plugin_for(client.protocol).include?(api)
@@ -29,11 +29,11 @@ module ElasticSearch
         true
       end
     end
-    
+
     def index
       @index || client.index_name
     end
-    
+
     def parameters
       if self.respond_to?(:multi_index) && (multi_index == true)
         [:pretty, :indices, :case]
@@ -43,7 +43,7 @@ module ElasticSearch
         [:pretty, :case]
       end
     end
-    
+
     def indices
       if @indices
         Array(@indices)
@@ -51,13 +51,13 @@ module ElasticSearch
         Array(self.index)
       end
     end
-    
+
     def source
       @source || source_from_params
     end
-    
+
     # TODO: woah, this needs refactoring
-    
+
     def source_from_params
       return nil unless self.respond_to? :source_param
 
@@ -89,12 +89,12 @@ module ElasticSearch
         return encode(obj)
       end
     end
-    
+
     def encode(obj)
       if obj.respond_to? :to_query_hash
         obj = obj.to_query_hash
       end
-      
+
       if obj.respond_to? :to_json
         obj.to_json
       else
