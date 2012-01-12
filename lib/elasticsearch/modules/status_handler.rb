@@ -3,7 +3,7 @@ module ElasticSearch
     def call(*args)
       handle(super)
     end
-    
+
     def handle(response)
       case response.status
       when 404
@@ -19,7 +19,6 @@ module ElasticSearch
           response
         end
       end
-      
     end
   end
 end

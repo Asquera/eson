@@ -8,8 +8,10 @@ module ElasticSearch
       def base_resource
         conn = Faraday.new(:url => client.node) do |builder|
           builder.use Faraday::Response::Logger, ElasticSearch::HTTP.logger
-          
-          builder.adapter :typhoeus
+
+          #builder.response :raise_error
+
+          builder.adapter :net_http
         end
         
         conn.basic_auth(*client.auth) if client.auth?
@@ -32,6 +34,9 @@ module ElasticSearch
             resource.put(fill, source)
           end
         )
+        
+        #puts response.inspect
+        response
       end
       
       def fill
