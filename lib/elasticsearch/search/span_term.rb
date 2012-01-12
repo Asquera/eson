@@ -1,10 +1,9 @@
 module ElasticSearch
   module Search
-    class Term < FieldBased
+    class SpanTerm < FieldBased
       include Query
-      include Filter
 
-      short_name :term
+      short_name :span_term
 
       def to_query_hash
         if field
