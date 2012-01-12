@@ -12,22 +12,23 @@ Features:
 
 ## Usage
 
-```ruby
-    require 'echolon-search'
-    require 'json'
+``` ruby
+require 'echolon-search'
+require 'json'
 
-    q = ElasticSearch::Search::BaseQuery.new
-    q.query do
-      match_all
-    end
-    q.filters do
-      range :age, :from => 10, :to => 20
-    end
-    q.facets do
-      histogram :hist1, :field => :age, :interval => 2
-    end
-    
-    JSON.dump(q.to_query_hash)
+q = ElasticSearch::Search::BaseQuery.new do
+  query do
+    match_all
+  end
+  filters do
+    range :age, :from => 10, :to => 20
+  end
+  facets do
+    histogram :hist1, :field => :age, :interval => 2
+  end
+end
+
+JSON.dump(q.to_query_hash)
 ```
 
 This example yields:
@@ -60,7 +61,7 @@ This example yields:
 }
 ```
 
-The query generator does its best to avoid extra work. For example, if filtering is all you want, you can omit the query part - a `match_all`-query will be generated automatically:
+The query generator does its best to avoid extra work. For example, if filtering is all you want, you can omit the query part - a `filtered` query with a `match_all`-query will be generated automatically:
 
 ```ruby
 q.filter do
@@ -112,3 +113,11 @@ q.filter do |f|
   end
 end
 ```
+
+## TODOs
+
+At the moment, the following features are missing:
+
+* facet_filter
+* facet scopes
+* geo queries

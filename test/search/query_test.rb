@@ -334,44 +334,42 @@ context "Queries" do
     end
   end
   
-  context "complex #has_child query" do
-    query_name "test/search/queries/has_child_complex"
-    set :type, "blog_tag"
-    set :index, "complex_has_child_query"
-    
-    setup do
-      q = ElasticSearch::Search::BaseQuery.new
-      q.query do |query|
-        query.has_child :blog_tag do |c|
-          c.query do |qu|
-            qu.term :tag => "something"
-          end
-          c.filter do |qu|
-            qu.term :tag => "other"
-          end
-        end
-      end
-      q
-    end
-  end
-  
-  # Deactivated - poses some problems with EL 17.2
-  #context "#mlt query" do
-  #  query_name "test/search/queries/mlt"
-  #  type :bar
+  #context "complex #has_child query" do
+  #  query_name "test/search/queries/has_child_complex"
+  #  set :type, "blog_tag"
+  #  set :index, "complex_has_child_query"
   #  
   #  setup do
   #    q = ElasticSearch::Search::BaseQuery.new
   #    q.query do |query|
-  #      query.mlt :fields => ["name.first", "name.last"],
-  #                :like_text => "text like this one",
-  #                :max_query_terms => 12
+  #      query.has_child :blog_tag do |c|
+  #        c.query do |qu|
+  #          qu.term :tag => "something"
+  #        end
+  #        c.filter do |qu|
+  #          qu.term :tag => "other"
+  #        end
+  #      end
   #    end
   #    q
   #  end
-  #
   #end
-  
+
+  context "#mlt query" do
+    query_name "test/search/queries/mlt"
+    set :type, "bar"
+
+    setup do
+      q = ElasticSearch::Search::BaseQuery.new
+      q.query do |query|
+        query.mlt :fields => ["name.first", "name.last"],
+                  :like_text => "text like this one",
+                  :max_query_terms => 12
+      end
+      q
+    end
+  end
+
   context "#mlt_field query" do
     query_name "test/search/queries/mlt_field"
     
@@ -426,32 +424,35 @@ context "Queries" do
     end
   end
   
-  context "#top_children query" do
-    query_name "test/search/queries/top_children"
-    
-    setup do
-      q = ElasticSearch::Search::BaseQuery.new
-      q.query do
-        top_children :blog_tag, :score => "max" do
-          query { term :tag => "something" }
-        end
-      end
-      q
-    end
-  end
+  #context "#top_children query" do
+  #  query_name "test/search/queries/top_children"
+  #  
+  #  setup do
+  #    q = ElasticSearch::Search::BaseQuery.new
+  #    q.query do
+  #      top_children :blog_tag, :score => "max" do
+  #        query { term :tag => "something" }
+  #      end
+  #    end
+  #    q
+  #  end
+  #end
 
   context "query with filter and facets" do
-    q = ElasticSearch::Search::BaseQuery.new
-    q.query do
-      match_all
+    query_name "test/search/queries/filters_and_facets"
+
+    setup do
+      ElasticSearch::Search::BaseQuery.new do
+        query do
+          match_all
+        end
+        filters do
+          range :age, :from => 10, :to => 20
+        end
+        facets do
+          histogram :hist1, :field => :age, :interval => 2
+        end
+      end
     end
-    q.filters do
-      range :age, :from => 10, :to => 20
-    end
-    q.facets do
-      histogram :hist1, :field => :age, :interval => 2
-    end
-    
-    
   end
 end

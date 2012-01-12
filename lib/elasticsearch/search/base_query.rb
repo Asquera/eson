@@ -4,6 +4,10 @@ module ElasticSearch
       include QueryGroup
       include Facets
 
+      def initialize
+        instance_exec(self, &Proc.new) if block_given?
+      end
+
       def to_query_hash
         if (!queries || queries.empty?)
           hash = {:query => {:match_all => {}}}
