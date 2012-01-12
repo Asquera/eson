@@ -4,7 +4,6 @@ $LOAD_PATH << File.join(File.dirname(File.dirname(__FILE__)), "lib")
 
 require 'echolon-http'
 require 'echolon-search'
-require 'echolon-types'
 
 require 'elsearch-node'
 
@@ -15,7 +14,7 @@ require 'addressable/template'
 
 require 'pry'
 
-c = ElasticSearch::HTTP::Client.new(:server => 'http://localhost:9200',
+c = ElasticSearch::HTTP::Client.new(:server => ARGV.first || 'http://localhost:9200',
                                     :logger => Logger.new($stdout))
 
 c.pry
