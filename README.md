@@ -90,7 +90,7 @@ will generate:
 }
 ```
 
-## Caveants
+## Caveats
 
 `and` and `or` are Ruby keywords and can only be used as methods of the receiver is explicit. For that reason, you need to write the following to generate `and`- and `or`-filters:
 
@@ -121,3 +121,4 @@ At the moment, the following features are missing:
 * facet_filter
 * facet scopes
 * geo queries
+* nested queries
