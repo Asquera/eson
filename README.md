@@ -119,6 +119,5 @@ end
 At the moment, the following features are missing:
 
 * facet_filter
-* facet scopes
 * geo queries
 * nested queries

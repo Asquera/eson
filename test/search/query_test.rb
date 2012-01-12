@@ -455,4 +455,23 @@ context "Queries" do
       end
     end
   end
+
+  context "nested queries" do
+    query_name "test/search/queries/nested"
+
+    setup do
+      ElasticSearch::Search::BaseQuery.new do
+        query do
+          nested :path => :obj1, :score_mode => "avg" do
+            query do
+              match_all
+            end
+            filters do
+              range :age, :from => 10, :to => 20
+            end
+          end
+        end
+      end
+    end
+  end
 end

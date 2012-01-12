@@ -58,7 +58,6 @@ context "Facets" do
     end
   end
   
-  
   context '#match_all with #date_histogram facet' do
     set :query_name, "test/search/facets/date_histogram"
     set :type, "date_hist"
@@ -126,6 +125,30 @@ context "Facets" do
     end
   end
   
+  context '#nested scoped facet' do
+    set :query_name, "test/search/facets/scoped"
+    
+    setup do
+      ElasticSearch::Search::BaseQuery.new do
+        q = nil
+        query do
+          q = nested :path => :obj1, :score_mode => "avg" do
+            query do
+              match_all
+            end
+            filters do
+              range :age, :from => 10, :to => 20
+            end
+          end
+        end
+
+        facets do
+          (histogram :hist1, :field => :age, :interval => 2).scope(q, 'my_scope')
+        end
+      end
+    end
+  end
+
   context '#match_all with #terms_stats facet' do
     set :query_name, "test/search/facets/terms_stats"
     
@@ -140,6 +163,9 @@ context "Facets" do
       end
       q
     end
-    
+
   end
+
+  
+
 end
