@@ -541,4 +541,16 @@ context "Queries" do
       end
     end
   end
+
+  context "span_term query" do
+    query_name "test/search/queries/span_term"
+
+    setup do
+      ElasticSearch::Search::BaseQuery.new do
+        query do
+          span_term :user => "kimchy"
+        end
+      end
+    end
+  end
 end
