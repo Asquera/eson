@@ -526,4 +526,19 @@ context "Queries" do
       end
     end
   end
+
+  context "span_not query" do
+    query_name "test/search/queries/span_not"
+
+    setup do
+      ElasticSearch::Search::BaseQuery.new do
+        query do
+          span_not do
+            include { span_term :field => "value1" }
+            exclude { span_term :field => "value2" }
+          end
+        end
+      end
+    end
+  end
 end
