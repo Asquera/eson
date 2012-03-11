@@ -476,4 +476,36 @@ context "Queries" do
       end
     end
   end
+
+  context "span_or query" do
+    query_name "test/search/queries/span_or"
+
+    setup do
+      ElasticSearch::Search::BaseQuery.new do
+        query do
+          span_or do
+            clauses do
+              span_term :field => "value1"
+              span_term :field => "value2"
+              span_term :field => "value3"
+            end
+          end
+        end
+      end
+    end
+  end
+
+  context "span_first query" do
+    query_name "test/search/queries/span_first"
+
+    setup do
+      ElasticSearch::Search::BaseQuery.new do
+        query do
+          span_first :end => 3 do
+            span_term :field => "value1"
+          end
+        end
+      end
+    end
+  end
 end
