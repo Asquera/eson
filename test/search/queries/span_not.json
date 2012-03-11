@@ -1,0 +1,1 @@
+{"query":{"span_not":{"include":{"span_term":{"field":"value1"}},"exclude":{"span_term":{"field":"value2"}}}}}
