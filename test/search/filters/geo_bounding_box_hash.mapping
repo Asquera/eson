@@ -1,0 +1,8 @@
+{
+  "pin": {
+    "dynamic": true,
+    "properties": {
+      "location" : {"type": "geo_point"}
+    }
+  }
+}

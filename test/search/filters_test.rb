@@ -206,7 +206,7 @@ context "Filter" do
       q
     end
   end
-  
+
   context "#filter_query" do
     query_name "test/search/queries/filter_query"
     
@@ -219,6 +219,23 @@ context "Filter" do
               query_string "this AND that OR thus"
             end
           end
+        end
+      end
+      q
+    end
+  end
+
+  context "#geo_bounding_box filter" do
+    query_name "test/search/filters/geo_bounding_box_hash"
+    set :index, "geo"
+    set :type, "pin"
+
+    setup do
+      q = ElasticSearch::Search::BaseQuery.new
+      q.filter do
+        geo_bounding_box "location" do
+          top_left :lat => 40.73, :lon => -74.1
+          bottom_right :lat => 40.717, :lon => -73.99
         end
       end
       q
