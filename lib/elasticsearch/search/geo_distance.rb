@@ -2,7 +2,8 @@ module ElasticSearch
   module Search
     class GeoDistance
       include Filter
-
+      include Facet
+      
       short_name :geo_distance
       attr_accessor :field, :options
 

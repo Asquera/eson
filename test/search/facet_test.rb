@@ -166,6 +166,27 @@ context "Facets" do
 
   end
 
-  
+  context '#match_all with #geo_distance facet' do
+    set :query_name, "test/search/facets/geo_distance"
+    
+    setup do
+      q = ElasticSearch::Search::BaseQuery.new
+      q.facets do
+        geo_distance :geo1, :location do
+          lat(40)
+          lon(-70)
+          ranges [
+              { :to => 10 },
+              { :from => 10, :to => 20 },
+              { :from => 20, :to => 100 },
+              { :from => 100 }
+          ]
+        end
+      end
+      q
+    end
+
+  end
+
 
 end

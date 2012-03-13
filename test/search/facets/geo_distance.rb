@@ -1,0 +1,1 @@
+{:query=>{:match_all=>{}}, :facets=>{:geo1=>{:geo_distance=>{:location=>{:lat=>40, :lon=>-70}, :ranges=>[{:to=>10}, {:from=>10, :to=>20}, {:from=>20, :to=>100}, {:from=>100}]}}}}

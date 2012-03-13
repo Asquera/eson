@@ -304,7 +304,7 @@ context "Filter" do
     setup do
       q = ElasticSearch::Search::BaseQuery.new
       q.filter do
-        geo_polygon "location" do
+        geo_polygon :location do
           points [{:lat => 40, :lon => -70},
                   {:lat => 30, :lon => -80}]
 
