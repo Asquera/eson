@@ -295,5 +295,24 @@ context "Filter" do
       q
     end
   end
+
+  context "#geo_polygon filter" do
+    query_name "test/search/filters/geo_polygon_hash"
+    set :index, "geo"
+    set :type, "pin"
+
+    setup do
+      q = ElasticSearch::Search::BaseQuery.new
+      q.filter do
+        geo_polygon "location" do
+          points [{:lat => 40, :lon => -70},
+                  {:lat => 30, :lon => -80}]
+
+          point :lat => 20, :lon => -90
+        end
+      end
+      q
+    end
+  end
 end
   
