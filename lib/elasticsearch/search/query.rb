@@ -21,6 +21,11 @@ module ElasticSearch
         end
       end
       
+      def method_missing(name, arg)
+        warn("#{name} called as a query option")
+        self.options[name] = arg
+      end
+      
     end
   end
 end

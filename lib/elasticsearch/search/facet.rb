@@ -25,6 +25,11 @@ module ElasticSearch
         query.options[:_scope] = name
         self.options[:scope] = name
       end
+      
+      def method_missing(name, arg)
+        warn("#{name} called as a facet option")
+        self.options[name] = arg
+      end
     end
   end
 end

@@ -58,4 +58,5 @@ require 'elasticsearch/search/span_not'
 require 'elasticsearch/search/span_first'
 require 'elasticsearch/search/geo_bounding_box'
 require 'elasticsearch/search/geo_distance'
+require 'elasticsearch/search/geo_distance_range'
 

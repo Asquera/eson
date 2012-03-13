@@ -20,7 +20,11 @@ module ElasticSearch
           include Node unless base.kind_of? Node
         end
       end
-
+      
+      def method_missing(name, arg)
+        warn("#{name} called as a filter option")
+        self.options[name] = arg
+      end
     end
   end
 end

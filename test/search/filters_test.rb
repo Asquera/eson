@@ -242,8 +242,7 @@ context "Filter" do
     end
   end
 
-
-  context "#geo_fistance filter" do
+  context "#geo_distance filter" do
     query_name "test/search/filters/geo_distance_hash"
     set :index, "geo"
     set :type, "pin"
@@ -252,6 +251,43 @@ context "Filter" do
       q = ElasticSearch::Search::BaseQuery.new
       q.filter do
         geo_distance "location", :distance => "200km" do
+          lat(40)
+          lon(-70)
+        end
+      end
+      q
+    end
+  end
+
+  context "#geo_distance filter with block options" do
+    query_name "test/search/filters/geo_distance_hash"
+    set :index, "geo"
+    set :type, "pin"
+
+    setup do
+      q = ElasticSearch::Search::BaseQuery.new
+      q.filter do
+        geo_distance "location" do
+          distance "200km"
+          lat(40)
+          lon(-70)
+        end
+      end
+      q
+    end
+  end
+  
+  context "#geo_distance_range filter" do
+    query_name "test/search/filters/geo_distance_range_hash"
+    set :index, "geo"
+    set :type, "pin"
+
+    setup do
+      q = ElasticSearch::Search::BaseQuery.new
+      q.filter do
+        geo_distance_range "location" do
+          from "200km"
+          to "400km"
           lat(40)
           lon(-70)
         end
