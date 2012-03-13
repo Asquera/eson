@@ -1,14 +1,14 @@
 module ElasticSearch
   module Search
-    class GeoBoundingBox < FieldBased
+    class GeoBoundingBox
       include Filter
 
       short_name :geo_bounding_box
       attr_accessor :field, :options
 
-      def initialize(field)
+      def initialize(field, options = {})
         self.field = field
-        self.options = {}
+        self.options = options
       end
 
       def top_left(location, *args)
