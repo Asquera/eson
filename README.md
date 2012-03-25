@@ -95,9 +95,9 @@ will generate:
 
 ```ruby
 q.filter do |f|
-  f.and do #and is a keyword, so it needs a receiver
-    range :post_date, {:from => "2010-03-01", :to => "2010-04-01"}
-    prefix "name.second" => "ba"
+  f.or do
+    term "name.first" => "Felix"
+    term "name.first" => "Florian"
   end
 end
 ```
@@ -106,9 +106,14 @@ and
 
 ```ruby
 q.filter do |f|
-  f.or do
-    term "name.first" => "Felix"
-    term "name.first" => "Florian"
+  f.and do #and is a keyword, so it needs a receiver
+    range :post_date, {:from => "2010-03-01", :to => "2010-04-01"}
+    prefix "name.second" => "ba"
   end
 end
 ```
+
+# TODO
+
+* Indices-Query is missing (0.20-feature)
+* Custom-Boost-Query is missing (0.20-feature)

@@ -172,6 +172,23 @@ context "Filter" do
     
   end
   
+  context "#and filter using default" do
+     query_name "test/search/queries/and_filter"
+
+     setup do
+       q = ElasticSearch::Search::BaseQuery.new
+       q.query do
+         term :tag => "something"
+       end
+       q.filter do |f|
+         range :post_date, {:from => "2010-03-01", :to => "2010-04-01"}
+         prefix "name.second" => "ba"
+       end
+       q
+     end
+
+   end
+  
   context "#or filter" do
     query_name "test/search/queries/or_filter"
     
