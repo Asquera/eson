@@ -1,14 +1,13 @@
 # echolon-search: The elasticsearch query DSL, in Ruby
 
-This gem provides a full implementation of the elasticsearch query DSL, independent of a client.
+This gem provides a full implementation of the elasticsearch query DSL, independent of a client. At the moment, it encodes the query DSL of ElasticSearch 0.19
 
 Features:
 
 * Safe: it does its best to avoid generating improper queries
-* Close to the original: All queries and filters have the same name as in the elasticsearch documentation
+* Close to the original: All queries and filters have the same name an similar parameter order as in the elasticsearch documentation
 * Ease of use: makes handing some of the trickier aspects of the query language easier
 * Complete: Incorporates all of the elasticsearch query language
-* Fast
 
 ## Usage
 
