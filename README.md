@@ -113,11 +113,3 @@ q.filter do |f|
   end
 end
 ```
-
-## TODOs
-
-At the moment, the following features are missing:
-
-* facet_filter
-* geo queries
-* span queries
