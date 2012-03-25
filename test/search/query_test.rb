@@ -319,44 +319,44 @@ context "Queries" do
 
   end
 
-  #context "#has_child query" do
-  #  query_name "test/search/queries/has_child"
-  #  set :type, "blog_tag"
-  #  set :index, "has_child_query"
-
-  #  setup do
-  #    q = ElasticSearch::Search::BaseQuery.new
-  #    q.query do |query|
-  #      query.has_child :blog_tag do |c|
-  #        c.query do |qu|
-  #          qu.term :tag => "something"
-  #        end
-  #      end
-  #    end
-  #    q
-  #  end
-  #end
-
-  #context "complex #has_child query" do
-  #  query_name "test/search/queries/has_child"
-  #  set :type, "blog_tag"
-  #  set :index, "has_child_query"
-
-  #  setup do
-  #    q = ElasticSearch::Search::BaseQuery.new
-  #    q.query do |query|
-  #      query.has_child :blog_tag do |c|
-  #        c.query do |qu|
-  #          qu.term :tag => "something"
-  #        end
-  #        c.filter do |qu|
-  #          qu.term :tag => "other"
-  #        end
-  #      end
-  #    end
-  #    q
-  #  end
-  #end
+  context "#has_child query" do
+    query_name "test/search/queries/has_child"
+    set :type, "blog_tag"
+    set :index, "has_child_query"
+  
+    setup do
+      q = ElasticSearch::Search::BaseQuery.new
+      q.query do |query|
+        query.has_child :blog_tag do |c|
+          c.query do |qu|
+            qu.term :tag => "something"
+          end
+        end
+      end
+      q
+    end
+  end
+  
+  context "complex #has_child query" do
+    query_name "test/search/queries/has_child"
+    set :type, "blog_tag"
+    set :index, "has_child_query"
+  
+    setup do
+      q = ElasticSearch::Search::BaseQuery.new
+      q.query do |query|
+        query.has_child :blog_tag do |c|
+          c.query do |qu|
+            qu.term :tag => "something"
+          end
+          c.filter do |qu|
+            qu.term :tag => "other"
+          end
+        end
+      end
+      q
+    end
+  end
 
   context "#mlt query" do
     query_name "test/search/queries/mlt"

@@ -17,7 +17,7 @@ require 'json'
 
 q = ElasticSearch::Search::BaseQuery.new do
   query do
-    match_all
+    wildcard :user, :value => "kim*y", :boost => 2.0
   end
   filters do
     range :age, :from => 10, :to => 20
@@ -37,7 +37,12 @@ This example yields:
   "query": {
     "filtered": {
       "query": {
-        "match_all": { }
+        "wildcard": {
+          "user": {
+            "value": "kim*y",
+            "boost": 2.0}
+          }
+        }
       },
       "filter": {
         "range": {
