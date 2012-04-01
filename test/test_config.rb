@@ -56,9 +56,9 @@ class ElasticSearchQueries < Riot::ContextMiddleware
       
       context.setup(true) do
         client.create_index :index => index rescue nil
-        File.open(f) do |file|
+        File.open(f) do |p|
           begin
-            file.each_line do |l|
+            p.each_line do |l|
               client.index :index => index,
                            :source => l,
                            :type => type
