@@ -338,7 +338,7 @@ context "Queries" do
   end
   
   context "complex #has_child query" do
-    query_name "test/search/queries/has_child"
+    query_name "test/search/queries/has_child_complex"
     set :type, "blog_tag"
     set :index, "has_child_query"
   
