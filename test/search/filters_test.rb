@@ -121,14 +121,14 @@ context "Filter" do
 
         bool do
           must do
-            term "user", :value => "kimchy"
+            term "user" => "kimchy"
           end
           must_not do
             range :age, :from => 10, :to => 20
           end
           should do
-            term "tag", :value => "wow"
-            term "tag", :value => "elasticsearch"
+            term "tag" => "wow"
+            term "tag" => "elasticsearch"
           end
         end
       end

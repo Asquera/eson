@@ -102,7 +102,7 @@ class ElasticSearchQueries < Riot::ContextMiddleware
       begin
         q = client.search :index => index, :type => type, :query => topic
       rescue Exception => e
-        puts e.inspect
+        puts e.response.inspect
         raise e
       end
     end

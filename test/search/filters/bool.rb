@@ -6,7 +6,7 @@
       :filter => {
         :bool => {
           :must => {
-            :term => { "user" => {:value => "kimchy"} }
+            :term => { "user" => "kimchy"}
           },
           :must_not => {
             :range => {
@@ -17,8 +17,8 @@
             }
           },
           :should => [
-            { :term => { "tag" => {:value => "wow"} } },
-            { :term => { "tag" => {:value => "elasticsearch"} } }
+            { :term => { "tag" => "wow" } },
+            { :term => { "tag" => "elasticsearch" } }
           ]
         }
       }
