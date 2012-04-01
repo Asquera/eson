@@ -12,7 +12,7 @@ Bundler.require(:test, :default)
 
 require 'echolon-http'
 require 'echolon-search'
-require 'node/external'
+require 'elasticsearch-node/external'
 
 ElasticSearch::Node.default_config(:testing)
 
@@ -20,7 +20,7 @@ module Node
   module External
     def self.instance
       @node ||= begin 
-        node = ElasticSearch::Node::External.new
+        node = ElasticSearch::Node::External.new("gateway.type" => "none")
         at_exit do
           node.close
         end
