@@ -1,20 +1,6 @@
 require './test/test_config'
 
 context "Queries" do
-  helper(:node) { Node::External.instance }
-
-  helper(:client) do
-    ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}",
-                              :protocol => ElasticSearch::HTTP,
-                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::StatusHandler, ElasticSearch::ResponseParser],
-                              :logger => 'test/test.log')
-  end
-
-  setup do
-    client.create_index :index => "default" rescue nil
-    client.refresh
-  end
-
   context "#term" do
     query_name "test/search/queries/term"
 
