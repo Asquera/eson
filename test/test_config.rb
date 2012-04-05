@@ -10,8 +10,7 @@ end
 
 Bundler.require(:test, :default)
 
-#require 'echolon-http'
-require 'echolon-search'
+require 'eson-dsl'
 require 'faraday'
 require 'elasticsearch-node/external'
 
@@ -43,7 +42,7 @@ require 'riot'
 
 #Riot.dots
 
-class ElasticSearchQueries < Riot::ContextMiddleware
+class EsonQueries < Riot::ContextMiddleware
   register
 
   def call(context) 

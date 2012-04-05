@@ -4,7 +4,7 @@ context "Facets" do
     set :query_name, "test/search/facets/terms"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         match_all
       end
@@ -20,7 +20,7 @@ context "Facets" do
     set :query_name, "test/search/facets/range"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         match_all
       end
@@ -38,7 +38,7 @@ context "Facets" do
     set :query_name, "test/search/facets/histogram"
     
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         match_all
       end
@@ -55,7 +55,7 @@ context "Facets" do
     set :index, "date_hist"
     
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         match_all
       end
@@ -70,7 +70,7 @@ context "Facets" do
     set :query_name, "test/search/facets/query"
     
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         match_all
       end
@@ -87,7 +87,7 @@ context "Facets" do
     set :query_name, "test/search/facets/tag_facet"
     
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         match_all
       end
@@ -105,7 +105,7 @@ context "Facets" do
     set :query_name, "test/search/facets/statistical"
   
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         match_all
       end
@@ -120,7 +120,7 @@ context "Facets" do
     set :query_name, "test/search/facets/scoped"
     
     setup do
-      ElasticSearch::Search::BaseQuery.new do
+      Eson::Search::BaseQuery.new do
         q = nil
         query do
           q = nested :path => :obj1, :score_mode => "avg" do
@@ -144,7 +144,7 @@ context "Facets" do
     set :query_name, "test/search/facets/terms_stats"
     
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         match_all
       end
@@ -161,7 +161,7 @@ context "Facets" do
     set :query_name, "test/search/facets/geo_distance"
     
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.facets do
         geo_distance :geo1, :location do
           lat(40)

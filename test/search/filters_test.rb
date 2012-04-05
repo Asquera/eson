@@ -5,7 +5,7 @@ context "Filter" do
     query_name "test/search/filters/exists"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         constant_score do
           filter do
@@ -21,7 +21,7 @@ context "Filter" do
     query_name "test/search/filters/missing"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         constant_score do
           filter do
@@ -39,7 +39,7 @@ context "Filter" do
     set :index, "foo"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         constant_score do
           filter do
@@ -56,7 +56,7 @@ context "Filter" do
     query_name "test/search/filters/type"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.filter do
         type :my_type
       end
@@ -68,7 +68,7 @@ context "Filter" do
     query_name "test/search/filters/range"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.filter do
         range :age, :from => 10, :to => 20
       end
@@ -80,7 +80,7 @@ context "Filter" do
     query_name "test/search/filters/ids"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         match_all
       end
@@ -96,7 +96,7 @@ context "Filter" do
     query_name "test/search/filters/bool"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         match_all
       end
@@ -127,7 +127,7 @@ context "Filter" do
     set :type, "blog"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.filter do
         has_child :blog_tag do
           query do
@@ -143,7 +143,7 @@ context "Filter" do
     query_name "test/search/queries/and_filter"
     
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         term :tag => "something"
       end
@@ -162,7 +162,7 @@ context "Filter" do
      query_name "test/search/queries/and_filter"
 
      setup do
-       q = ElasticSearch::Search::BaseQuery.new
+       q = Eson::Search::BaseQuery.new
        q.query do
          term :tag => "something"
        end
@@ -179,7 +179,7 @@ context "Filter" do
     query_name "test/search/queries/or_filter"
     
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         term :tag => "something"
       end
@@ -197,7 +197,7 @@ context "Filter" do
     query_name "test/search/queries/not_filter"
     
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         term :tag => "something"
       end
@@ -214,7 +214,7 @@ context "Filter" do
     query_name "test/search/queries/filter_query"
     
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.query do
         constant_score do
           filter do
@@ -234,7 +234,7 @@ context "Filter" do
     set :type, "pin"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.filter do
         geo_bounding_box "location" do
           top_left :lat => 40.73, :lon => -74.1
@@ -251,7 +251,7 @@ context "Filter" do
     set :type, "pin"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.filter do
         geo_distance "location", :distance => "200km" do
           lat(40)
@@ -268,7 +268,7 @@ context "Filter" do
     set :type, "pin"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.filter do
         geo_distance "location" do
           distance "200km"
@@ -286,7 +286,7 @@ context "Filter" do
     set :type, "pin"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.filter do
         geo_distance_range "location" do
           from "200km"
@@ -305,7 +305,7 @@ context "Filter" do
     set :type, "pin"
 
     setup do
-      q = ElasticSearch::Search::BaseQuery.new
+      q = Eson::Search::BaseQuery.new
       q.filter do
         geo_polygon :location do
           points [{:lat => 40, :lon => -70},

@@ -4,9 +4,9 @@ context "QueryPlugin" do
 #  helper(:node) { Node::External.instance }
 #  
 #  helper(:client) do
-#    ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
-#                              :protocol => ElasticSearch::HTTP, 
-#                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::ResponseParser], 
+#    Eson::Client.new(:server => "http://#{node.ip}:#{node.port}", 
+#                              :protocol => Eson::HTTP, 
+#                              :plugins => [Eson::QueryPlugin, Eson::ResponseParser], 
 #                              :logger => 'test/test.log')
 #  end
 #  

@@ -15,7 +15,7 @@ Features:
 require 'echolon-search'
 require 'json'
 
-q = ElasticSearch::Search::BaseQuery.new do
+q = Eson::Search::BaseQuery.new do
   query do
     wildcard :user, :value => "kim*y", :boost => 2.0
   end
