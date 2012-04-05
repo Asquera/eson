@@ -1,12 +1,9 @@
-#require 'elsearch'
-
 require 'multi_json'
 
 require 'eson/client'
 require 'eson/request'
 require 'eson/chainable'
 require 'eson/api'
-#require 'elasticsearch/response'
 require 'eson/error'
 
 require 'eson/shared/core/index'
