@@ -4,9 +4,9 @@ context 'HTTP client indices API' do
   helper(:node) { Node::External.instance }
   
   helper(:client) do
-    ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
-                              :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::StatusHandler, ElasticSearch::ResponseParser], 
+    Eson::Client.new(:server => "http://#{node.ip}:#{node.port}", 
+                              :protocol => Eson::HTTP, 
+                              :plugins => [Eson::StatusHandler, Eson::ResponseParser], 
                               :logger => 'test/test.log',
                               :auth => ['Aladdin', 'open sesame'])
   end
@@ -21,13 +21,13 @@ context 'HTTP client indices API' do
   context "missing index" do
     asserts {
       client.get :index => "missing", :type => "foo", :id => 1
-    }.raises(ElasticSearch::IndexNotFoundError)
+    }.raises(Eson::IndexNotFoundError)
   end
   
   context "missing handler" do
     asserts {
        client.get :index => "missing"
-    }.raises(ElasticSearch::Error)
+    }.raises(Eson::Error)
   end
   
   context "existing index" do
@@ -38,7 +38,7 @@ context 'HTTP client indices API' do
     
     asserts {
       client.get :index => "existing", :type => "foo", :id => 81923123
-    }.raises(ElasticSearch::NotFoundError)
+    }.raises(Eson::NotFoundError)
   end
   
   context "delete index" do

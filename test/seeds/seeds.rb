@@ -2,9 +2,9 @@
 
 node = Node::External.instance
 
-c = ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
-                              :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::ResponseParser], 
+c = Eson::Client.new(:server => "http://#{node.ip}:#{node.port}", 
+                              :protocol => Eson::HTTP, 
+                              :plugins => [Eson::ResponseParser], 
                               :logger => 'test/test.log')
 
 c.delete_index :index => "_all" rescue nil

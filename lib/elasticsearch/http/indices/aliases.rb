@@ -1,4 +1,4 @@
-module ElasticSearch
+module Eson
   module HTTP
     module Aliases
       include Shared::Aliases

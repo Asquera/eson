@@ -18,7 +18,7 @@ module Node
   module External
     def self.instance
       @node ||= begin 
-        node = ElasticSearch::Node::External.new
+        node = ElasticSearch::Node::External.new("gateway" => "none")
         at_exit do
           node.close
         end

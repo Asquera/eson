@@ -4,9 +4,9 @@ context 'HTTP client quick api' do
   helper(:node) { Node::External.instance }
   
   helper(:client) do
-    ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
-                              :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::StatusHandler, ElasticSearch::ResponseParser], 
+    Eson::Client.new(:server => "http://#{node.ip}:#{node.port}", 
+                              :protocol => Eson::HTTP, 
+                              :plugins => [Eson::StatusHandler, Eson::ResponseParser], 
                               :logger => 'test/test.log')
   end
   
@@ -65,9 +65,9 @@ end
 
 context 'HTTP client verbose API' do
   helper(:client) do
-    ElasticSearch::Client.new(:server => "127.0.0.1:9200", 
-                              :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::ResponseParser], 
+    Eson::Client.new(:server => "127.0.0.1:9200", 
+                              :protocol => Eson::HTTP, 
+                              :plugins => [Eson::ResponseParser], 
                               :logger => 'test/test.log')
   end
   
@@ -76,6 +76,6 @@ context 'HTTP client verbose API' do
       client.index
     end
     
-    asserts_topic("is an Index request").kind_of?(ElasticSearch::HTTP::Index)
+    asserts_topic("is an Index request").kind_of?(Eson::HTTP::Index)
   end
 end

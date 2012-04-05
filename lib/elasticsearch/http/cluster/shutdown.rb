@@ -1,4 +1,4 @@
-module ElasticSearch
+module Eson
   module HTTP
     module Shutdown
       #TODO fully implement and test this

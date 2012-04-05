@@ -1,4 +1,4 @@
-module ElasticSearch
+module Eson
   module StatusHandler
     def call(*args)
       handle(super)
@@ -8,13 +8,13 @@ module ElasticSearch
       case response.status
       when 404
         if /IndexMissingException/.match(response.body)
-          raise ElasticSearch::IndexNotFoundError.new(response.body, response)
+          raise Eson::IndexNotFoundError.new(response.body, response)
         else
-          raise ElasticSearch::NotFoundError.new(response, response)
+          raise Eson::NotFoundError.new(response, response)
         end
       else
         if response.status >= 400
-          raise ElasticSearch::Error.new(response[:error], response)
+          raise Eson::Error.new(response[:error], response)
         else
           response
         end

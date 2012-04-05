@@ -1,4 +1,4 @@
-module ElasticSearch
+module Eson
   module HTTP
     module Index
       include Shared::Index

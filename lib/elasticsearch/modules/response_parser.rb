@@ -1,6 +1,6 @@
-module ElasticSearch
+module Eson
   module ResponseParser
-    class JSONParseError < ElasticSearch::Error
+    class JSONParseError < Eson::Error
       attr_accessor :source
     end
     

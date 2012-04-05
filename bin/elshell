@@ -14,7 +14,7 @@ require 'addressable/template'
 
 require 'pry'
 
-c = ElasticSearch::HTTP::Client.new(:server => ARGV.first || 'http://localhost:9200',
+c = Eson::HTTP::Client.new(:server => ARGV.first || 'http://localhost:9200',
                                     :logger => Logger.new($stdout))
 
 c.pry

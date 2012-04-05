@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    echolon-http (0.1.1)
+    eson-http (0.1.1)
       addressable
       eson-core
       faraday
@@ -36,7 +36,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  echolon-http!
   elasticsearch-node
   eson-core!
+  eson-http!
   riot

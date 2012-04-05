@@ -1,4 +1,4 @@
-module ElasticSearch
+module Eson
   module HTTP
     def self.logger=(logger)
       if String === logger

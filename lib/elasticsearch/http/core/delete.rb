@@ -1,4 +1,4 @@
-module ElasticSearch
+module Eson
   module HTTP
     module Delete
       include Shared::Delete

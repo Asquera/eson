@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Florian Gilcher"]
   s.email       = ["florian.gilcher@asquera.de"]
   s.homepage    = ""
-  s.summary     = %q{A modular client for ElasticSearch - HTTP interface}
-  s.description = %q{A modular client for ElasticSearch. It provides
+  s.summary     = %q{A modular client for Eson - HTTP interface}
+  s.description = %q{A modular client for Eson. It provides
   an implementation of the Query language as well as multiple client implementations
   for HTTP and native access.}
 

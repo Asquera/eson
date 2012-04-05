@@ -1,4 +1,4 @@
-module ElasticSearch
+module Eson
   module HTTP
     module Health
       include Shared::Health

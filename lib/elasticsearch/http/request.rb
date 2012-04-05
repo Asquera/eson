@@ -1,13 +1,13 @@
 require 'faraday'
 
-module ElasticSearch
+module Eson
   module HTTP
-    class Request < ElasticSearch::Request
+    class Request < Eson::Request
       attr_accessor :request_method
       
       def base_resource
         conn = Faraday.new(:url => client.node) do |builder|
-          builder.use Faraday::Response::Logger, ElasticSearch::HTTP.logger
+          builder.use Faraday::Response::Logger, Eson::HTTP.logger
 
           #builder.response :raise_error
 

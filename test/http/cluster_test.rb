@@ -4,7 +4,7 @@ context 'HTTP client cluster api' do
   helper(:node) { Node::External.instance }
   
   helper(:client) do
-    ElasticSearch::HTTP::Client.new(:server => "http://#{node.ip}:#{node.port}",
+    Eson::HTTP::Client.new(:server => "http://#{node.ip}:#{node.port}",
                                     :logger => 'test/test.log')
   end
     

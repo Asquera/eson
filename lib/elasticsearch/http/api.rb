@@ -1,7 +1,7 @@
-module ElasticSearch
+module Eson
   module HTTP
     module API
-      include ElasticSearch::API
+      include Eson::API
       
       def request_method(method)
         define_method :request_method do

@@ -1,4 +1,4 @@
-module ElasticSearch
+module Eson
   module HTTP
     module Bulk
       include Shared::Bulk
@@ -16,9 +16,9 @@ module ElasticSearch
       
       def serialize_request(request)
         case request
-        when ElasticSearch::HTTP::Index
+        when Eson::HTTP::Index
           MultiJson.encode({ "index" => to_params_hash(request) }) << "\n" << request.source << "\n"
-        when ElasticSearch::HTTP::Delete
+        when Eson::HTTP::Delete
           MultiJson.encode({ "delete" => to_params_hash(request) }) << "\n"
         end
       end
