@@ -8,3 +8,4 @@ gem "riot", :git => "git://github.com/Asquera/riot.git", :branch => 'option-inhe
 gem 'yajl-ruby', :require => 'yajl', :platform => 'ruby'
 gem 'jruby-openssl', :platform => 'jruby'
 gem 'faraday'
+gem 'rake'
