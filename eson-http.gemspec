@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 #require "./lib/elsearch"
 
 Gem::Specification.new do |s|
-  s.name        = "echolon-http"
+  s.name        = "eson-http"
   s.version     = "0.1.1" #Echolon::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Florian Gilcher"]
@@ -22,6 +22,8 @@ Gem::Specification.new do |s|
   s.add_dependency "typhoeus"
   s.add_dependency "faraday"
   s.add_dependency "addressable"
-  s.add_dependency "echolon-core"
-  s.add_development_dependency "elsearch-node"
+  s.add_dependency "eson-core"
+  s.add_development_dependency "elasticsearch-node"
+  s.add_development_dependency "riot"
+  
 end
