@@ -2794,3 +2794,353 @@ D, [2012-04-05T22:30:35.851401 #53437] DEBUG -- request:
 I, [2012-04-05T22:30:35.854461 #53437]  INFO -- Status: 200
 D, [2012-04-05T22:30:35.854565 #53437] DEBUG -- response: content-type: "application/json; charset=UTF-8"
 content-length: "122"
+I, [2012-04-05T22:32:44.142896 #53507]  INFO -- : delete http://172.20.10.2:9200/_all
+D, [2012-04-05T22:32:44.143144 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.029741 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:45.029908 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:45.089709 #53507]  INFO -- : put http://172.20.10.2:9200/_bulk?index=default
+D, [2012-04-05T22:32:45.089837 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.449750 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:45.449888 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "40914"
+I, [2012-04-05T22:32:45.453925 #53507]  INFO -- : put http://172.20.10.2:9200/for_deletion
+D, [2012-04-05T22:32:45.454057 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.566092 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:45.566281 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:45.568021 #53507]  INFO -- : delete http://172.20.10.2:9200/for_creation
+D, [2012-04-05T22:32:45.568150 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.572038 #53507]  INFO -- Status: 404
+D, [2012-04-05T22:32:45.572202 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "70"
+I, [2012-04-05T22:32:45.574231 #53507]  INFO -- : delete http://172.20.10.2:9200/for_creation_with_settings_and_mappings
+D, [2012-04-05T22:32:45.574339 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.577221 #53507]  INFO -- Status: 404
+D, [2012-04-05T22:32:45.577346 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "97"
+I, [2012-04-05T22:32:45.578532 #53507]  INFO -- : delete http://172.20.10.2:9200/abc
+D, [2012-04-05T22:32:45.578590 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.580544 #53507]  INFO -- Status: 404
+D, [2012-04-05T22:32:45.580643 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "61"
+I, [2012-04-05T22:32:45.581671 #53507]  INFO -- : delete http://172.20.10.2:9200/def
+D, [2012-04-05T22:32:45.581730 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.583717 #53507]  INFO -- Status: 404
+D, [2012-04-05T22:32:45.583835 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "61"
+I, [2012-04-05T22:32:45.584895 #53507]  INFO -- : post http://172.20.10.2:9200/for_closing/_open
+D, [2012-04-05T22:32:45.584951 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.587670 #53507]  INFO -- Status: 404
+D, [2012-04-05T22:32:45.587779 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "69"
+I, [2012-04-05T22:32:45.588903 #53507]  INFO -- : delete http://172.20.10.2:9200/for_closing
+D, [2012-04-05T22:32:45.588961 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.590993 #53507]  INFO -- Status: 404
+D, [2012-04-05T22:32:45.591096 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "69"
+I, [2012-04-05T22:32:45.592327 #53507]  INFO -- : delete http://172.20.10.2:9200/for_reopening
+D, [2012-04-05T22:32:45.592406 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.594268 #53507]  INFO -- Status: 404
+D, [2012-04-05T22:32:45.594377 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "71"
+I, [2012-04-05T22:32:45.595596 #53507]  INFO -- : delete http://172.20.10.2:9200/mappings
+D, [2012-04-05T22:32:45.595669 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.597395 #53507]  INFO -- Status: 404
+D, [2012-04-05T22:32:45.597520 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "66"
+I, [2012-04-05T22:32:45.606589 #53507]  INFO -- : get http://172.20.10.2:9200/_cluster/health/default
+D, [2012-04-05T22:32:45.606681 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.611958 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:45.612079 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "225"
+I, [2012-04-05T22:32:45.613571 #53507]  INFO -- : get http://172.20.10.2:9200/_cluster/state?indices%5B0%5D=default
+D, [2012-04-05T22:32:45.613627 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.618134 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:45.618281 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "5341"
+I, [2012-04-05T22:32:45.620000 #53507]  INFO -- : get http://172.20.10.2:9200/_cluster/state?filter_metadata&indices%5B0%5D=default
+D, [2012-04-05T22:32:45.620059 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.622437 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:45.622519 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "4930"
+I, [2012-04-05T22:32:45.624358 #53507]  INFO -- : get http://172.20.10.2:9200/_cluster/nodes/?index=default
+D, [2012-04-05T22:32:45.624412 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:45.627360 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:45.627446 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "234"
+I, [2012-04-05T22:32:45.629144 #53507]  INFO -- : get http://172.20.10.2:9200/_cluster/nodes/non_existant_node?index=default
+D, [2012-04-05T22:32:45.629208 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:47.105991 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.106153 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "53"
+I, [2012-04-05T22:32:47.108141 #53507]  INFO -- : get http://172.20.10.2:9200/_cluster/nodes/stats?index=default
+D, [2012-04-05T22:32:47.108221 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:47.117166 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.117289 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "1300"
+I, [2012-04-05T22:32:47.118951 #53507]  INFO -- : put http://172.20.10.2:9200/default/bar/600
+D, [2012-04-05T22:32:47.119001 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:47.125921 #53507]  INFO -- Status: 201
+D, [2012-04-05T22:32:47.126042 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "69"
+I, [2012-04-05T22:32:47.127870 #53507]  INFO -- : put http://172.20.10.2:9200/default/bar/600
+D, [2012-04-05T22:32:47.127942 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:47.130456 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.130549 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "69"
+I, [2012-04-05T22:32:47.131844 #53507]  INFO -- : get http://172.20.10.2:9200/default/bar/600
+D, [2012-04-05T22:32:47.131895 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:47.137107 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.137258 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "101"
+I, [2012-04-05T22:32:47.139028 #53507]  INFO -- : put http://172.20.10.2:9200/default/bar/600
+D, [2012-04-05T22:32:47.139102 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:47.142387 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.142525 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "69"
+I, [2012-04-05T22:32:47.144111 #53507]  INFO -- : delete http://172.20.10.2:9200/default/bar/600
+D, [2012-04-05T22:32:47.144205 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:47.148697 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.148836 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "82"
+I, [2012-04-05T22:32:47.150302 #53507]  INFO -- : put http://172.20.10.2:9200/test
+D, [2012-04-05T22:32:47.150363 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:47.255501 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.255642 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:47.257318 #53507]  INFO -- : put http://172.20.10.2:9200/_percolator/test/kuku
+D, [2012-04-05T22:32:47.257412 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:47.344499 #53507]  INFO -- Status: 201
+D, [2012-04-05T22:32:47.344630 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "75"
+I, [2012-04-05T22:32:47.346814 #53507]  INFO -- : post http://172.20.10.2:9200/default/_refresh
+D, [2012-04-05T22:32:47.346930 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:47.350756 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.350915 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "60"
+I, [2012-04-05T22:32:47.352942 #53507]  INFO -- : post http://172.20.10.2:9200/test/type1/_percolate
+D, [2012-04-05T22:32:47.353029 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:47.366168 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.366303 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "30"
+I, [2012-04-05T22:32:47.368705 #53507]  INFO -- : get http://172.20.10.2:9200/missing/foo/1
+D, [2012-04-05T22:32:47.368799 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.370438 #53507]  INFO -- Status: 404
+D, [2012-04-05T22:32:47.370529 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "65"
+I, [2012-04-05T22:32:47.372220 #53507]  INFO -- : get http://172.20.10.2:9200/missing//
+D, [2012-04-05T22:32:47.372283 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.374862 #53507]  INFO -- Status: 400
+D, [2012-04-05T22:32:47.374968 #53507] DEBUG -- response: content-type: "text/plain; charset=UTF-8"
+content-length: "54"
+I, [2012-04-05T22:32:47.376433 #53507]  INFO -- : put http://172.20.10.2:9200/existing
+D, [2012-04-05T22:32:47.376495 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.485819 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.485983 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:47.488270 #53507]  INFO -- : post http://172.20.10.2:9200/default/_refresh
+D, [2012-04-05T22:32:47.488416 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.492334 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.492506 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "60"
+I, [2012-04-05T22:32:47.494931 #53507]  INFO -- : get http://172.20.10.2:9200/existing/foo/81923123
+D, [2012-04-05T22:32:47.495065 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.498031 #53507]  INFO -- Status: 404
+D, [2012-04-05T22:32:47.498308 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "67"
+I, [2012-04-05T22:32:47.501013 #53507]  INFO -- : delete http://172.20.10.2:9200/for_deletion
+D, [2012-04-05T22:32:47.501176 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.571682 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.571864 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:47.574243 #53507]  INFO -- : put http://172.20.10.2:9200/for_creation
+D, [2012-04-05T22:32:47.574364 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.684454 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.684648 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:47.687131 #53507]  INFO -- : put http://172.20.10.2:9200/for_creation_with_settings_and_mappings
+D, [2012-04-05T22:32:47.687286 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.760205 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.760353 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:47.762670 #53507]  INFO -- : get http://172.20.10.2:9200/for_creation_with_settings_and_mappings/_settings
+D, [2012-04-05T22:32:47.762784 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.769699 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.769879 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "151"
+I, [2012-04-05T22:32:47.771861 #53507]  INFO -- : put http://172.20.10.2:9200/_template/foo
+D, [2012-04-05T22:32:47.771988 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.781530 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.781702 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:47.783673 #53507]  INFO -- : put http://172.20.10.2:9200/_template/foo
+D, [2012-04-05T22:32:47.783787 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.801307 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.801551 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:47.803650 #53507]  INFO -- : get http://172.20.10.2:9200/_template/foo
+D, [2012-04-05T22:32:47.803797 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.807859 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.808001 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "195"
+I, [2012-04-05T22:32:47.810501 #53507]  INFO -- : put http://172.20.10.2:9200/_template/foo
+D, [2012-04-05T22:32:47.810645 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.814703 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.814848 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:47.816226 #53507]  INFO -- : delete http://172.20.10.2:9200/_template/foo
+D, [2012-04-05T22:32:47.816334 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.823988 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.824179 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:47.826057 #53507]  INFO -- : put http://172.20.10.2:9200/abc
+D, [2012-04-05T22:32:47.826221 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:47.925291 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:47.925457 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:47.927492 #53507]  INFO -- : put http://172.20.10.2:9200/def
+D, [2012-04-05T22:32:47.927702 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.061781 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.061948 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:48.063658 #53507]  INFO -- : post http://172.20.10.2:9200/_aliases
+D, [2012-04-05T22:32:48.063765 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.101469 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.101629 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:48.103447 #53507]  INFO -- : get http://172.20.10.2:9200/alias/_status
+D, [2012-04-05T22:32:48.103574 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.112650 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.112790 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "7245"
+I, [2012-04-05T22:32:48.153329 #53507]  INFO -- : post http://172.20.10.2:9200/default/_refresh
+D, [2012-04-05T22:32:48.153489 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.156980 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.157141 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "60"
+I, [2012-04-05T22:32:48.159452 #53507]  INFO -- : post http://172.20.10.2:9200/default/_gateway/snapshot
+D, [2012-04-05T22:32:48.159589 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.168142 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.168301 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "59"
+I, [2012-04-05T22:32:48.170669 #53507]  INFO -- : post http://172.20.10.2:9200/default/_cache/clear?filter
+D, [2012-04-05T22:32:48.170792 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.175519 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.175665 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "60"
+I, [2012-04-05T22:32:48.177405 #53507]  INFO -- : post http://172.20.10.2:9200/default/_flush
+D, [2012-04-05T22:32:48.177530 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.187000 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.187141 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "60"
+I, [2012-04-05T22:32:48.188926 #53507]  INFO -- : post http://172.20.10.2:9200/default/_refresh
+D, [2012-04-05T22:32:48.189029 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.191257 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.192516 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "60"
+I, [2012-04-05T22:32:48.194900 #53507]  INFO -- : put http://172.20.10.2:9200/for_closing
+D, [2012-04-05T22:32:48.195048 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.290817 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.290974 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:48.293027 #53507]  INFO -- : post http://172.20.10.2:9200/for_closing/_close
+D, [2012-04-05T22:32:48.293123 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.351500 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.351639 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:48.353429 #53507]  INFO -- : post http://172.20.10.2:9200/default/_refresh
+D, [2012-04-05T22:32:48.353544 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.355728 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.355848 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "60"
+I, [2012-04-05T22:32:48.358093 #53507]  INFO -- : get http://172.20.10.2:9200/for_closing/_status
+D, [2012-04-05T22:32:48.358258 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.360573 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.360707 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "72"
+I, [2012-04-05T22:32:48.362385 #53507]  INFO -- : put http://172.20.10.2:9200/for_reopening
+D, [2012-04-05T22:32:48.362511 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.452115 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.452284 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:48.454520 #53507]  INFO -- : post http://172.20.10.2:9200/for_reopening/_close
+D, [2012-04-05T22:32:48.454665 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.502222 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.502393 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:48.504697 #53507]  INFO -- : post http://172.20.10.2:9200/for_reopening/_open
+D, [2012-04-05T22:32:48.504849 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.600377 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.600770 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:48.603390 #53507]  INFO -- : get http://172.20.10.2:9200/for_reopening/_status
+D, [2012-04-05T22:32:48.603542 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.612485 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.612657 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "3285"
+I, [2012-04-05T22:32:48.614987 #53507]  INFO -- : put http://172.20.10.2:9200/mappings
+D, [2012-04-05T22:32:48.615134 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.718474 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.718663 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:48.721072 #53507]  INFO -- : put http://172.20.10.2:9200/mappings/type1/_mapping
+D, [2012-04-05T22:32:48.721237 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.748610 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.748740 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "31"
+I, [2012-04-05T22:32:48.750725 #53507]  INFO -- : get http://172.20.10.2:9200/mappings/type1/_mapping
+D, [2012-04-05T22:32:48.750820 #53507] DEBUG -- request: authorization: "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+I, [2012-04-05T22:32:48.754337 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.754467 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "104"
+I, [2012-04-05T22:32:48.756126 #53507]  INFO -- : post http://172.20.10.2:9200/default/_refresh
+D, [2012-04-05T22:32:48.756198 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:48.758020 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.758123 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "60"
+I, [2012-04-05T22:32:48.759772 #53507]  INFO -- : post http://172.20.10.2:9200/default/_refresh
+D, [2012-04-05T22:32:48.759845 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:48.761525 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.761610 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "60"
+I, [2012-04-05T22:32:48.763385 #53507]  INFO -- : post http://172.20.10.2:9200/default/_search
+D, [2012-04-05T22:32:48.763457 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:48.796837 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.797006 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "123"
+I, [2012-04-05T22:32:48.799497 #53507]  INFO -- : post http://172.20.10.2:9200/default/_refresh
+D, [2012-04-05T22:32:48.799634 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:48.801661 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.801811 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "60"
+I, [2012-04-05T22:32:48.803478 #53507]  INFO -- : post http://172.20.10.2:9200/default/_count
+D, [2012-04-05T22:32:48.803557 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:48.809447 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.809615 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "59"
+I, [2012-04-05T22:32:48.811438 #53507]  INFO -- : post http://172.20.10.2:9200/default/_refresh
+D, [2012-04-05T22:32:48.811570 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:48.814495 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.814603 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "60"
+I, [2012-04-05T22:32:48.815955 #53507]  INFO -- : put http://172.20.10.2:9200/default/bar/200
+D, [2012-04-05T22:32:48.816022 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:48.819441 #53507]  INFO -- Status: 201
+D, [2012-04-05T22:32:48.819603 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "69"
+I, [2012-04-05T22:32:48.822360 #53507]  INFO -- : get http://172.20.10.2:9200/default/bar/200/_mlt?types%5B0%5D=bar
+D, [2012-04-05T22:32:48.822504 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:48.853871 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.854048 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "123"
+I, [2012-04-05T22:32:48.856600 #53507]  INFO -- : post http://172.20.10.2:9200/default/_refresh
+D, [2012-04-05T22:32:48.856746 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:48.865305 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.865471 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "60"
+I, [2012-04-05T22:32:48.868073 #53507]  INFO -- : post http://172.20.10.2:9200/default/_search
+D, [2012-04-05T22:32:48.868232 #53507] DEBUG -- request: 
+I, [2012-04-05T22:32:48.873116 #53507]  INFO -- Status: 200
+D, [2012-04-05T22:32:48.873252 #53507] DEBUG -- response: content-type: "application/json; charset=UTF-8"
+content-length: "122"

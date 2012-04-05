@@ -10,7 +10,7 @@ end
 
 Bundler.require(:test, :default)
 
-require 'echolon-http'
+require 'eson-http'
 
 require 'elasticsearch-node/external'
 
