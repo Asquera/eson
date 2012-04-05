@@ -1,6 +1,6 @@
-# echolon-search: The elasticsearch query DSL, in Ruby
+# eson-dsl: The elasticsearch query DSL, in Ruby
 
-This gem provides a full implementation of the elasticsearch query DSL, independent of a client. At the moment, it encodes the query DSL of ElasticSearch 0.19
+This gem provides a full implementation of the ElasticSearch query DSL, independent of a client. At the moment, it encodes the query DSL of ElasticSearch 0.19
 
 Features:
 
