@@ -106,7 +106,7 @@ context "Filter" do
     query_name "test/search/queries/filter_query"
 
     setup do
-      example("filters/filter_query")
+      example("filters/fquery")
     end
   end
 

@@ -5,11 +5,7 @@ context "Queries" do
     query_name "test/search/queries/term"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        term "user", :value => "kimchy", :boost => 2.0
-      end
-      q
+      example("queries/term")
     end
   end
 
@@ -17,11 +13,7 @@ context "Queries" do
     query_name "test/search/queries/wildcard"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        wildcard "user", :value => "kim*y", :boost => 2.0
-      end
-      q
+      example("queries/wildcard")
     end
   end
 
@@ -29,11 +21,7 @@ context "Queries" do
     query_name "test/search/queries/wildcard_short"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        wildcard "user" => "kim*y"
-      end
-      q
+      example("queries/wildcard_short")
     end
   end
 
@@ -41,11 +29,7 @@ context "Queries" do
     query_name "test/search/queries/prefix"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.prefix "user", :value => "sh", :boost => 2.0
-      end
-      q
+      example("queries/prefix")
     end
   end
 
@@ -53,11 +37,7 @@ context "Queries" do
     query_name "test/search/queries/prefix_short"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.prefix "user" => "sh"
-      end
-      q
+      example("queries/prefix_short")
     end
   end
 
@@ -65,11 +45,7 @@ context "Queries" do
     query_name "test/search/queries/match_all"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.match_all :boost => 2.0
-      end
-      q
+      example("queries/match_all")
     end
   end
 
@@ -77,11 +53,7 @@ context "Queries" do
     query_name "test/search/queries/terms"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.terms({:tags => ['blue', 'pill'], :minimum_match => 2})
-      end
-      q
+      example("queries/terms")
     end
   end
 
@@ -89,11 +61,7 @@ context "Queries" do
     query_name "test/search/queries/ids"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.ids("user", [1,2,3,4,5,6,7])
-      end
-      q
+      example("queries/ids")
     end
   end
 
@@ -101,11 +69,7 @@ context "Queries" do
     query_name "test/search/queries/range"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.range(:age, :from => 10, :to => 20)
-      end
-      q
+      example("queries/range")
     end
   end
 
@@ -113,15 +77,7 @@ context "Queries" do
     query_name "test/search/queries/constant_score"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.constant_score :boost => 2.0 do |c|
-          c.query do |que|
-            que.term "user", :value => "kimchy"
-          end
-        end
-      end
-      q
+      example("queries/constant_score")
     end
   end
 
@@ -129,29 +85,15 @@ context "Queries" do
     query_name "test/search/queries/constant_score_filter"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.constant_score :boost => 2.0 do |c|
-          c.filter do |f|
-            f.term "user", :value => "kimchy"
-          end
-        end
-      end
-      q
+      example("queries/constant_score_with_filter")
     end
   end
-
-  #TODO: please use elasticsearch 16.2 for this
 
   context "#text query" do
     query_name "test/search/queries/text"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.text :type => :phrase_prefix, :message => "this is a text"
-      end
-      q
+      example("queries/text")
     end
   end
 
@@ -159,25 +101,7 @@ context "Queries" do
     query_name "test/search/queries/bool"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        options = {:minimum_number_should_match => 1,
-                   :boost => 1.0}
-
-        query.bool do |b|
-          b.must do |m|
-            m.term "user", :value => "kimchy"
-          end
-          b.must_not do |m|
-            m.range :age, :from => 10, :to => 20
-          end
-          b.should do |s|
-            s.term "tag", :value => "wow"
-            s.term "tag", :value => "elasticsearch"
-          end
-        end
-      end
-      q
+      example("queries/bool")
     end
   end
 
@@ -186,18 +110,7 @@ context "Queries" do
     query_name "test/search/queries/boosting"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.boosting(:negative_boost => 0.2) do |b|
-          b.positive do |p|
-            p.term :field1 => 1
-          end
-          b.negative do |n|
-            n.term :field1 => 2
-          end
-        end
-      end
-      q
+      example("queries/boosting")
     end
   end
 
@@ -205,20 +118,7 @@ context "Queries" do
     query_name "test/search/queries/custom_score"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.custom_score do |cq|
-          cq.query { |qu| qu.match_all }
-          cq.options = {
-            :script => "_score * doc['my_numeric_field'].value / pow(param1, param2)",
-            :params => {
-              :param1 => 2,
-              :param2 => 3.1
-            }
-          }
-        end
-      end
-      q
+      example("queries/custom_score")
     end
   end
 
@@ -226,16 +126,7 @@ context "Queries" do
     query_name "test/search/queries/dis_max"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.dis_max(:tie_breaker => 0.7) do |dm|
-          dm.query do |qu|
-            qu.term :age => 34
-            qu.term :age => 35
-          end
-        end
-      end
-      q
+      example("queries/dis_max")
     end
   end
 
@@ -243,11 +134,7 @@ context "Queries" do
     query_name "test/search/queries/field"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        field "name.first" => "+something -else"
-      end
-      q
+      example("queries/field")
     end
   end
 
@@ -255,13 +142,7 @@ context "Queries" do
     query_name "test/search/queries/flt"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        flt :fields => ["name.first", "name.last"],
-            :like_text => "text like this one",
-            :max_query_terms => 12
-      end
-      q
+      example("queries/flt")
     end
 
   end
@@ -270,13 +151,7 @@ context "Queries" do
     query_name "test/search/queries/flt_field"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        flt_field "name.first",
-                  :like_text => "text like this one",
-                  :max_query_terms => 12
-      end
-      q
+      example("queries/flt_field")
     end
   end
 
@@ -284,11 +159,7 @@ context "Queries" do
     query_name "test/search/queries/fuzzy_simple"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        fuzzy :user => "ki"
-      end
-      q
+      example("queries/fuzzy")
     end
   end
 
@@ -296,11 +167,7 @@ context "Queries" do
     query_name "test/search/queries/fuzzy_complex"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        fuzzy :user, :value => "ki", :boost => 1.0
-      end
-      q
+      example("queries/fuzzy_complex")
     end
 
   end
@@ -309,38 +176,19 @@ context "Queries" do
     query_name "test/search/queries/has_child"
     set :type, "blog_tag"
     set :index, "has_child_query"
-  
+
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.has_child :blog_tag do |c|
-          c.query do |qu|
-            qu.term :tag => "something"
-          end
-        end
-      end
-      q
+      example("queries/has_child")
     end
   end
-  
+
   context "complex #has_child query" do
     query_name "test/search/queries/has_child_complex"
     set :type, "blog_tag"
     set :index, "has_child_query"
-  
+
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.has_child :blog_tag do |c|
-          c.query do |qu|
-            qu.term :tag => "something"
-          end
-          c.filter do |qu|
-            qu.term :tag => "other"
-          end
-        end
-      end
-      q
+      example("queries/has_child_complex")
     end
   end
 
@@ -349,13 +197,7 @@ context "Queries" do
     set :type, "bar"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do |query|
-        query.mlt :fields => ["name.first", "name.last"],
-                  :like_text => "text like this one",
-                  :max_query_terms => 12
-      end
-      q
+      example("queries/mlt")
     end
   end
 
@@ -363,13 +205,7 @@ context "Queries" do
     query_name "test/search/queries/mlt_field"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        mlt_field "name.first",
-                  :like_text => "text like this one",
-                  :max_query_terms => 12
-      end
-      q
+      example("queries/mlt_field")
     end
   end
 
@@ -377,12 +213,7 @@ context "Queries" do
     query_name "test/search/queries/query_string"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        query_string :default_field => "content",
-                     :query => "this AND that OR thus"
-      end
-      q
+      example("queries/query_string")
     end
   end
 
@@ -390,11 +221,7 @@ context "Queries" do
     query_name "test/search/queries/query_string_without_default_field"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        query_string "this AND that OR thus"
-      end
-      q
+      example("queries/query_string_without_default_field")
     end
   end
 
@@ -402,13 +229,7 @@ context "Queries" do
     query_name "test/search/queries/query_string_with_multiple_fields"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        query_string :fields => ["content", "name^5"],
-                     :query => "this AND that OR thus",
-                     :use_dis_max => true
-      end
-      q
+      example("queries/query_string_with_multiple_fields")
     end
   end
 
@@ -416,13 +237,7 @@ context "Queries" do
     query_name "test/search/queries/top_children"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        top_children :blog_tag, :score => "max" do
-          query { term :tag => "something" }
-        end
-      end
-      q
+      example("queries/top_children")
     end
   end
 
@@ -430,17 +245,7 @@ context "Queries" do
     query_name "test/search/queries/filters_and_facets"
 
     setup do
-      Eson::Search::BaseQuery.new do
-        query do
-          match_all
-        end
-        filters do
-          range :age, :from => 10, :to => 20
-        end
-        facets do
-          histogram :hist1, :field => :age, :interval => 2
-        end
-      end
+      example("queries/filters_and_facets")
     end
   end
 
@@ -448,18 +253,7 @@ context "Queries" do
     query_name "test/search/queries/nested"
 
     setup do
-      Eson::Search::BaseQuery.new do
-        query do
-          nested :path => :obj1, :score_mode => "avg" do
-            query do
-              match_all
-            end
-            filters do
-              exists :field => "user"
-            end
-          end
-        end
-      end
+      example("queries/nested")
     end
   end
 
@@ -467,35 +261,15 @@ context "Queries" do
     query_name "test/search/queries/span_or"
 
     setup do
-      Eson::Search::BaseQuery.new do
-        query do
-          span_or do
-            clauses do
-              span_term :field => "value1"
-              span_term :field => "value2"
-              span_term :field => "value3"
-            end
-          end
-        end
-      end
+      example("queries/span_or")
     end
   end
-  
+
   context "span_near query" do
     query_name "test/search/queries/span_near"
 
     setup do
-      Eson::Search::BaseQuery.new do
-        query do
-          span_near :slop => 12, :in_order => false, :collect_payloads => false do
-            clauses do
-              span_term :field => "value1"
-              span_term :field => "value2"
-              span_term :field => "value3"
-            end
-          end
-        end
-      end
+      example("queries/span_near")
     end
   end
 
@@ -503,13 +277,7 @@ context "Queries" do
     query_name "test/search/queries/span_first"
 
     setup do
-      Eson::Search::BaseQuery.new do
-        query do
-          span_first :end => 3 do
-            span_term :field => "value1"
-          end
-        end
-      end
+      example("queries/span_first")
     end
   end
 
@@ -517,14 +285,7 @@ context "Queries" do
     query_name "test/search/queries/span_not"
 
     setup do
-      Eson::Search::BaseQuery.new do
-        query do
-          span_not do
-            include { span_term :field => "value1" }
-            exclude { span_term :field => "value2" }
-          end
-        end
-      end
+      example("queries/span_not")
     end
   end
 
@@ -532,11 +293,7 @@ context "Queries" do
     query_name "test/search/queries/span_term"
 
     setup do
-      Eson::Search::BaseQuery.new do
-        query do
-          span_term :user => "kimchy"
-        end
-      end
+      example("queries/span_term")
     end
   end
 end
