@@ -2,7 +2,7 @@
 
 Eson provides a fairly complete implementation of the elasticsearch HTTPAPI for ruby.
 
-It tries to keep the language of the ES API as far as possible.
+It tries to keep the language of the ES API as intact as possible.
 
 ## Usage
 
@@ -27,8 +27,10 @@ It tries to keep the language of the ES API as far as possible.
 
     c.count :q => "*"
 
-## Building requests by hand 
-    
+## Building requests by hand
+
+Requests are not executed immediately when no options are given to the client.
+
     require 'echolon/http'
 
     c = ElasticSearch::HTTP::Client.new(:server => 'localhost:9200')
@@ -45,6 +47,8 @@ It tries to keep the language of the ES API as far as possible.
     index_request.id    = 1
     index_request.doc   = doc
 
+    index_request.call
+
     # or:
 
     index_request = c.index
@@ -54,6 +58,22 @@ It tries to keep the language of the ES API as far as possible.
       :id    => 1,
       :doc   => doc
     }
+
+## Bulk Requests
+
+Bulk requests can be constructed by adding other requests to them:
+
+
+```
+bulk_request = c.bulk
+index_request = c.index
+
+index_request.index = "default"
+index_request.doc   = {"foo" => "bar"}
+index_request.type  = "bar"
+
+bulk_request << index_request
+```
 
 ## The shell
 
