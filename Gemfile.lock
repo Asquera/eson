@@ -34,6 +34,7 @@ PLATFORMS
 
 DEPENDENCIES
   ZenTest (= 4.3.0)
+  activesupport
   elasticsearch-node
   eson-dsl!
   faraday
