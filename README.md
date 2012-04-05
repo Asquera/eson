@@ -1,5 +1,7 @@
 # eson-dsl: The elasticsearch query DSL, in Ruby
 
+[![Build Status](https://secure.travis-ci.org/Asquera/eson-dsl.png?branch=master)](http://travis-ci.org/Asquera/eson-dsl)
+
 This gem provides a full implementation of the ElasticSearch query DSL, independent of a client. At the moment, it encodes the query DSL of ElasticSearch 0.19
 
 Features:
