@@ -11,7 +11,7 @@ context 'HTTP client quickapi' do
   end
 
   setup do
-    client.create_index => "default"
+    #client.create_index :index => "default"
     client.refresh
   end
 

@@ -13,7 +13,7 @@ Bundler.require(:test, :default)
 require 'echolon-http'
 require 'echolon-search'
 
-require 'node/external'
+require 'elasticsearch-node/external'
 
 module Node
   module External
