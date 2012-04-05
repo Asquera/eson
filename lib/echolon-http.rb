@@ -1,4 +1,4 @@
-require 'echolon-core'
+require 'eson-core'
 
 require 'addressable/template'
 

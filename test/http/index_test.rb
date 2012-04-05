@@ -6,13 +6,13 @@ context 'HTTP client quick api' do
   helper(:client) do
     ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
                               :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::StatusHandler, ElasticSearch::ResponseParser], 
+                              :plugins => [ElasticSearch::StatusHandler, ElasticSearch::ResponseParser], 
                               :logger => 'test/test.log')
   end
   
   context "after put request" do
     setup do
-      client.index :item => {"test" =>  "bar"}, 
+      client.index :doc => {"test" =>  "bar"}, 
                    :type => "bar", 
                    :id => 600
     end
@@ -67,7 +67,7 @@ context 'HTTP client verbose API' do
   helper(:client) do
     ElasticSearch::Client.new(:server => "127.0.0.1:9200", 
                               :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::ResponseParser], 
+                              :plugins => [ElasticSearch::ResponseParser], 
                               :logger => 'test/test.log')
   end
   

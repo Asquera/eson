@@ -6,7 +6,7 @@ context 'HTTP client quickapi' do
   helper(:client) do
     ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}",
                               :protocol => ElasticSearch::HTTP,
-                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::StatusHandler, ElasticSearch::ResponseParser],
+                              :plugins => [ElasticSearch::StatusHandler, ElasticSearch::ResponseParser],
                               :logger => 'test/test.log')
   end
 
@@ -39,7 +39,7 @@ context 'HTTP client quickapi' do
 
   context "mlt query" do
     setup do
-      client.index :item => {"test" =>  "bar"}, 
+      client.index :doc => {"test" =>  "bar"}, 
                    :type => "bar", 
                    :id => 200
 

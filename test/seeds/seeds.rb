@@ -4,7 +4,7 @@ node = Node::External.instance
 
 c = ElasticSearch::Client.new(:server => "http://#{node.ip}:#{node.port}", 
                               :protocol => ElasticSearch::HTTP, 
-                              :plugins => [ElasticSearch::QueryPlugin, ElasticSearch::ResponseParser], 
+                              :plugins => [ElasticSearch::ResponseParser], 
                               :logger => 'test/test.log')
 
 c.delete_index :index => "_all" rescue nil
