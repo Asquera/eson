@@ -8,6 +8,3 @@ gem "riot", :git => "git@github.com:Asquera/riot.git", :branch => 'option-inheri
 gem 'yajl-ruby', :require => 'yajl', :platform => 'ruby'
 gem 'jruby-openssl', :platform => 'jruby'
 gem 'faraday'
-#gem 'multi_json'
-
-#gem "elasticsearch-node"
