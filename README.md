@@ -94,9 +94,37 @@ will generate:
 }
 ```
 
+## Examples
+
+See `examples` for all examples used in the test suite.
+
+## Specialities
+
+Eson supports scoped facets in an object-oriented way. To scope a facet, call `scope` on it and pass the reference to a subquery. In practice, this requires a bit of trickery in Ruby 1.9, as it local variables are not propagated outside of the introducing block:
+
+```
+Eson::Search::BaseQuery.new do
+  q = nil
+  query do
+    q = nested :path => :obj1, :score_mode => "avg" do
+      query do
+        match_all
+      end
+      filters do
+        range :age, :from => 10, :to => 20
+      end
+    end
+  end
+
+  facets do
+    (histogram :hist1, :field => :age, :interval => 2).scope(q, 'my_scope')
+  end
+end
+```
+
 ## Caveats
 
-`and` and `or` are Ruby keywords and can only be used as methods of the receiver is explicit. For that reason, you need to write the following to generate `and`- and `or`-filters:
+`and`, `not` and `or` are Ruby keywords and can only be used as methods of the receiver is explicit. For that reason, you need to write the following to generate `and`- and `or`-filters:
 
 ```ruby
 q.filter do |f|
@@ -117,6 +145,16 @@ q.filter do |f|
   end
 end
 ```
+
+Due to clever defaults, `and` can be omitted altogether:
+
+```ruby
+q.filter do |f|
+  range :post_date, {:from => "2010-03-01", :to => "2010-04-01"}
+  prefix "name.second" => "ba"
+end
+```
+
 
 # TODO
 
