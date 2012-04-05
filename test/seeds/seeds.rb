@@ -13,7 +13,7 @@ bulk_request        = c.bulk
 index_request       = c.index
 
 index_request.index = "default"
-index_request.item  = {"foo" => "bar"}
+index_request.doc   = {"foo" => "bar"}
 index_request.type  = "bar"
 
 1.upto(500) do |i|
