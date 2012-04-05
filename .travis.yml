@@ -6,4 +6,5 @@ rvm:
 env:
   - ES_VERSION=0.18.7
   - ES_VERSION=0.19.1
+before_install: 'echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
 before_script: "install_elasticsearch"
