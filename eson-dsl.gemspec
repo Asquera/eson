@@ -4,7 +4,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "eson-dsl"
-  s.version     = "0.1.1" #Echolon::VERSION
+  s.version     = "0.6.0"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Florian Gilcher"]
   s.email       = ["florian.gilcher@asquera.de"]
