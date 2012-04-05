@@ -158,5 +158,6 @@ end
 
 # TODO
 
-* Indices-Query is missing (0.20-feature)
-* Custom-Boost-Query is missing (0.20-feature)
+* Indices-Query is missing
+* Custom-Boost-Query is missing)
+* More docs
