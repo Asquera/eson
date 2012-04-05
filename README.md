@@ -161,3 +161,4 @@ end
 * Indices-Query is missing
 * Custom-Boost-Query is missing)
 * More docs
+* Testing on Ruby 1.8
