@@ -2,9 +2,10 @@ module Eson
   module Search
     class Wildcard < FieldBased
       include Query
-      
-      short_name :wildcard
-      
+
+      # @macro eson.query
+      query :wildcard
+
       def to_query_hash
         if field
           {name => field.to_query_hash}

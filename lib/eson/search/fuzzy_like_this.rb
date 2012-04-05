@@ -2,11 +2,12 @@ module Eson
   module Search
     class FuzzyLikeThis
       include Query
-      
-      short_name :flt
-      
+
+      # @macro eson.query
+      query :flt
+
       attr_accessor :options
-      
+
       def initialize(options = {})
         self.options = options
       end

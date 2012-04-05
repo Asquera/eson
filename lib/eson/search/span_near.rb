@@ -3,7 +3,8 @@ module Eson
     class SpanNear
       include Query
 
-      short_name :span_near
+      # @macro eson.query
+      query :span_near
 
       attr_accessor :options
 

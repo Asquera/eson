@@ -4,11 +4,18 @@ module Eson
       include Query
       include Filter
       include Facet
-      
-      short_name :terms
-      
+
+      # @macro eson.query
+      query :terms
+
+      # @macro eson.filter
+      filter :terms
+
+      # @macro eson.facet
+      facet :terms
+
       attr_accessor :options, :field
-      
+
       def initialize(options = {})
         self.options = options
       end

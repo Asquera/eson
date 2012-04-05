@@ -2,11 +2,11 @@ module Eson
   module Search
     class Field
       include Query
-      
-      short_name :field
-      
+
+      query :field
+
       attr_accessor :options
-      
+
       def initialize(options = {})
         self.options = options
       end

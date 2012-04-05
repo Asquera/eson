@@ -2,15 +2,11 @@ module Eson
   module Search
     module Filter
       module ClassMethods
-        def short_name(name)
+        def filter(name)
           define_method :name do
             name
           end
           Filters.register name, self
-
-          if defined? super
-            super
-          end
         end
       end
 
@@ -20,7 +16,7 @@ module Eson
           include Node unless base.kind_of? Node
         end
       end
-      
+
       def method_missing(name, arg)
         warn("#{name} called as a filter option")
         self.options[name] = arg

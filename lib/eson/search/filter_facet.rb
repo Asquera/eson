@@ -4,9 +4,10 @@ module Eson
       include Facet
       include Filters
       include FilterMethods
-      
-      short_name :filter
-      
+
+      # @macro eson.facet
+      facet :filter
+
     end
   end
 end

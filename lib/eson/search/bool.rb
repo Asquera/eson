@@ -4,7 +4,11 @@ module Eson
       include Filter
       include Query
 
-      short_name :bool
+      # @macro eson.filter
+      filter :bool
+
+      # @macro eson.query
+      query :bool
 
       attr_accessor :options, :conditions
 

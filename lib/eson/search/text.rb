@@ -8,11 +8,12 @@ module Eson
       #    }
       #}
       include Query
-      
-      short_name :text
-      
+
+      # @macro eson.text
+      query :text
+
       attr_accessor :options
-      
+
       def initialize(options = {})
         self.options = options
       end

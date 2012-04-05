@@ -3,7 +3,8 @@ module Eson
     class SpanTerm < FieldBased
       include Query
 
-      short_name :span_term
+      # @macro eson.query
+      query :span_term
 
       def to_query_hash
         if field

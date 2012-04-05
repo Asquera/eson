@@ -2,9 +2,10 @@ module Eson
   module Search
     class Exists < FieldBased
       include Filter
-      
-      short_name :exists
-      
+
+      # @macro eson.filter
+      filter :exists
+
       def to_query_hash
         if field
           {name => field.to_query_hash}

@@ -5,15 +5,7 @@ context "Filter" do
     query_name "test/search/filters/exists"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        constant_score do
-          filter do
-            exists :field => "user"
-          end
-        end
-      end
-      q
+      example("filters/exists")
     end
   end
 
@@ -21,15 +13,7 @@ context "Filter" do
     query_name "test/search/filters/missing"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        constant_score do
-          filter do
-            missing :field => "user"
-          end
-        end
-      end
-      q
+      example("filters/missing")
     end
 
   end
@@ -39,15 +23,7 @@ context "Filter" do
     set :index, "foo"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        constant_score do
-          filter do
-            numeric_range :age, :from => 10, :to => 20
-          end
-        end
-      end
-      q
+      example("filters/numeric_range")
     end
 
   end
@@ -56,11 +32,7 @@ context "Filter" do
     query_name "test/search/filters/type"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.filter do
-        type :my_type
-      end
-      q
+      example("filters/type")
     end
   end
 
@@ -68,11 +40,7 @@ context "Filter" do
     query_name "test/search/filters/range"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.filter do
-        range :age, :from => 10, :to => 20
-      end
-      q
+      example("filters/range")
     end
   end
 
@@ -80,14 +48,7 @@ context "Filter" do
     query_name "test/search/filters/ids"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        match_all
-      end
-      q.filter do
-        ids "user", [1,2,3,4,5,6,7]
-      end
-      q
+      example("filters/ids")
     end
 
   end
@@ -96,29 +57,7 @@ context "Filter" do
     query_name "test/search/filters/bool"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        match_all
-      end
-
-      q.filter do
-        options = {:minimum_number_should_match => 1,
-                   :boost => 1.0}
-
-        bool do
-          must do
-            term "user" => "kimchy"
-          end
-          must_not do
-            range :age, :from => 10, :to => 20
-          end
-          should do
-            term "tag" => "wow"
-            term "tag" => "elasticsearch"
-          end
-        end
-      end
-      q
+      example("filters/bool")
     end
   end
 
@@ -127,104 +66,47 @@ context "Filter" do
     set :type, "blog"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.filter do
-        has_child :blog_tag do
-          query do
-            term :tag => "something"
-          end
-        end
-      end
-      q
+      example("filters/has_child")
     end
   end
 
   context "#and filter" do
     query_name "test/search/queries/and_filter"
-    
+
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        term :tag => "something"
-      end
-      q.filter do |f|
-        f.and do #and is a keyword, so it needs a receiver
-          range :post_date, {:from => "2010-03-01", :to => "2010-04-01"}
-          prefix "name.second" => "ba"
-        end
-      end
-      q
+      example("filters/and")
     end
-    
   end
-  
+
   context "#and filter using default" do
      query_name "test/search/queries/and_filter"
 
      setup do
-       q = Eson::Search::BaseQuery.new
-       q.query do
-         term :tag => "something"
-       end
-       q.filter do |f|
-         range :post_date, {:from => "2010-03-01", :to => "2010-04-01"}
-         prefix "name.second" => "ba"
-       end
-       q
+       example("filters/and_without_keyword")
      end
-
    end
-  
+
   context "#or filter" do
-    query_name "test/search/queries/or_filter"
-    
+    query_name "test/search/filter/or"
+
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        term :tag => "something"
-      end
-      q.filter do |f|
-        f.or do
-          term "name.first" => "Felix"
-          term "name.first" => "Florian"
-        end
-      end
-      q
+      example("filters/or")
     end
   end
-  
+
   context "#not filter" do
-    query_name "test/search/queries/not_filter"
-    
+    query_name "test/search/filters/not"
+
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        term :tag => "something"
-      end
-      q.filter do |f|
-        f.not do
-          term "name.first" => "Florian"
-        end
-      end
-      q
+      example("filters/not")
     end
   end
 
   context "#filter_query" do
     query_name "test/search/queries/filter_query"
-    
+
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.query do
-        constant_score do
-          filter do
-            fquery :_cache => true do
-              query_string "this AND that OR thus"
-            end
-          end
-        end
-      end
-      q
+      example("filters/filter_query")
     end
   end
 
@@ -234,14 +116,7 @@ context "Filter" do
     set :type, "pin"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.filter do
-        geo_bounding_box "location" do
-          top_left :lat => 40.73, :lon => -74.1
-          bottom_right :lat => 40.717, :lon => -73.99
-        end
-      end
-      q
+      example("filters/geo_bounding_box")
     end
   end
 
@@ -251,14 +126,7 @@ context "Filter" do
     set :type, "pin"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.filter do
-        geo_distance "location", :distance => "200km" do
-          lat(40)
-          lon(-70)
-        end
-      end
-      q
+      example("filters/geo_distance")
     end
   end
 
@@ -268,34 +136,17 @@ context "Filter" do
     set :type, "pin"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.filter do
-        geo_distance "location" do
-          distance "200km"
-          lat(40)
-          lon(-70)
-        end
-      end
-      q
+      example("filters/geo_distance_alternate")
     end
   end
-  
+
   context "#geo_distance_range filter" do
     query_name "test/search/filters/geo_distance_range_hash"
     set :index, "geo"
     set :type, "pin"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.filter do
-        geo_distance_range "location" do
-          from "200km"
-          to "400km"
-          lat(40)
-          lon(-70)
-        end
-      end
-      q
+      example("filters/geo_distance_range")
     end
   end
 
@@ -305,17 +156,7 @@ context "Filter" do
     set :type, "pin"
 
     setup do
-      q = Eson::Search::BaseQuery.new
-      q.filter do
-        geo_polygon :location do
-          points [{:lat => 40, :lon => -70},
-                  {:lat => 30, :lon => -80}]
-
-          point :lat => 20, :lon => -90
-        end
-      end
-      q
+      example("filters/geo_polygon")
     end
   end
 end
-  

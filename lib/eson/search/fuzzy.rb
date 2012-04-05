@@ -2,12 +2,13 @@ module Eson
   module Search
     class Fuzzy
       include Query
-      
-      short_name :fuzzy
-      
+
+      # @macro eson.query
+      query :fuzzy
+
       attr_accessor :field
       attr_accessor :options
-      
+
       def initialize(*args)
         if args.length == 1
           self.options = args.first
@@ -15,7 +16,7 @@ module Eson
           self.field = QueryField.new(*args)
         end
       end
-      
+
       def to_query_hash
         if field
           {name => field.to_query_hash}

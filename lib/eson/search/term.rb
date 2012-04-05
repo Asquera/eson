@@ -4,7 +4,11 @@ module Eson
       include Query
       include Filter
 
-      short_name :term
+      # @macro eson.query
+      query :term
+
+      # @macro eson.filter
+      filter :term
 
       def to_query_hash
         if field

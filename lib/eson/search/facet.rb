@@ -2,15 +2,11 @@ module Eson
   module Search
     module Facet
       module ClassMethods
-        def short_name(name)
+        def facet(name)
           define_method :name do
             name
           end
           Facets.register name, self
-
-          if defined? super
-            super
-          end
         end
       end
 
@@ -25,7 +21,7 @@ module Eson
         query.options[:_scope] = name
         self.options[:scope] = name
       end
-      
+
       def method_missing(name, arg)
         warn("#{name} called as a facet option")
         self.options[name] = arg

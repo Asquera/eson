@@ -150,4 +150,8 @@ class Riot::Situation
       node.client.post "/#{opts[:index]}/_search", source
     end
   end
+  
+  def example(file)
+    eval(File.read(File.expand_path(File.join('examples', "#{file}.rb"))))
+  end
 end

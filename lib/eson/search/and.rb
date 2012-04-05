@@ -5,7 +5,13 @@ module Eson
       include FilterMethods
       include Filter
 
-      short_name :and
+      ##
+      # @macro eson.filter
+      #   Generates a `$1` filter.
+      #   @method $0
+      #   {include:file:examples/filters/$1.rb}
+      #   @see Eson::Search::Filters
+      filter 'and'
 
       attr_accessor :options
 

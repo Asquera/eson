@@ -3,14 +3,14 @@ module Eson
     class GeoPolygon
       include Filter
 
-      short_name :geo_polygon
+      filter :geo_polygon
       attr_accessor :field, :options
 
       def initialize(field, options = {})
         self.field = field
         self.options = options
       end
-      
+
       def points(points = nil)
         if points
           @points = points
@@ -18,7 +18,7 @@ module Eson
           @points ||= []
         end
       end
-      
+
       def point(point)
         points << point
       end

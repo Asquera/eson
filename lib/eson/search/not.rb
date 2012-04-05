@@ -4,15 +4,16 @@ module Eson
       include Filters
       include FilterMethods
       include Filter
-      
-      short_name :not
-      
+
+      # @macro eson.filter
+      filter 'not' # yard chokes on :not
+
       attr_accessor :options
-      
+
       def initialize(options = {})
         self.options = options
       end
-      
+
       def to_query_hash
         { name => { :filter => filters.to_query_hash } }
       end

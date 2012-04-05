@@ -3,11 +3,15 @@ module Eson
     class Ids
       include Filter
       include Query
-      
-      short_name :ids
-      
+
+      # @macro eson.filter
+      filter :ids
+
+      # @macro eson.query
+      query :ids
+
       attr_accessor :options
-      
+
       def initialize(*args)
         if args.length == 2
           self.options = {

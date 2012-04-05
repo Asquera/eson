@@ -3,7 +3,8 @@ module Eson
     class SpanNot
       include Query
 
-      short_name :span_not
+      # @macro eson.query
+      query :span_not
 
       def include(&block)
         @include ||= SubQuery.new

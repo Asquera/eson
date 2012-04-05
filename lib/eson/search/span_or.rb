@@ -3,7 +3,8 @@ module Eson
     class SpanOr
       include Query
 
-      short_name :span_or
+      # @macro eson.query
+      query :span_or
 
       attr_accessor :options
 

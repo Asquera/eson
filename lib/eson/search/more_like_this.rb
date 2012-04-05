@@ -2,11 +2,12 @@ module Eson
   module Search
     class MoreLikeThis
       include Query
-      
-      short_name :mlt
-      
+
+      # @macro eson.query
+      query :mlt
+
       attr_accessor :options
-      
+
       def initialize(options = {})
         self.options = options
       end

@@ -4,15 +4,16 @@ module Eson
       include Filter
       include Queries
       include QueryMethods
-      
-      short_name :fquery
-      
+
+      # @macro eson.filter
+      filter :fquery
+
       attr_accessor :options
-      
+
       def initialize(options = {})
         self.options = options
       end
-      
+
       def to_query_hash
         {name => {:query => queries.to_query_hash}.merge!(options)}
       end

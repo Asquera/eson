@@ -3,9 +3,13 @@ module Eson
     class Prefix < FieldBased
       include Query
       include Filter
-      
-      short_name :prefix
-      
+
+      # @macro eson.query
+      query :prefix
+
+      # @macro eson.filter
+      filter :prefix
+
       def to_query_hash
         if field
           {name => field.to_query_hash}
