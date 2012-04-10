@@ -9,7 +9,7 @@ context 'HTTP client quick api' do
                      :plugins => [Eson::StatusHandler, Eson::ResponseParser],
                      :logger => 'test/test.log')
   end
-  
+
   context "after put request" do
     setup do
       client.index :doc => {"test" =>  "bar"},
@@ -62,6 +62,24 @@ context 'HTTP client quick api' do
     end.equals(["kuku"])
   end
   
+  context "mget" do
+    setup do
+      client.create_index :index => 'mget'
+      client.index :index => "mget_test",
+                   :type => "foo",
+                   :doc => {:foo => :bar},
+                   :id => 1
+      client.index :index => "mget_test",
+                   :type => "foo",
+                   :doc => {:foo => :bar},
+                   :id => 2
+      client.refresh
+      client.mget(:index => "mget_test", :ids => [1,2])
+    end
+
+    asserts("number of docs") { topic[:docs].length }.equals(2)
+  end
+
   context "delete_by_query" do
     setup do
       client.index :index => "delete_by_query",

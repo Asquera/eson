@@ -22,6 +22,7 @@ require 'eson/http/core/percolate'
 require 'eson/http/core/simple_search'
 require 'eson/http/core/more_like_this'
 require 'eson/http/core/msearch'
+require 'eson/http/core/mget'
 
 require 'eson/http/cluster/health'
 require 'eson/http/cluster/state'
