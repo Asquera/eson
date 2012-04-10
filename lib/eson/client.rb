@@ -219,6 +219,14 @@ module Eson
       request(protocol::Status, args)
     end
     
+    def index_stats(args = {})
+      request(protocol::IndexStats, args)
+    end
+    
+    def segments(args = {})
+      request(protocol::Segments, args)
+    end
+    
     def exists?(args = {})
       request(protocol::IndexExists, args)
     rescue Eson::NotFoundError
