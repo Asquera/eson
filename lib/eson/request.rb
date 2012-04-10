@@ -18,7 +18,11 @@ module Eson
 
     def params=(params)
       params.each do |k,v|
-        self.send("#{k}=", v)
+        begin
+          self.send("#{k}=", v)
+        rescue NoMethodError => e
+          raise NoMethodError, "Tried to set parameter `#{k}`, but request has no such parameter."
+        end
       end
     end
 

@@ -6,6 +6,7 @@ module Eson
     attr_accessor :protocol
     attr_accessor :plugins
     attr_accessor :opts
+    attr_accessor :auto_call
     
     DEFAULT_OPTS = {
                       :server => 'http://127.0.0.1:9200',
@@ -23,6 +24,11 @@ module Eson
       self.protocol      = opts[:protocol] || Eson::HTTP
       self.plugins       = opts[:plugins]
       self.logger        = opts[:logger]
+      if opts[:auto_call].nil?
+        self.auto_call = true
+      else
+        self.auto_call = opts[:auto_call]
+      end
       self.opts          = opts
     end
     
@@ -56,19 +62,19 @@ module Eson
       c
     end
     
-    def index(args = {})
-      request(protocol::Index, args)
+    def index(args = {}, immediate = auto_call)
+      request(protocol::Index, args, immediate)
     end
     
-    def delete(args = {})
-      request(protocol::Delete, args)
+    def delete(args = {}, immediate = auto_call)
+      request(protocol::Delete, args, immediate)
     end
     
     def get(args = {})
       request(protocol::Get, args)
     end
     
-    def search(args = {}, immediate = true, &block)
+    def search(args = {}, immediate = auto_call, &block)
       request(protocol::Search, args, immediate, &block)
     end
     alias :query :search
@@ -81,12 +87,12 @@ module Eson
       request(protocol::Count, args)
     end
     
-    def percolate(args = {}, immediate = true, &block)
-      request(protocol::Percolate, args, immediate, &block)
+    def percolate(args = {}, &block)
+      request(protocol::Percolate, args, &block)
     end
     
     def bulk(args = {})
-      request(protocol::Bulk, args)
+      request(protocol::Bulk, args, false)
     end
     
     def delete_by_query(args = {})
@@ -97,28 +103,32 @@ module Eson
       request(protocol::MoreLikeThis, args)
     end
     
+    def msearch(args = {})
+      request(protocol::MultiSearch, args, false)
+    end
+    
     def health(args = {})
-      request(protocol::Health, args, true)
+      request(protocol::Health, args)
     end
     
     def state(args = {})
-      request(protocol::State, args, true)
+      request(protocol::State, args)
     end
     
     def stats(args = {})
-      request(protocol::Stats, args, true)
+      request(protocol::Stats, args)
     end
     
     def nodes(args = {})
-      request(protocol::Nodes, args, true)
+      request(protocol::Nodes, args)
     end
     
     def shutdown(args = {})
-      request(protocol::Shutdown, args, true)
+      request(protocol::Shutdown, args)
     end
     
     def aliases(args = {}, &block)
-      request(protocol::Aliases, args, true, &block)
+      request(protocol::Aliases, args, &block)
     end
     
     def analyze(args = {})
@@ -126,15 +136,15 @@ module Eson
     end
     
     def clear_cache(args = {})
-      request(protocol::ClearCache, args, true)
+      request(protocol::ClearCache, args)
     end
     
     def close_index(args = {})
-      request(protocol::CloseIndex, args, true)
+      request(protocol::CloseIndex, args)
     end
     
     def open_index(args = {})
-      request(protocol::OpenIndex, args, true)
+      request(protocol::OpenIndex, args)
     end
     
     def create_index(args = {})
@@ -142,87 +152,76 @@ module Eson
     end
     
     def delete_index(args = {})
-      request(protocol::DeleteIndex, args, true)
+      request(protocol::DeleteIndex, args)
     end
     
     def delete_mapping(args = {})
-      request(protocol::DeleteMapping, args, true)
+      request(protocol::DeleteMapping, args)
     end
     
     def get_mapping(args = {})
-      request(protocol::GetMapping, args, true)
+      request(protocol::GetMapping, args)
     end
     
     def put_mapping(args = {})
-      request(protocol::PutMapping, args, true)
+      request(protocol::PutMapping, args)
     end
     
     def put_template(args = {})
-      request(protocol::PutTemplate, args, true)
+      request(protocol::PutTemplate, args)
     end
     
     def get_template(args = {})
-      request(protocol::GetTemplate, args, true)
+      request(protocol::GetTemplate, args)
     end
     
     def delete_template(args = {})
-      request(protocol::DeleteTemplate, args, true)
+      request(protocol::DeleteTemplate, args)
     end
     
     def get_settings(args = {})
-      request(protocol::GetSettings, args, true)
+      request(protocol::GetSettings, args)
     end
     
     def update_settings(args = {})
-      request(protocol::UpdateSettings, args, true)
+      request(protocol::UpdateSettings, args)
     end
     
     def flush(args = {})
-      request(protocol::Flush, args, true)
+      request(protocol::Flush, args)
     end
     
     def optimize(args = {})
-      request(protocol::Optimize, args, true)
+      request(protocol::Optimize, args)
     end
     
     def refresh(args = {})
-      request(protocol::Refresh, args, true)
+      request(protocol::Refresh, args)
     end
     
     def snapshot(args = {})
-      request(protocol::Snapshot, args, true)
+      request(protocol::Snapshot, args)
     end
     
     def status(args = {})
-      request(protocol::Status, args, true)
+      request(protocol::Status, args)
     end
     
     private
-      def request(endpoint, args, auto_call = false)
+      def request(endpoint, args, auto_call = auto_call)
         r = protocol::Request.new(endpoint, plugins, self)
         
-        if args != {}
-          args.each do |k,v|
-            r.send :"#{k}=", v
-          end
-          
-          if block_given?
-            yield r
-          end
-          
-          r.call
-        else
-          if block_given?
-            yield r
-          end
-          
-          if auto_call
-            r.call
-          else
-            r
-          end
+        r.params = args
+        
+        if block_given?
+          yield r
         end
         
+        if auto_call
+          r.call
+        else
+          r
+        end
       end
   end
 end
