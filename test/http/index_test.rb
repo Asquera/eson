@@ -108,7 +108,7 @@ JSON
 
   context "#msearch with block" do
     setup do
-      client.msearch do |s|
+      client.msearch :index => "foo", :type => "bar" do |s|
         s.search :index => 'test',
                  :type => 'kuku',
                  :query => {
@@ -134,5 +134,7 @@ JSON
 {"indices":["test"],"search_type":"count"}
 {"query":{"match_all":{}}}
 JSON
+
+    asserts(:fill).equals(Addressable::URI.parse("foo/bar/_msearch"))
   end
 end

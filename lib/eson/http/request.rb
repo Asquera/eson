@@ -25,8 +25,10 @@ module Eson
           case request_method
           when :get
             resource.get fill
+          when :head
+            resource.head fill
           when :delete
-            #resource.options[:payload] = source if source
+            resource.options[:payload] = source if source
             resource.delete fill
           when :post
             resource.post(fill, source)
@@ -35,7 +37,6 @@ module Eson
           end
         )
         
-        #puts response.inspect
         response
       end
       

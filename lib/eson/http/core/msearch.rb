@@ -32,6 +32,16 @@ module Eson
           h
         end
       end
+
+      def path
+        unless types.empty?
+          path = "{-list|,|indices}/{-list|,|types}/"
+        else
+          path = "{-list|,|indices}/"
+        end
+
+        path << "_msearch"
+      end
     end
   end
 end
