@@ -74,6 +74,10 @@ module Eson
       request(protocol::Get, args)
     end
     
+    def mget(args = {})
+      request(protocol::MultiGet, args)
+    end
+    
     def search(args = {}, immediate = auto_call, &block)
       request(protocol::Search, args, immediate, &block)
     end

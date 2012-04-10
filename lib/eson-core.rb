@@ -15,6 +15,7 @@ require 'eson/shared/core/percolate'
 require 'eson/shared/core/simple_search'
 require 'eson/shared/core/more_like_this'
 require 'eson/shared/core/msearch'
+require 'eson/shared/core/mget'
 require 'eson/shared/core/delete_by_query'
 
 require 'eson/shared/cluster/health'
