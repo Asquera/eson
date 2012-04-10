@@ -1,6 +1,10 @@
 require './test/test_config'
 
 context "Queries" do
+  setup do
+    create_index :index => "default"
+  end
+  
   context "#term" do
     query_name "test/search/queries/term"
 

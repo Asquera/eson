@@ -1,6 +1,10 @@
 require './test/test_config'
 
 context "Filter" do
+  setup do
+    create_index :index => "default"
+  end
+
   context "#exists" do
     query_name "test/search/filters/exists"
 

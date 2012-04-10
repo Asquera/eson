@@ -1,5 +1,9 @@
 require './test/test_config'
 context "Facets" do
+  setup do
+    create_index :index => "default"
+  end
+
   context '#match_all with #terms facet' do
     set :query_name, "test/search/facets/terms"
 
