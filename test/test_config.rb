@@ -98,8 +98,8 @@ class EsonQueries < Riot::ContextMiddleware
 
     if File.exists?("#{file}.json")
       context.asserts("json format") do
-        MultiJson.encode(topic.to_query_hash).strip
-      end.equals(File.read("#{file}.json").strip)
+        MultiJson.decode(MultiJson.encode(topic.to_query_hash))
+      end.equals(MultiJson.decode(File.read("#{file}.json").strip))
     end
 
     context.asserts("search status") do
