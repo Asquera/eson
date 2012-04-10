@@ -1,0 +1,1 @@
+{:query => {:terms => {:tags => ['blue', 'pill'], :minimum_match => 2}}}

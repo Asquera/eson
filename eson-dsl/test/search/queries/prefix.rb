@@ -1,0 +1,1 @@
+{:query => {:prefix => {"user" => {:value => "sh", :boost => 2.0}}}}

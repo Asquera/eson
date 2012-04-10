@@ -1,0 +1,1 @@
+{"query":{"nested":{"query":{"filtered":{"query":{"match_all":{}},"filter":{"range":{"age":{"from":10,"to":20}}}}},"path":"obj1","score_mode":"avg","_scope":"my_scope"}},"facets":{"hist1":{"histogram":{"field":"age","interval":2,"scope":"my_scope"}}}}

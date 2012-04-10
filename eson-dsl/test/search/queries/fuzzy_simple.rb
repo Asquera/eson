@@ -1,0 +1,5 @@
+{
+  :query => {
+    :fuzzy => { :user => "ki"}
+  }
+}
