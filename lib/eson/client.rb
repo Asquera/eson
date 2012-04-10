@@ -219,6 +219,12 @@ module Eson
       request(protocol::Status, args)
     end
     
+    def exists?(args = {})
+      request(protocol::IndexExists, args)
+    rescue Eson::NotFoundError
+      false
+    end
+    
     private
       def request(endpoint, args, auto_call = auto_call)
         r = protocol::Request.new(endpoint, plugins, self)
