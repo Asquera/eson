@@ -9,15 +9,14 @@ c = Eson::Client.new(:server => "http://#{node.ip}:#{node.port}",
 
 c.delete_index :index => "_all" rescue nil
 
-bulk_request        = c.bulk
 
-1.upto(500) do |i|
-  bulk_request.index :index => "default",
-                     :type => "bar",
-                     :doc => {"foo" => "bar"}
+c.bulk do |bulk_request|
+  1.upto(500) do |i|
+    bulk_request.index :index => "default",
+                       :type => "bar",
+                       :doc => {"foo" => "bar"}
+  end
 end
-
-bulk_request.call
 
 c.create_index :index => "for_deletion" 
 c.delete_index :index => "for_creation" rescue nil

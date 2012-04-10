@@ -8,7 +8,7 @@ It tries to keep the language of the ES API as intact as possible.
 
     require 'eson-http'
 
-    c = Eson::HTTP::Client.new(:server => 'localhost:9200')
+    c = Eson::HTTP::Client.new(:server => 'http://localhost:9200')
     
     doc = {
       :user => "kimchy",
@@ -29,11 +29,12 @@ It tries to keep the language of the ES API as intact as possible.
 
 ## Building requests by hand
 
-Requests are not executed immediately when no options are given to the client.
+The client has an additional mode that does not call elasticsearch  immediately, but returns the request object instead.
 
     require 'echolon/http'
 
-    c = Eson::HTTP::Client.new(:server => 'localhost:9200')
+    c = Eson::HTTP::Client.new(:server => 'http://localhost:9200',
+                               :auto_call => false)
     
     doc = {
       :user => "kimchy",
@@ -59,20 +60,30 @@ Requests are not executed immediately when no options are given to the client.
       :doc   => doc
     }
 
+    # or:
+
+    index_request = c.index :index => "twitter",
+                            :type  => "tweet"
+                            :id    => 1,
+                            :doc   => doc
+
 ## Bulk Requests
 
-Bulk requests can be constructed by adding other requests to them:
+`bulk` and `msearch` requests can be constructed by calling the respective client methods on them:
 
 
 ```
-bulk_request = c.bulk
-index_request = c.index
+c.bulk do |b|
+  b.index :index => "default",
+          :type => "bar"
+          :doc => {"foo" => "bar"}
+  b.delete :index => "default",
+           :id => '134'
+end
 
-index_request.index = "default"
-index_request.doc   = {"foo" => "bar"}
-index_request.type  = "bar"
-
-bulk_request << index_request
+c.msearch do |s|
+  s.search #....
+end
 ```
 
 ## The shell
@@ -92,7 +103,6 @@ Eson-HTTP comes with a quick-and-dirty shell, if you have pry installed:
 
 ## TODO
 
-* No activemodel integration (yet!)
 * Test suite needs to be reordered. Its the oldest part of the project and a bit messy.
 * Filters in aliases are not supported
 

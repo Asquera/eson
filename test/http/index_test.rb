@@ -76,7 +76,7 @@ context 'HTTP client verbose API' do
     asserts_topic("is an Index request").kind_of?(Eson::HTTP::Index)
   end
 
-  context "#msearch" do
+  context "#msearch without block" do
     setup do
       msearch = client.msearch
       msearch.search :index => 'test',
@@ -94,6 +94,36 @@ context 'HTTP client verbose API' do
                        :match_all => { }
                      }
       msearch
+    end
+
+    asserts(:source).equals(<<-JSON)
+{"indices":["test"],"types":["kuku"]}
+{"query":{"match_all":{}}}
+{"indices":["test"]}
+{"query":{"match_all":{}}}
+{"indices":["test"],"search_type":"count"}
+{"query":{"match_all":{}}}
+JSON
+  end
+
+  context "#msearch with block" do
+    setup do
+      client.msearch do |s|
+        s.search :index => 'test',
+                 :type => 'kuku',
+                 :query => {
+                   :match_all => { }
+                 }
+        s.search :index => 'test',
+                 :query => {
+                   :match_all => { }
+                 }
+        s.search :index => 'test',
+                 :search_type => 'count',
+                 :query => {
+                   :match_all => { }
+                 }
+      end
     end
 
     asserts(:source).equals(<<-JSON)
