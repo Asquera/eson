@@ -4,16 +4,16 @@ context 'HTTP client quick api' do
   helper(:node) { Node::External.instance }
   
   helper(:client) do
-    Eson::Client.new(:server => "http://#{node.ip}:#{node.port}", 
-                              :protocol => Eson::HTTP, 
-                              :plugins => [Eson::StatusHandler, Eson::ResponseParser], 
-                              :logger => 'test/test.log')
+    Eson::Client.new(:server => "http://#{node.ip}:#{node.port}",
+                     :protocol => Eson::HTTP,
+                     :plugins => [Eson::StatusHandler, Eson::ResponseParser],
+                     :logger => 'test/test.log')
   end
   
   context "after put request" do
     setup do
-      client.index :doc => {"test" =>  "bar"}, 
-                   :type => "bar", 
+      client.index :doc => {"test" =>  "bar"},
+                   :type => "bar",
                    :id => 600
     end
     
@@ -21,7 +21,7 @@ context 'HTTP client quick api' do
     
     context "get request" do
       setup do
-        client.get :type => "bar", 
+        client.get :type => "bar",
                    :id => 600
       end
       
@@ -30,7 +30,7 @@ context 'HTTP client quick api' do
     
     context "delete" do
       setup do
-        client.delete :type => "bar", 
+        client.delete :type => "bar",
                       :id => 600
       end
       
@@ -60,6 +60,23 @@ context 'HTTP client quick api' do
                                     }
       )["matches"]
     end.equals(["kuku"])
+  end
+  
+  context "delete_by_query" do
+    setup do
+      client.index :index => "delete_by_query",
+                   :type => "foo",
+                   :doc => {:foo => :bar}
+      client.index :index => "delete_by_query",
+                   :type => "foo",
+                   :doc => {:foo => :bar}
+      client.refresh :index => "delete_by_query"
+
+      client.delete_by_query :index => "delete_by_query",
+                             :query => { :match_all => {} }
+    end
+
+    asserts("no doc left") { client.search(:index => "delete_by_query")["hits"]["total"] }.equals(0)
   end
 end
 

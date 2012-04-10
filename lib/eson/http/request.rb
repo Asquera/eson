@@ -28,8 +28,9 @@ module Eson
           when :head
             resource.head fill
           when :delete
-            resource.options[:payload] = source if source
-            resource.delete fill
+            resource.delete(fill) do |req|
+              req.body = source if source
+            end
           when :post
             resource.post(fill, source)
           when :put
