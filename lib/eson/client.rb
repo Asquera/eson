@@ -91,8 +91,20 @@ module Eson
       request(protocol::Percolate, args, &block)
     end
     
-    def bulk(args = {})
-      request(protocol::Bulk, args, false)
+    def bulk(args = {}, &block)
+      if block_given?
+        request(protocol::Bulk, args, &block)
+      else
+        request(protocol::Bulk, args, false)
+      end
+    end
+    
+    def msearch(args = {}, &block)
+      if block_given?
+        request(protocol::MultiSearch, args, &block)
+      else
+        request(protocol::MultiSearch, args, false)
+      end
     end
     
     def delete_by_query(args = {})
@@ -101,10 +113,6 @@ module Eson
     
     def more_like_this(args = {})
       request(protocol::MoreLikeThis, args)
-    end
-    
-    def msearch(args = {})
-      request(protocol::MultiSearch, args, false)
     end
     
     def health(args = {})
