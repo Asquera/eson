@@ -8,7 +8,7 @@ It tries to keep the language of the ES API as intact as possible.
 
     require 'eson-http'
 
-    c = ElasticSearch::HTTP::Client.new(:server => 'localhost:9200')
+    c = Eson::HTTP::Client.new(:server => 'localhost:9200')
     
     doc = {
       :user => "kimchy",
@@ -33,7 +33,7 @@ Requests are not executed immediately when no options are given to the client.
 
     require 'echolon/http'
 
-    c = ElasticSearch::HTTP::Client.new(:server => 'localhost:9200')
+    c = Eson::HTTP::Client.new(:server => 'localhost:9200')
     
     doc = {
       :user => "kimchy",
