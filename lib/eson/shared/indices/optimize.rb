@@ -7,7 +7,9 @@ module Eson
       
       parameters :max_num_segments,
                  :only_expunge_deletes,
-                 :refresh
+                 :refresh,
+                 :flush,
+                 :wait_for_merge
     end
   end
 end
