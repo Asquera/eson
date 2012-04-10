@@ -225,4 +225,12 @@ context 'HTTP client' do
     end.equals(false)
   end
   
+  context "exists?" do
+    setup do
+      client.exists? :index => 'does_not_exist_at_all'
+    end
+
+    asserts { topic }.equals(false)
+  end
+
 end

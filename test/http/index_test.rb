@@ -77,7 +77,7 @@ context 'HTTP client quick api' do
       client.mget(:index => "mget_test", :ids => [1,2])
     end
 
-    asserts("number of docs") { topic[:docs].length }.equals(2)
+    asserts("number of docs") { topic["docs"].length }.equals(2)
   end
 
   context "delete_by_query" do
