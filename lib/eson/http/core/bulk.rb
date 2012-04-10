@@ -20,6 +20,8 @@ module Eson
           MultiJson.encode({ "index" => to_params_hash(request) }) << "\n" << request.source << "\n"
         when Eson::HTTP::Delete
           MultiJson.encode({ "delete" => to_params_hash(request) }) << "\n"
+        else
+          warn("Unserializable request #{request.inspect}")
         end
       end
       

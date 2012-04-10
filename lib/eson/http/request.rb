@@ -46,13 +46,7 @@ module Eson
         expansions = {}
         query_values = {}
         
-        if self.respond_to? :source_param
-          source_params = Array(source_param)
-        else
-          source_params = []
-        end
-        
-        (parameters - source_params).each do |p|
+        url_params.each do |p|
           val = self.send(p)
           
           if template_keys.include? p
@@ -67,6 +61,16 @@ module Eson
         uri
       end
       
+      def url_params
+        if self.respond_to? :source_param
+          source_params = Array(source_param)
+        else
+          source_params = []
+        end
+
+        (parameters - source_params)
+      end
+
       def request_method
         @request_method || :get
       end

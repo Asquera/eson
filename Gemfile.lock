@@ -10,14 +10,14 @@ PATH
 PATH
   remote: ../eson-core
   specs:
-    eson-core (0.1.1)
+    eson-core (0.6.0)
       multi_json
 
 GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.2.7)
-    elasticsearch-node (0.6.0)
+    elasticsearch-node (0.7.0)
     faraday (0.7.5)
       addressable (~> 2.2.6)
       multipart-post (~> 1.1.3)

@@ -1,6 +1,6 @@
 require './test/test_config'
 
-context 'HTTP client indices API' do
+context 'HTTP client' do
   helper(:node) { Node::External.instance }
   
   helper(:client) do
@@ -20,6 +20,7 @@ context 'HTTP client indices API' do
   
   context "missing index" do
     asserts {
+      client.refresh
       client.get :index => "missing", :type => "foo", :id => 1
     }.raises(Eson::IndexNotFoundError)
   end
@@ -30,7 +31,7 @@ context 'HTTP client indices API' do
     }.raises(Eson::Error)
   end
   
-  context "existing index" do
+  context "with an existing index" do
     setup do
       client.create_index :index => "existing"
       client.refresh

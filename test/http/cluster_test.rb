@@ -5,7 +5,7 @@ context 'HTTP client cluster api' do
   
   helper(:client) do
     Eson::HTTP::Client.new(:server => "http://#{node.ip}:#{node.port}",
-                                    :logger => 'test/test.log')
+                           :logger => 'test/test.log')
   end
     
   context "cluster health" do

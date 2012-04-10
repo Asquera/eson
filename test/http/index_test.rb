@@ -65,10 +65,7 @@ end
 
 context 'HTTP client verbose API' do
   helper(:client) do
-    Eson::Client.new(:server => "127.0.0.1:9200", 
-                              :protocol => Eson::HTTP, 
-                              :plugins => [Eson::ResponseParser], 
-                              :logger => 'test/test.log')
+    Eson::HTTP::Client.new(:auto_call => false)
   end
   
   context "returns request objects" do
@@ -77,5 +74,35 @@ context 'HTTP client verbose API' do
     end
     
     asserts_topic("is an Index request").kind_of?(Eson::HTTP::Index)
+  end
+
+  context "#msearch" do
+    setup do
+      msearch = client.msearch
+      msearch.search :index => 'test',
+                     :type => 'kuku',
+                     :query => {
+                       :match_all => { }
+                     }
+      msearch.search :index => 'test',
+                     :query => {
+                       :match_all => { }
+                     }
+      msearch.search :index => 'test',
+                     :search_type => 'count',
+                     :query => {
+                       :match_all => { }
+                     }
+      msearch
+    end
+
+    asserts(:source).equals(<<-JSON)
+{"indices":["test"],"types":["kuku"]}
+{"query":{"match_all":{}}}
+{"indices":["test"]}
+{"query":{"match_all":{}}}
+{"indices":["test"],"search_type":"count"}
+{"query":{"match_all":{}}}
+JSON
   end
 end
