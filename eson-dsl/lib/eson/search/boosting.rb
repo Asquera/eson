@@ -6,7 +6,7 @@ module Eson
       ##
       # @macro eson.query
       #   Generates a `$1` query.
-      #   @method $0
+      #   @method $1
       #   {include:file:examples/queries/$1.rb}
       #   @see Eson::Search::Queries
       query :boosting

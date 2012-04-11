@@ -1,0 +1,4 @@
+--output-dir doc/
+--readme README.md
+--title Eson
+eson-*/lib/**/*.rb

@@ -8,7 +8,7 @@ module Eson
       ##
       # @macro eson.filter
       #   Generates a `$1` filter.
-      #   @method $0
+      #   @method $1
       #   {include:file:examples/filters/$1.rb}
       #   @see Eson::Search::Filters
       filter 'and'
