@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   
   s.add_dependency "multi_json"
-  s.add_development_dependency "elsearch-node"
+  s.add_development_dependency "elasticsearch-node"
 end

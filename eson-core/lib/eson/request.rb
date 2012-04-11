@@ -16,6 +16,10 @@ module Eson
       end
     end
 
+    def handle_block
+      yield self
+    end
+
     def params=(params)
       params.each do |k,v|
         begin

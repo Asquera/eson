@@ -3,8 +3,12 @@ require 'faraday'
 module Eson
   module HTTP
     class Request < Eson::Request
+      # This middleware circumvents faradays detection of
+      # :get as special and emits a generic request - which
+      # can have a body...
+      # This is mostly due to ElasticSearchs reliance of
+      # Bodys on get and delete.
       class GetHackMiddleware < Faraday::Middleware
-
         def call(env)
           env[:method] = "get" if env[:method] == :get
 

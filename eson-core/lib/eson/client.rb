@@ -111,8 +111,8 @@ module Eson
       end
     end
     
-    def delete_by_query(args = {})
-      request(protocol::DeleteByQuery, args)
+    def delete_by_query(args = {}, &block)
+      request(protocol::DeleteByQuery, args, &block)
     end
     
     def more_like_this(args = {})
@@ -240,7 +240,7 @@ module Eson
         r.params = args
         
         if block_given?
-          yield r
+          r.handle_block(&Proc.new)
         end
         
         if auto_call
