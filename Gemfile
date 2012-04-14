@@ -8,6 +8,7 @@ gem "riot", :git => "git://github.com/Asquera/riot.git", :branch => 'option-inhe
 gem 'faraday'
 gem 'activesupport'
 gem 'jruby-openssl', :platform => 'jruby'
+gem 'json', :platform => 'jruby'
 gem 'rake'
 gem 'elasticsearch-node'
 

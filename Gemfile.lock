@@ -9,19 +9,19 @@ GIT
 PATH
   remote: eson-core
   specs:
-    eson-core (0.6.0)
+    eson-core (0.7.0)
       multi_json
 
 PATH
   remote: eson-dsl
   specs:
-    eson-dsl (0.6.0)
+    eson-dsl (0.7.0)
       multi_json
 
 PATH
   remote: eson-http
   specs:
-    eson-http (0.1.1)
+    eson-http (0.7.0)
       addressable
       eson-core
       faraday
@@ -58,5 +58,6 @@ DEPENDENCIES
   eson-http!
   faraday
   jruby-openssl
+  json
   rake
   riot!
