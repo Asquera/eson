@@ -87,28 +87,29 @@ context 'HTTP client' do
   
   context "template creation" do
     setup do
-      client.put_template :name => 'foo',
-                          :template => 'foo*',
-                          :settings => {
-                            :index => {
-                              :number_of_shards => 1
-                            }
-                          },
-                          :mappings => {
-                            :type1 => {
-                              :_source => { :enabled => false },
-                              :properties => {
-                                :field1 => { :type => "string", :index => "not_analyzed" }
-                              }
-                            }
-                          }
+      result = client.put_template :name => 'foo',
+                                   :template => 'foo*',
+                                   :settings => {
+                                     :index => {
+                                       :number_of_shards => 1
+                                     }
+                                   },
+                                   :mappings => {
+                                     :type1 => {
+                                       :_source => { :enabled => false },
+                                       :properties => {
+                                         :field1 => { :type => "string", :index => "not_analyzed" }
+                                       }
+                                     }
+                                   }
+      sleep 0.5
+      result
     end
     
     asserts("ok") { topic["ok"] }
     
     context "get template" do
       setup do
-        client.refresh
         client.get_template :name => 'foo'
       end
       
@@ -117,7 +118,6 @@ context 'HTTP client' do
     
     context "delete template" do
       setup do
-        client.refresh
         client.delete_template :name => 'foo'
       end
       
