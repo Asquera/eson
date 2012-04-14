@@ -108,6 +108,7 @@ context 'HTTP client' do
     
     context "get template" do
       setup do
+        client.refresh
         client.get_template :name => 'foo'
       end
       
@@ -116,6 +117,7 @@ context 'HTTP client' do
     
     context "delete template" do
       setup do
+        client.refresh
         client.delete_template :name => 'foo'
       end
       
