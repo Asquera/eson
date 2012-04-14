@@ -2,11 +2,13 @@ module Eson
   module Search
     module Filter
       module ClassMethods
-        def filter(name)
+        def short_name(name)
           define_method :name do
             name
           end
           Filters.register name, self
+          
+          super if defined? super
         end
       end
 

@@ -6,12 +6,11 @@ module Eson
       include Filter
 
       ##
-      # @macro eson.filter
+      # @macro and
+      #   @yield the block describing all subfilters 
       #   Generates a `$1` filter.
-      #   @method $1
-      #   {include:file:examples/filters/$1.rb}
-      #   @see Eson::Search::Filters
-      filter 'and'
+      #   {include:file:eson-dsl/examples/filters/$1.rb}
+      short_name 'and'
 
       attr_accessor :options
 

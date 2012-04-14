@@ -4,7 +4,7 @@ module Eson
       include Query
 
       # @macro eson.query
-      query :fuzzy
+      short_name :fuzzy
 
       attr_accessor :field
       attr_accessor :options

@@ -5,7 +5,7 @@ module Eson
       include Queries
 
       # @macro eson.query
-      query :dis_max
+      short_name :dis_max
 
       attr_accessor :options
 

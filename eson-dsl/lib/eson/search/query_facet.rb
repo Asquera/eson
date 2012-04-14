@@ -6,7 +6,7 @@ module Eson
       include QueryMethods
 
       # @macro eson.facet
-      facet :query
+      short_name :query
 
       def to_query_hash
         {:query => queries.to_query_hash}

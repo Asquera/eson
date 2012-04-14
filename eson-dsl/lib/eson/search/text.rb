@@ -9,8 +9,8 @@ module Eson
       #}
       include Query
 
-      # @macro eson.text
-      query :text
+      # @macro eson.query
+      short_name :text
 
       attr_accessor :options
 

@@ -4,7 +4,7 @@ module Eson
       include Filter
 
       # @macro eson.filter
-      filter :geo_distance_range
+      short_name :geo_distance_range
 
       attr_accessor :field, :options
 

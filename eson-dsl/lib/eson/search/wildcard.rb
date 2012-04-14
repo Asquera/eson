@@ -4,7 +4,7 @@ module Eson
       include Query
 
       # @macro eson.query
-      query :wildcard
+      short_name :wildcard
 
       def to_query_hash
         if field

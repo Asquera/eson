@@ -4,7 +4,7 @@ module Eson
       include Query
 
       # @macro eson.query
-      query :query_string
+      short_name :query_string
 
       attr_accessor :options
 

@@ -6,7 +6,7 @@ module Eson
       include QueryMethods
 
       # @macro eson.filter
-      filter :fquery
+      short_name :fquery
 
       attr_accessor :options
 

@@ -2,11 +2,13 @@ module Eson
   module Search
     module Query
       module ClassMethods
-        def query(name)
+        def short_name(name)
           define_method :name do
             name
           end
           Queries.register name, self
+          
+          super if defined? super
         end
       end
 

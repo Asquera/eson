@@ -4,7 +4,7 @@ module Eson
       include Facet
 
       # @macro eson.facet
-      facet :statistical
+      short_name :statistical
 
       attr_accessor :options
 

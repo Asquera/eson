@@ -6,7 +6,7 @@ module Eson
       include Filter
 
       # @macro eson.filter
-      filter 'not' # yard chokes on :not
+      short_name 'not' # yard chokes on :not
 
       attr_accessor :options
 

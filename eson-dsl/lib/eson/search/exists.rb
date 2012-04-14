@@ -4,7 +4,7 @@ module Eson
       include Filter
 
       # @macro eson.filter
-      filter :exists
+      short_name :exists
 
       def to_query_hash
         if field

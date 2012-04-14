@@ -2,8 +2,9 @@ module Eson
   module Search
     class GeoPolygon
       include Filter
-
-      filter :geo_polygon
+      
+      # @macro eson.filter
+      short_name :geo_polygon
       attr_accessor :field, :options
 
       def initialize(field, options = {})

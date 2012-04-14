@@ -7,9 +7,8 @@ module Eson
 
       include Query
 
-      ##
       # @macro eson.query
-      query :constant_score
+      short_name :constant_score
 
       attr_accessor :options
 

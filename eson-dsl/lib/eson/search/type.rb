@@ -4,7 +4,7 @@ module Eson
       include Filter
 
       # @macro eson.filter
-      filter :type
+      short_name :type
 
       attr_accessor :type
 

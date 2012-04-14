@@ -6,7 +6,7 @@ module Eson
       include Filter
 
       # @macro eson.filter
-      filter 'or' # yard chokes on :or
+      short_name 'or' # yard chokes on :or
 
       attr_accessor :options
 

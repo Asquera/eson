@@ -4,7 +4,7 @@ module Eson
       include Query
 
       # @macro eson.query
-      query :span_or
+      short_name :span_or
 
       attr_accessor :options
 

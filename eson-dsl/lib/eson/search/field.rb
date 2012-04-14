@@ -3,7 +3,8 @@ module Eson
     class Field
       include Query
 
-      query :field
+      # @macro eson.query
+      short_name :field
 
       attr_accessor :options
 

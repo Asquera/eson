@@ -4,7 +4,7 @@ module Eson
       include Filter
 
       # @macro eson.filter
-      filter :missing
+      short_name :missing
 
       attr_accessor :options
 

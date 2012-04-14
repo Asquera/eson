@@ -5,11 +5,10 @@ module Eson
 
       ##
       # @macro eson.query
+      #   @yield the block describing all subqueries 
       #   Generates a `$1` query.
-      #   @method $1
-      #   {include:file:examples/queries/$1.rb}
-      #   @see Eson::Search::Queries
-      query :boosting
+      #   {include:file:eson-dsl/examples/queries/$1.rb}
+      short_name :boosting
 
       attr_accessor :options, :conditions
 

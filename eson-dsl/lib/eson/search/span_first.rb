@@ -6,7 +6,7 @@ module Eson
       include QueryMethods
 
       # @macro eson.query
-      query :span_first
+      short_name :span_first
 
       attr_accessor :options
 

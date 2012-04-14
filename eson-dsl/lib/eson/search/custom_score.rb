@@ -6,7 +6,7 @@ module Eson
       include Query
 
       # @macro eson.query
-      query :custom_score
+      short_name :custom_score
 
       attr_accessor :options
 

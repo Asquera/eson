@@ -5,10 +5,8 @@ module Eson
       ##
       # @macro eson.facet
       #   Generates a `$1` facet.
-      #   @method $1
-      #   {include:file:examples/facets/$1.rb}
-      #   @see Eson::Search::Facets
-      facet :date_histogram
+      #   {include:file:eson-dsl/examples/facets/$1.rb}
+      short_name :date_histogram
 
     end
   end

@@ -4,7 +4,7 @@ module Eson
       include Facet
 
       # @macro eson.facet
-      facet :histogram
+      short_name :histogram
 
       attr_accessor :options
 

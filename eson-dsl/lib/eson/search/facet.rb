@@ -2,11 +2,13 @@ module Eson
   module Search
     module Facet
       module ClassMethods
-        def facet(name)
+        def short_name(name)
           define_method :name do
             name
           end
           Facets.register name, self
+
+          super if defined? super
         end
       end
 

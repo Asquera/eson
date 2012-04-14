@@ -5,14 +5,12 @@ module Eson
       include Filter
       include Facet
 
-      # @macro eson.query
-      query :range
-
-      # @macro eson.filter
-      filter :range
-
-      # @macro eson.facet
-      facet :range
+      # @macro range
+      #   Generates a `$1` filter, facet or  query, depending on context.
+      #   {include:file:eson-dsl/examples/filters/$1.rb}
+      #   {include:file:eson-dsl/examples/facet/$1.rb}
+      #   {include:file:eson-dsl/examples/queries/$1.rb}
+      short_name :range
 
       attr_accessor :field
 

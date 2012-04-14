@@ -4,7 +4,7 @@ module Eson
       include Filter
 
       # @macro eson.filter
-      filter :geo_bounding_box
+      short_name :geo_bounding_box
 
       attr_accessor :field, :options
 

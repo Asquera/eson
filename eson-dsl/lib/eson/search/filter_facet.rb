@@ -6,7 +6,7 @@ module Eson
       include FilterMethods
 
       # @macro eson.facet
-      facet :filter
+      short_name :filter
 
     end
   end

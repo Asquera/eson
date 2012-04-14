@@ -4,7 +4,7 @@ module Eson
       include Query
 
       # @macro eson.query
-      query :mlt_field
+      short_name :mlt_field
 
       attr_accessor :field
 

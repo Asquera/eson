@@ -4,7 +4,7 @@ module Eson
       include Filter
 
       # @macro eson.filter
-      filter :numeric_range
+      short_name :numeric_range
 
       attr_accessor :field
 

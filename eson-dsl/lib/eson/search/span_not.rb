@@ -4,7 +4,7 @@ module Eson
       include Query
 
       # @macro eson.query
-      query :span_not
+      short_name :span_not
 
       def include(&block)
         @include ||= SubQuery.new

@@ -5,7 +5,7 @@ module Eson
       include QueryGroup
 
       # @macro eson.query
-      query :nested
+      short_name :nested
 
       attr_accessor :options
 

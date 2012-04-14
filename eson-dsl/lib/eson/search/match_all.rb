@@ -4,7 +4,7 @@ module Eson
       include Query
 
       # @macro eson.query
-      query :match_all
+      short_name :match_all
 
       attr_accessor :boost
 

@@ -6,11 +6,11 @@ module Eson
 
       include QueryGroup
 
-      # @macro eson.filter
-      filter :has_child
-
-      # @macro eson.query
-      query :has_child
+      # @macro has_child
+      #   Generates a `$1` filter or query, depending on context.
+      #   {include:file:eson-dsl/examples/filters/$1.rb}
+      #   {include:file:eson-dsl/examples/queries/$1.rb}
+      short_name :has_child
 
       attr_accessor :options
 

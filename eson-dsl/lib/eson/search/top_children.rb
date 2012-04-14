@@ -5,11 +5,11 @@ module Eson
       include Filter
       include QueryGroup
 
-      # @macro eson.query
-      query :top_children
-
-      # @macro eson.filter
-      filter :top_children
+      # @macro top_children
+      #   Generates a `$1` filter, query, depending on context.
+      #   {include:file:eson-dsl/examples/filters/$1.rb}
+      #   {include:file:eson-dsl/examples/queries/$1.rb}# @macro eson.query
+      short_name :top_children
 
       attr_accessor :options
 
