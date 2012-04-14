@@ -33,7 +33,8 @@ module Eson
     end
     
     def handle_block(&block)
-      if block.arity == 0
+      # in ruby 1.8.7, `lambda {}.arity == -1`
+      if (block.arity == 0) || (block.arity == -1)
         query(&block)
       else
         super
