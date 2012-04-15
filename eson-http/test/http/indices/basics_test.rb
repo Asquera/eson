@@ -207,7 +207,7 @@ context 'HTTP client' do
   context "put mapping" do
     setup do
       client.create_index :index => 'mappings'
-      client.put_mapping :index => 'mappings',
+      result = client.put_mapping :index => 'mappings',
                          :type => 'type1',
                          :mapping => {
                            :type1 => {
@@ -218,6 +218,7 @@ context 'HTTP client' do
                            }
                          }
       sleep 0.5
+      result
     end
     
     asserts("ok") { topic["ok"] }
