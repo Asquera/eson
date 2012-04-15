@@ -217,6 +217,7 @@ context 'HTTP client' do
                              }
                            }
                          }
+      sleep 0.5
     end
     
     asserts("ok") { topic["ok"] }
