@@ -3,11 +3,11 @@ module Eson
     module MoreLikeThis
       include Shared::MoreLikeThis
       extend API
-      
+
       request_method :get
-      
+
       def path
-        "{-list|,|indices}/{type}/{id}/_mlt"
+        "{index}/{type}/{id}/_mlt"
       end
     end
   end

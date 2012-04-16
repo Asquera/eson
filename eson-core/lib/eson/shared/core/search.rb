@@ -2,11 +2,11 @@ module Eson
   module Shared
     module Search
       extend API
-      
+
       attr_accessor :type
-      
+
       multi_index true
-      
+
       source_param :query,
                    :timeout,
                    :from,
@@ -22,9 +22,9 @@ module Eson
                    :explain,
                    :version,
                    :min_score
-                   
-      parameters :timeout, 
-                 :types, 
+
+      parameters :timeout,
+                 :types,
                  :routing,
                  :query,
                  :from,
@@ -47,7 +47,7 @@ module Eson
                  :q,
                  :df,
                  :analyzer
-                 
+
       def types
         if @types
           Array(@types)
@@ -57,7 +57,6 @@ module Eson
           []
         end
       end
-      
     end
   end
 end
