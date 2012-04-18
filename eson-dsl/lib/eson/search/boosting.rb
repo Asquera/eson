@@ -21,12 +21,12 @@ module Eson
       end
 
       def positive(&block)
-        q = (boosts[:positive] ||= SubQuery.new)
+        q = (boosts[:positive] ||= SubQuery.new(args))
         q.query(&block)
       end
 
       def negative(&block)
-        q = (boosts[:negative] ||= SubQuery.new)
+        q = (boosts[:negative] ||= SubQuery.new(args))
         q.query(&block)
       end
 

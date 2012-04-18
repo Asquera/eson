@@ -2,6 +2,7 @@ require 'multi_json'
 
 require 'eson/modules/query_plugin'
 
+require 'eson/search/parametrized'
 require 'eson/search/node'
 require 'eson/search/query'
 require 'eson/search/queries'

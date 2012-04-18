@@ -3,8 +3,10 @@ module Eson
     class BaseQuery
       include QueryGroup
       include Facets
-
-      def initialize
+      include Parametrized
+      
+      def initialize(args = {})
+        self.args = args
         instance_exec(self, &Proc.new) if block_given?
       end
 

@@ -7,7 +7,8 @@ module Eson
 
       class FilterArray < Array
         include FilterMethods
-
+        include Parametrized
+        
         def filters
           self
         end
@@ -28,7 +29,7 @@ module Eson
       attr_accessor :filters
 
       def filters
-        @filters ||= FilterArray.new
+        @filters ||= FilterArray.new(args)
 
         if block_given?
           @filters.define_filters(&Proc.new)
@@ -46,6 +47,7 @@ module Eson
         FilterMethods.__send__(:define_method, name) do |*args, &block|
           o = klass.new(*args)
           o.context = :filter
+          o.args = self.args
           o.instance_exec(o, &block) if block
           filters << o
         end
