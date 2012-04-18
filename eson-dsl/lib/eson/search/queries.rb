@@ -5,7 +5,7 @@ module Eson
 
       end
 
-      QUERIES = Class.new(Array) do
+      class QueriesArray < Array
         include QueryMethods
 
         def queries
@@ -38,7 +38,7 @@ module Eson
       end
 
       def queries(&block)
-        @queries ||= QUERIES.new(&block)
+        @queries ||= QueriesArray.new(&block)
       end
       alias :query :queries
 

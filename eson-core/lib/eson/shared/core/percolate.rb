@@ -8,7 +8,8 @@ module Eson
       parameters :query,
                  :doc,
                  :prefer_local,
-                 :type
+                 :type,
+                 :index
       
       source_param :doc, :query
       

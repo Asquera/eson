@@ -5,19 +5,11 @@ module Eson
       extend API
 
       def path
-        if query
-          '/_percolator/{index}/{type}'
-        else
-          '/{index}/{type}/_percolate'
-        end
+        '/{index}/{type}/_percolate'
       end
       
       def request_method
-        if doc
-          :post
-        else
-          :put
-        end
+        :post
       end
     end
   end
