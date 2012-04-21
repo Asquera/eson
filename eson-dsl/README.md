@@ -96,6 +96,19 @@ will generate:
 }
 ```
 
+## Parameters
+
+Parameters can be passed to BaseQuery to allow generation of dynamic queries, without playing with variable visibility:
+
+```
+Eson::Search::BaseQuery.new(:search_string => "kim*y", :boost => 2.0) do
+  query do
+    wildcard :user, :value => param(:search_string), :boost => param(:boost)
+  end
+end
+
+```
+
 ## Examples
 
 See `examples` for all examples used in the test suite.
