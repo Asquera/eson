@@ -12,6 +12,14 @@ context "Queries" do
       example("queries/term")
     end
   end
+  
+  context "#term with parameters" do
+    query_name "test/search/queries/term"
+
+    setup do
+      example("queries/term_with_parameters")
+    end
+  end
 
   context "#wildcard" do
     query_name "test/search/queries/wildcard"
