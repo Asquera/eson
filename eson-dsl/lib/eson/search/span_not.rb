@@ -7,12 +7,12 @@ module Eson
       short_name :span_not
 
       def include(&block)
-        @include ||= SubQuery.new
+        @include ||= SubQuery.new(args)
         @include.send(context, &block)
       end
 
       def exclude(&block)
-        @exclude ||= SubQuery.new
+        @exclude ||= SubQuery.new(args)
         @exclude.send(context, &block)
       end
 

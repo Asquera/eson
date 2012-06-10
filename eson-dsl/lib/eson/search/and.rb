@@ -7,7 +7,7 @@ module Eson
 
       ##
       # @macro and
-      #   @yield the block describing all subfilters 
+      #   @yield the block describing all subfilters
       #   Generates a `$1` filter.
       #   {include:file:eson-dsl/examples/filters/$1.rb}
       short_name 'and'

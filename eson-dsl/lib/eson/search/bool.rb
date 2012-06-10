@@ -22,17 +22,17 @@ module Eson
       end
 
       def must(&block)
-        q = (conditions[:must] ||= SubQuery.new)
+        q = (conditions[:must] ||= SubQuery.new(args))
         q.send(context, &block)
       end
 
       def must_not(&block)
-        q = (conditions[:must_not] ||= SubQuery.new)
+        q = (conditions[:must_not] ||= SubQuery.new(args))
         q.send(context, &block)
       end
 
       def should(&block)
-        q = (conditions[:should] ||= SubQuery.new)
+        q = (conditions[:should] ||= SubQuery.new(args))
         q.send(context, &block)
       end
 

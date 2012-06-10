@@ -14,7 +14,7 @@ Features:
 ## Usage
 
 ``` ruby
-require 'echolon-search'
+require 'eson-dsl'
 require 'json'
 
 q = Eson::Search::BaseQuery.new do
@@ -96,6 +96,19 @@ will generate:
 }
 ```
 
+## Parameters
+
+Parameters can be passed to BaseQuery to allow generation of dynamic queries, without playing with variable visibility:
+
+```ruby
+Eson::Search::BaseQuery.new(:search_string => "kim*y", :boost => 2.0) do
+  query do
+    wildcard :user, :value => param(:search_string), :boost => param(:boost)
+  end
+end
+
+```
+
 ## Examples
 
 See `examples` for all examples used in the test suite.
@@ -104,7 +117,7 @@ See `examples` for all examples used in the test suite.
 
 Eson supports scoped facets in an object-oriented way. To scope a facet, call `scope` on it and pass the reference to a subquery. In practice, this requires a bit of trickery in Ruby 1.9, as it local variables are not propagated outside of the introducing block:
 
-```
+```ruby
 Eson::Search::BaseQuery.new do
   q = nil
   query do

@@ -13,7 +13,7 @@ module Eson
       end
 
       def clauses(&block)
-        @clauses ||= SubQuery.new
+        @clauses ||= SubQuery.new(args)
         @clauses.send(context, &block)
       end
 

@@ -1,8 +1,11 @@
 module Eson
   module Search
     module Facets
-      FACETS = Class.new(Array) do
-        def initialize
+      class FacetArray < Array
+        include Parametrized
+        
+        def initialize(args)
+          self.args = args
           instance_exec(self, &Proc.new) if block_given?
         end
 
@@ -15,11 +18,10 @@ module Eson
         end
       end
 
-      attr_accessor :queries
-
       def self.register(name, klass)
-        FACETS.__send__(:define_method, name) do |facet_name, *args, &block|
+        FacetArray.__send__(:define_method, name) do |facet_name, *args, &block|
           o = klass.new(*args)
+          o.args = self.args
           o.instance_exec(o, &block) if block
           self << [facet_name, o]
           o
@@ -27,7 +29,7 @@ module Eson
       end
 
       def facets(&block)
-        @facets ||= FACETS.new(&block)
+        @facets ||= FacetArray.new(args, &block)
       end
       alias :facet :facets
     end

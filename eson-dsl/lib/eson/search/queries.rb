@@ -5,14 +5,16 @@ module Eson
 
       end
 
-      QUERIES = Class.new(Array) do
+      class QueriesArray < Array
         include QueryMethods
+        include Parametrized
 
         def queries
           self
         end
 
-        def initialize
+        def initialize(args)
+          self.args = args
           instance_exec(self, &Proc.new) if block_given?
         end
 
@@ -31,6 +33,7 @@ module Eson
         QueryMethods.__send__(:define_method, name) do |*args, &block|
           o = klass.new(*args)
           o.context = :query
+          o.args = self.args
           o.instance_exec(o, &block) if block
           queries << o
           o
@@ -38,7 +41,7 @@ module Eson
       end
 
       def queries(&block)
-        @queries ||= QUERIES.new(&block)
+        @queries ||= QueriesArray.new(args, &block)
       end
       alias :query :queries
 

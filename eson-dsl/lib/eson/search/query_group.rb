@@ -3,6 +3,7 @@ module Eson
     module QueryGroup
       include Filters
       include Queries
+      include Parametrized
 
       def to_query_hash
         if queries && filters && queries.any? && filters.any?
