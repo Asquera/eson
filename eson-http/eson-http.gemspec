@@ -20,10 +20,9 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   
   #s.add_dependency "typhoeus"
-  s.add_dependency "faraday"
+  s.add_dependency "faraday", "~> 0.7.0"
   s.add_dependency "addressable"
   s.add_dependency "eson-core"
   s.add_development_dependency "elasticsearch-node"
   s.add_development_dependency "riot"
-  
 end
