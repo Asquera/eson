@@ -16,7 +16,6 @@ PATH
   remote: eson-dsl
   specs:
     eson-dsl (0.7.0)
-      multi_json
 
 PATH
   remote: eson-http
@@ -24,7 +23,7 @@ PATH
     eson-http (0.7.0)
       addressable
       eson-core
-      faraday
+      faraday (~> 0.7.0)
 
 GEM
   remote: http://rubygems.org/
@@ -35,7 +34,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.2.7)
     bouncy-castle-java (1.5.0146.1)
-    elasticsearch-node (0.7.0)
+    elasticsearch-node (0.7.2)
     faraday (0.7.6)
       addressable (~> 2.2)
       multipart-post (~> 1.1)
