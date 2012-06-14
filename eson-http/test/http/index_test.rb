@@ -37,16 +37,18 @@ context 'HTTP client quick api' do
       asserts("ok") { topic["ok"] }
     end
     
-    context "update" do
-      setup do
-        client.update :type => "bar",
-                      :id => 600,
-                      :script => "ctx._source.test = value",
-                      :params => { :value => "foo" },
-                      :refresh => true
+    if ENV["ES_VERSION"] > "0.19.0"
+      context "update" do
+        setup do
+          client.update :type => "bar",
+                        :id => 600,
+                        :script => "ctx._source.test = value",
+                        :params => { :value => "foo" },
+                        :refresh => true
+        end
+        
+        asserts("ok") { topic["ok"] }
       end
-      
-      asserts("ok") { topic["ok"] }
     end
   end
   
