@@ -14,7 +14,8 @@ module Eson
                  :percolate,
                  :refresh,
                  :script,
-                 :params
+                 :params,
+                 :retry_on_conflict
       
       source_param :script,
                    :params
