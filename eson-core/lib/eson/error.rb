@@ -3,7 +3,7 @@ module Eson
     attr_accessor :response
     
     def initialize(msg, response)
-      super(msg)
+      super(response.body)
       
       self.response = response
     end
