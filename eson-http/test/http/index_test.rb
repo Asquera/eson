@@ -37,6 +37,17 @@ context 'HTTP client quick api' do
       asserts("ok") { topic["ok"] }
     end
     
+    context "update" do
+      setup do
+        client.update :type => "bar",
+                      :id => 600,
+                      :script => "ctx._source.test = value",
+                      :params => { :value => "foo" },
+                      :refresh => true
+      end
+      
+      asserts("ok") { topic["ok"] }
+    end
   end
   
   context "percolate" do

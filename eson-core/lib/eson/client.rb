@@ -91,6 +91,10 @@ module Eson
       request(protocol::Count, args)
     end
     
+    def update(args = {})
+      request(protocol::Update, args)
+    end
+    
     def percolate(args = {}, &block)
       request(protocol::Percolate, args, &block)
     end
@@ -237,7 +241,7 @@ module Eson
       def request(endpoint, args, auto_call = auto_call)
         r = protocol::Request.new(endpoint, plugins, self)
         
-        r.params = args
+        r.parameters = args
         
         if block_given?
           r.handle_block(&Proc.new)

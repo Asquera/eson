@@ -20,7 +20,7 @@ module Eson
       yield self
     end
 
-    def params=(params)
+    def parameters=(params)
       params.each do |k,v|
         begin
           self.send("#{k}=", v)

@@ -53,7 +53,7 @@ The client has an additional mode that does not call elasticsearch  immediately,
     # or:
 
     index_request = c.index
-    index_request.params = {
+    index_request.parameters = {
       :index => "twitter",
       :type  => "tweet"
       :id    => 1,

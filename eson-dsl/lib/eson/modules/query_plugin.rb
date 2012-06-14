@@ -11,7 +11,7 @@ module Eson
 
     def call(*args)
       if query.respond_to?(:to_query_hash)
-        self.params = query.to_query_hash
+        self.parameters = query.to_query_hash
       end
 
       super(*args)

@@ -247,11 +247,11 @@ context 'HTTP client' do
   end
   
   context "index segments" do
-     setup do
-       client.segments :index => 'default'
-     end
-
-     asserts { topic["ok"] }.equals(true)
-   end
+    setup do
+      client.segments :index => 'default'
+    end
+  
+    asserts { topic["ok"] }.equals(true)
+  end
 
 end

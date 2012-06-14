@@ -9,6 +9,6 @@ context "HTTP client" do
                            :auto_call => false)
   end
   
-  asserts("too many params") { client.index.params = {:foo => :bar} }.raises(NoMethodError)
+  asserts("too many params") { client.index.parameters = {:foo => :bar} }.raises(NoMethodError)
 
 end
