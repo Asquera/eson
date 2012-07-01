@@ -7,6 +7,14 @@ GIT
       rr
 
 PATH
+  remote: eson
+  specs:
+    eson (0.7.0)
+      eson-core (= 0.7.0)
+      eson-dsl (= 0.7.0)
+      eson-http (= 0.7.0)
+
+PATH
   remote: eson-core
   specs:
     eson-core (0.7.0)
@@ -24,6 +32,12 @@ PATH
       addressable
       eson-core
       faraday (~> 0.7.0)
+
+PATH
+  remote: eson-more
+  specs:
+    eson-more (0.7.0)
+      eson-core
 
 GEM
   remote: http://rubygems.org/
@@ -58,9 +72,11 @@ DEPENDENCIES
   ZenTest (= 4.3.0)
   activesupport
   elasticsearch-node
+  eson!
   eson-core!
   eson-dsl!
   eson-http!
+  eson-more!
   faraday
   jruby-openssl
   json
