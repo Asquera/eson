@@ -18,6 +18,7 @@ require 'eson/shared/core/update'
 require 'eson/shared/core/msearch'
 require 'eson/shared/core/mget'
 require 'eson/shared/core/delete_by_query'
+require 'eson/shared/core/scroll'
 
 require 'eson/shared/cluster/health'
 require 'eson/shared/cluster/state'

@@ -24,6 +24,7 @@ require 'eson/http/core/update'
 require 'eson/http/core/more_like_this'
 require 'eson/http/core/msearch'
 require 'eson/http/core/mget'
+require 'eson/http/core/scroll'
 
 require 'eson/http/cluster/health'
 require 'eson/http/cluster/state'

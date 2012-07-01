@@ -39,7 +39,6 @@ module Eson
                  :facets,
                  :filter,
                  :scroll,
-                 :scroll_id,
                  :indices_boost,
                  :explain,
                  :version,

@@ -19,7 +19,9 @@ module Eson
         :replication,
         :consistency,
         :refresh,
-        :timeout
+        :timeout,
+        :ttl,
+        :timestamp
       )
       
       alias :document :doc

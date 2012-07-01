@@ -83,6 +83,10 @@ module Eson
     end
     alias :query :search
     
+    def scroll(args = {})
+      request(protocol::Scroll, args)
+    end
+    
     def simple_search(args = {})
       request(protocol::SimpleSearch, args)
     end

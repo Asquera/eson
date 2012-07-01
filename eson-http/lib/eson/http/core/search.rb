@@ -15,15 +15,8 @@ module Eson
       end
       
       def path
-        path = bare_path + "_search"
-        
-        if scroll
-          path << "/scroll"
-        end
-        
-        path
+        bare_path + "_search"
       end
-      
     end
   end
 end
