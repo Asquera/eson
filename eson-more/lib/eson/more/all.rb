@@ -8,7 +8,7 @@ module Eson
           result = client.scroll(:scroll_id => scroll_id, :scroll => "10m")
           scroll_id = result["_scroll_id"]
 
-          results = client.extract_source(result)
+          results = client.extract_hits(result)
           scroll_id = nil if results.empty?
 
           return scroll_id, results
