@@ -5,7 +5,7 @@ module Eson
         def self.extract_ids(*args)
           args.map do |d|
             case d
-            when String
+            when String, Fixnum
               d
             when Hash
               d[:id] || d["id"]
