@@ -10,5 +10,12 @@ context "HTTP client" do
   end
   
   asserts("too many params") { client.index.parameters = {:foo => :bar} }.raises(NoMethodError)
-
+  
+  asserts("#with allows parameter change") {
+    req = client.with :index => :foo do |other_client|
+      other_client.search :q => "*"
+    end
+    
+    req.index
+  }.equals(:foo)
 end

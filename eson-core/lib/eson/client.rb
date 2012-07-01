@@ -2,7 +2,7 @@ module Eson
   class Client
     attr_accessor :server
     attr_accessor :index_name
-    attr_accessor :default_index
+    attr_accessor :default_parameters
     attr_accessor :protocol
     attr_accessor :plugins
     attr_accessor :opts
@@ -12,24 +12,42 @@ module Eson
                       :server => 'http://127.0.0.1:9200',
                       :plugins => [],
                       :logger => nil,
-                      :default_index => "default"
+                      :default_parameters => { :index => "default" }
                    }
     
     # TODO: allow multiple servers and pick them at random
     def initialize(opts = {})
       opts = DEFAULT_OPTS.merge(opts)
-      
-      self.server        = opts[:server]
-      self.default_index = opts[:default_index]
-      self.protocol      = opts[:protocol] || Eson::HTTP
-      self.plugins       = opts[:plugins]
-      self.logger        = opts[:logger]
-      if opts[:auto_call].nil?
-        self.auto_call = true
-      else
-        self.auto_call = opts[:auto_call]
-      end
       self.opts          = opts
+      opts = opts.clone
+
+      self.server        = opts.delete(:server)
+      default_index      = opts.delete(:default_index)
+      self.protocol      = opts.delete(:protocol) || Eson::HTTP
+      self.plugins       = opts.delete(:plugins)
+      self.logger        = opts.delete(:logger)
+      self.auto_call     = opts.delete(:auto_call)
+
+      self.default_parameters = opts.delete(:default_parameters) || {}
+
+      if default_index
+        default_parameters[:index] ||= default_parameters
+      end
+
+      if self.auto_call.nil?
+        self.auto_call = true
+      end
+    end
+    
+    # @deprecated
+    def default_index=(index_name)
+      default_index[:index] = index_name
+    end
+    
+    def with(params = {})
+      client = self.clone
+      client.default_parameters = default_parameters.merge(params)
+      yield client
     end
     
     def node
@@ -53,7 +71,7 @@ module Eson
     end
     
     def index_name
-      @index_name || default_index
+      @index_name
     end
     
     def [](index_name)
@@ -245,7 +263,7 @@ module Eson
       def request(endpoint, args, auto_call = auto_call)
         r = protocol::Request.new(endpoint, plugins, self)
         
-        r.parameters = args
+        r.parameters = default_parameters.merge(args)
         
         if block_given?
           r.handle_block(&Proc.new)
