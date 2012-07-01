@@ -1,6 +1,10 @@
 module Eson
   module HTTP
     module Bulk
+      FIELD_MAPPING = [:index, :type, :id, :parent, :ttl, :timestamp, :routing].map do |field|
+        [field, "_#{field}"]
+      end
+
       include Shared::Bulk
       extend API
       
@@ -26,7 +30,12 @@ module Eson
       end
       
       def to_params_hash(r)
-        { "_index" => r.index, "_type" => r.type, "_id" => r.id }
+        FIELD_MAPPING.inject({}) do |params, (field, serialized_field)|
+          if r.respond_to?(field) && val = r.send(field)
+            params[serialized_field] = val
+          end
+          params
+        end
       end
     end
   end
