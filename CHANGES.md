@@ -8,3 +8,4 @@
 * api: deprecated `:default_index` setting. Use `:default_parameters => { :index => "...."}` instead
 * api: added `:default_parameters` client option. Allows setting any number of parameters by default
 * enhancement: added Client#with, which allows to temporarily set default parameters
+* new subproject: eson-more, a collection if usage patterns for elasticsearch.

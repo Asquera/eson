@@ -20,6 +20,16 @@ module Eson
       yield self
     end
 
+    def set_parameters_without_exceptions(params)
+      params.each do |k,v|
+        begin
+          self.send("#{k}=", v)
+        rescue NoMethodError => e
+          #drop
+        end
+      end
+    end
+
     def parameters=(params)
       params.each do |k,v|
         begin

@@ -47,7 +47,12 @@ module Eson
     def with(params = {})
       client = self.clone
       client.default_parameters = default_parameters.merge(params)
-      yield client
+
+      if block_given?
+        yield client
+      else
+        client
+      end
     end
     
     def node
@@ -263,7 +268,8 @@ module Eson
       def request(endpoint, args, auto_call = auto_call)
         r = protocol::Request.new(endpoint, plugins, self)
         
-        r.parameters = default_parameters.merge(args)
+        r.set_parameters_without_exceptions(default_parameters)
+        r.parameters = args
         
         if block_given?
           r.handle_block(&Proc.new)
