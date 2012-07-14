@@ -18,16 +18,20 @@ module Eson
         end
       end
       
-      attr_accessor :args
+      attr_accessor :args, :scope_name
       
       def param(name)
         args[name] || (raise "Parameter #{name} not given")
       end
       
       def scope(query, name)
-        raise "Cannot scope unless Query is a NestedQuery" unless Nested === query
-        query.options[:_scope] = name
-        self.options[:scope] = name
+        case query
+        when Nested, HasChild
+          query.options[:_scope] = name
+          self.scope_name = name
+        else
+          raise "Cannot scope unless Query is a Nested or HasChild Query"
+        end
       end
 
       def method_missing(name, arg)

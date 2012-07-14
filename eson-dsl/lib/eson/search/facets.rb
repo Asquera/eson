@@ -13,6 +13,7 @@ module Eson
           h = {}
           self.each do |k,v|
             h[k] = v.to_query_hash
+            h[k][:scope] = v.scope_name if v.scope_name
           end
           h
         end
