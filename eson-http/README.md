@@ -27,6 +27,35 @@ It tries to keep the language of the ES API as intact as possible.
 
     c.count :q => "*"
 
+## Default parameters
+
+All parameters can be set to default values by using `#with`. `#with` returns a new client that has the default parameters set.
+
+    require 'eson-http'
+
+    c = Eson::HTTP::Client.new(:server => 'http://localhost:9200')
+        .with(:index => "twitter", :type => "tweet")
+
+    doc = {
+      :user => "kimchy",
+      :post_date => "2009-11-15T14:12:12",
+      :message => "trying out Elastic Search"
+    }
+
+    c.index :id => 1, :doc => doc
+
+    c.get :id => 1
+
+    c.search :q => "message:trying" # this searches tweets/tweet/_search !!!
+
+    c.cound :q => "*" # same here
+
+`#with` also has a block form that passes the new client as a parameters:
+
+    c.with(:index => "twitter", :type => "tweet") do |modified_client|
+      modified_client.get :id => 1
+    end
+
 ## Building requests by hand
 
 The client has an additional mode that does not call elasticsearch  immediately, but returns the request object instead.
