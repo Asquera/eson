@@ -1,10 +1,18 @@
 module Eson
   module Shared
+    # Requests using this API have the following properties:
+    #
+    # {include:Stats#parameters}
+    # {include:Stats#source_param}
+    # {include:Stats#multi_index}
+    # {include:Stats#multi_types}
     module Stats
       extend API
       
+      # @!macro no_multi_index
       multi_index false
       
+      # @!macro parameters
       parameters :nodes
       
       def nodes

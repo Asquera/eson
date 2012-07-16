@@ -1,10 +1,18 @@
 module Eson
   module Shared
+    # Requests using this API have the following properties:
+    #
+    # @note {include:MoreLikeThis#parameters}
+    # @note {include:MoreLikeThis#source_param}
+    # @note {include:MoreLikeThis#multi_index}
+    # @note {include:MoreLikeThis#multi_types}
     module MoreLikeThis
       extend API
 
+      # @!macro no_multi_index
       multi_index false
 
+      # @!macro parameters
       parameters :id,
                  :type,
                  :mlt_fields,
@@ -35,6 +43,7 @@ module Eson
                  :version,
                  :min_score
 
+      # @!macro source_param
       source_param :timeout,
                    :from,
                    :size,

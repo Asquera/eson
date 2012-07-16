@@ -1,3 +1,17 @@
+# @!macro request
+#   Creates a $0 request.
+#   @api requests
+
+# @!macro immediate
+#   @overload
+#     With a block given, this will return a result.
+#     @return [Object] result
+#   @overload
+#     Without immediate, this will method returns an request object.
+#     @return [Eson::Api] the request
+#   @param [true,false] immediate Whether to immediately call the request or not.
+
+
 module Eson
   class Client
     attr_accessor :server
@@ -31,7 +45,7 @@ module Eson
       self.default_parameters = opts.delete(:default_parameters) || {}
 
       if default_index
-        default_parameters[:index] ||= default_parameters
+        default_parameters[:index] ||= default_index
       end
 
       if self.auto_call.nil?
@@ -84,48 +98,148 @@ module Eson
       c.index_name = index_name
       c
     end
-    
+
+    # @!group Requests
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Index#parameters}
+    # {include:Index#source_param}
+    # {include:Index#multi_index}
+    # {include:Index#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Index}.
     def index(args = {}, immediate = auto_call)
       request(protocol::Index, args, immediate)
     end
     
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Delete#parameters}
+    # {include:Delete#source_param}
+    # {include:Delete#multi_index}
+    # {include:Delete#multi_types}
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Delete}.
     def delete(args = {}, immediate = auto_call)
       request(protocol::Delete, args, immediate)
     end
-    
-    def get(args = {})
-      request(protocol::Get, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Get#parameters}
+    # {include:Get#source_param}
+    # {include:Get#multi_index}
+    # {include:Get#multi_types}
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Get}.
+    def get(args = {}, immediate = auto_call)
+      request(protocol::Get, args, immediate)
     end
-    
-    def mget(args = {})
-      request(protocol::MultiGet, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:MGet#parameters}
+    # {include:MGet#source_param}
+    # {include:MGet#multi_index}
+    # {include:MGet#multi_types}
+    # @param [Hash] args The arguments, as given in {Eson::Shared::MGet}.
+    def mget(args = {}, immediate = auto_call)
+      request(protocol::MultiGet, args, immediate)
     end
-    
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Search#parameters}
+    # {include:Search#source_param}
+    # {include:Search#multi_index}
+    # {include:Search#multi_types}
+    #
+    # @yield If eson-dsl is used, the given block will be used as DSL defintion.
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Search}.
     def search(args = {}, immediate = auto_call, &block)
       request(protocol::Search, args, immediate, &block)
     end
     alias :query :search
-    
-    def scroll(args = {})
-      request(protocol::Scroll, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Scroll#parameters}
+    # {include:Scroll#source_param}
+    # {include:Scroll#multi_index}
+    # {include:Scroll#multi_types}
+    #
+    # @yield If eson-dsl is used, the given block will be used as DSL defintion.
+    def scroll(args = {}, immediate = auto_call, &block)
+      request(protocol::Scroll, args, immediate, &block)
     end
-    
-    def simple_search(args = {})
-      request(protocol::SimpleSearch, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:SimpleSearch#parameters}
+    # {include:SimpleSearch#source_param}
+    # {include:SimpleSearch#multi_index}
+    # {include:SimpleSearch#multi_types}
+    # 
+    # @param [Hash] args The arguments, as given in {Eson::Shared::SimpleSearch}.
+    def simple_search(args = {}, immediate = auto_call)
+      request(protocol::SimpleSearch, args, immediate)
     end
-    
-    def count(args = {})
-      request(protocol::Count, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Count#parameters}
+    # {include:Count#source_param}
+    # {include:Count#multi_index}
+    # {include:Count#multi_types}
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Count}.
+    def count(args = {}, immediate = auto_call)
+      request(protocol::Count, args, immediate)
     end
-    
-    def update(args = {})
-      request(protocol::Update, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Update#parameters}
+    # {include:Update#source_param}
+    # {include:Update#multi_index}
+    # {include:Update#multi_types}
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Update}.
+    def update(args = {}, immediate = auto_call)
+      request(protocol::Update, args, immediate)
     end
-    
-    def percolate(args = {}, &block)
-      request(protocol::Percolate, args, &block)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Percolate#parameters}
+    # {include:Percolate#source_param}
+    # {include:Percolate#multi_index}
+    # {include:Percolate#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Percolate}.
+    def percolate(args = {}, immediate = auto_call, &block)
+      request(protocol::Percolate, args, immediate, &block)
     end
-    
+
+    # @!macro request
+    #
+    # {include:Bulk#parameters}
+    # {include:Bulk#source_param}
+    # {include:Bulk#multi_index}
+    # {include:Bulk#multi_types}
+    #
+    # If this method is called with a block, the request is immediately called.
+    # With no block given, the request will be returned.
+    #
+    # @yield The block is evaluated to create the subrequests.
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Bulk}.
     def bulk(args = {}, &block)
       if block_given?
         request(protocol::Bulk, args, &block)
@@ -133,7 +247,19 @@ module Eson
         request(protocol::Bulk, args, false)
       end
     end
-    
+
+    # @!macro request
+    #
+    # {include:MultiSearch#parameters}
+    # {include:MultiSearch#source_param}
+    # {include:MultiSearch#multi_index}
+    # {include:MultiSearch#multi_types}
+    #
+    # If this method is called with a block, the request is immediately called.
+    # With no block given, the request will be returned.
+    #
+    # @yield The block is evaluated to create the subrequests.
+    # @param [Hash] args The arguments, as given in {Eson::Shared::MultiSearch}.
     def msearch(args = {}, &block)
       if block_given?
         request(protocol::MultiSearch, args, &block)
@@ -141,129 +267,407 @@ module Eson
         request(protocol::MultiSearch, args, false)
       end
     end
-    
-    def delete_by_query(args = {}, &block)
-      request(protocol::DeleteByQuery, args, &block)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:DeleteByQuery#parameters}
+    # {include:DeleteByQuery#source_param}
+    # {include:DeleteByQuery#multi_index}
+    # {include:DeleteByQuery#multi_types}
+    #
+    # @yield If eson-dsl is used, the given block will be used as DSL defintion.
+    # # @param [Hash] args The arguments, as given in {Eson::Shared::DeleteByQuery}.
+    def delete_by_query(args = {}, immediate = auto_call, &block)
+      request(protocol::DeleteByQuery, args, immediate, &block)
     end
-    
-    def more_like_this(args = {})
-      request(protocol::MoreLikeThis, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:MoreLikeThis#parameters}
+    # {include:MoreLikeThis#source_param}
+    # {include:MoreLikeThis#multi_index}
+    # {include:MoreLikeThis#multi_types}
+    #
+    # @yield If eson-dsl is used, the given block will be used as DSL defintion.
+    # # @param [Hash] args The arguments, as given in {Eson::Shared::MoreLikeThis}.
+    def more_like_this(args = {}, immediate = auto_call)
+      request(protocol::MoreLikeThis, args, immediate)
     end
-    
-    def health(args = {})
-      request(protocol::Health, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Health#parameters}
+    # {include:Health#source_param}
+    # {include:Health#multi_index}
+    # {include:Health#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Health}.
+    def health(args = {}, immediate = auto_call)
+      request(protocol::Health, args, immediate)
     end
-    
-    def state(args = {})
-      request(protocol::State, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:State#parameters}
+    # {include:State#source_param}
+    # {include:State#multi_index}
+    # {include:State#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::State}.
+    def state(args = {}, immediate = auto_call)
+      request(protocol::State, args, immediate)
     end
-    
-    def stats(args = {})
-      request(protocol::Stats, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Stats#parameters}
+    # {include:Stats#source_param}
+    # {include:Stats#multi_index}
+    # {include:Stats#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Stats}.
+    def stats(args = {}, immediate = auto_call)
+      request(protocol::Stats, args, immediate)
     end
-    
-    def nodes(args = {})
-      request(protocol::Nodes, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Nodes#parameters}
+    # {include:Nodes#source_param}
+    # {include:Nodes#multi_index}
+    # {include:Nodes#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Nodes}.
+    def nodes(args = {}, immediate = auto_call)
+      request(protocol::Nodes, args, immediate)
     end
-    
-    def shutdown(args = {})
-      request(protocol::Shutdown, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Shutdown#parameters}
+    # {include:Shutdown#source_param}
+    # {include:Shutdown#multi_index}
+    # {include:Shutdown#multi_types}
+    #
+    # Please be aware that external node shutdown does not seem to be 
+    # supported by ElasticSearch at the moment.
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Shutdown}.
+    def shutdown(args = {}, immediate = auto_call)
+      request(protocol::Shutdown, args, immediate)
     end
-    
-    def aliases(args = {}, &block)
-      request(protocol::Aliases, args, &block)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Alias#parameters}
+    # {include:Alias#source_param}
+    # {include:Alias#multi_index}
+    # {include:Alias#multi_types}
+    #
+    # @yield The block is evaluated in the context of the request 
+    #   to define the aliases
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Alias}.
+    def aliases(args = {}, immediate = auto_call, &block)
+      request(protocol::Aliases, args, immediate, &block)
     end
-    
-    def analyze(args = {})
-      request(protocol::Analyze, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Analyze#parameters}
+    # {include:Analyze#source_param}
+    # {include:Analyze#multi_index}
+    # {include:Analyze#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Analyze}.
+    def analyze(args = {}, immediate = auto_call)
+      request(protocol::Analyze, args, immediate)
     end
-    
-    def clear_cache(args = {})
-      request(protocol::ClearCache, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:ClearCache#parameters}
+    # {include:ClearCache#source_param}
+    # {include:ClearCache#multi_index}
+    # {include:ClearCache#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::ClearCache}.
+    def clear_cache(args = {}, immediate = auto_call)
+      request(protocol::ClearCache, args, immediate)
     end
-    
-    def close_index(args = {})
-      request(protocol::CloseIndex, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:CloseIndex#parameters}
+    # {include:CloseIndex#source_param}
+    # {include:CloseIndex#multi_index}
+    # {include:CloseIndex#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::CloseIndex}.
+    def close_index(args = {}, immediate = auto_call)
+      request(protocol::CloseIndex, args, immediate)
     end
-    
-    def open_index(args = {})
-      request(protocol::OpenIndex, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:OpenIndex#parameters}
+    # {include:OpenIndex#source_param}
+    # {include:OpenIndex#multi_index}
+    # {include:OpenIndex#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::OpenIndex}.
+    def open_index(args = {}, immediate = auto_call)
+      request(protocol::OpenIndex, args, immediate)
     end
-    
-    def create_index(args = {})
-      request(protocol::CreateIndex, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:CreateIndex#parameters}
+    # {include:CreateIndex#source_param}
+    # {include:CreateIndex#multi_index}
+    # {include:CreateIndex#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Createindex}.
+    def create_index(args = {}, immediate = auto_call)
+      request(protocol::CreateIndex, args, immediate)
     end
-    
-    def delete_index(args = {})
-      request(protocol::DeleteIndex, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:DeleteIndex#parameters}
+    # {include:DeleteIndex#source_param}
+    # {include:DeleteIndex#multi_index}
+    # {include:DeleteIndex#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::DeleteIndex}.
+    def delete_index(args = {}, immediate = auto_call)
+      request(protocol::DeleteIndex, args, immediate)
     end
-    
-    def delete_mapping(args = {})
-      request(protocol::DeleteMapping, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:DeleteMapping#parameters}
+    # {include:DeleteMapping#source_param}
+    # {include:DeleteMapping#multi_index}
+    # {include:DeleteMapping#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::DeleteMapping}.
+    def delete_mapping(args = {}, immediate = auto_call)
+      request(protocol::DeleteMapping, args, immediate)
     end
-    
-    def get_mapping(args = {})
-      request(protocol::GetMapping, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:GetMapping#parameters}
+    # {include:GetMapping#source_param}
+    # {include:GetMapping#multi_index}
+    # {include:GetMapping#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::GetMapping}.
+    def get_mapping(args = {}, immediate = auto_call)
+      request(protocol::GetMapping, args, immediate)
     end
-    
-    def put_mapping(args = {})
-      request(protocol::PutMapping, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:PutMapping#parameters}
+    # {include:PutMapping#source_param}
+    # {include:PutMapping#multi_index}
+    # {include:PutMapping#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::PutMapping}.
+    def put_mapping(args = {}, immediate = auto_call)
+      request(protocol::PutMapping, args, immediate)
     end
-    
-    def put_template(args = {})
-      request(protocol::PutTemplate, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:PutTemplate#parameters}
+    # {include:PutTemplate#source_param}
+    # {include:PutTemplate#multi_index}
+    # {include:PutTemplate#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::PutTemplate}.
+    def put_template(args = {}, immediate = auto_call)
+      request(protocol::PutTemplate, args, immediate)
     end
-    
-    def get_template(args = {})
-      request(protocol::GetTemplate, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:GetTemplate#parameters}
+    # {include:GetTemplate#source_param}
+    # {include:GetTemplate#multi_index}
+    # {include:GetTemplate#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::GetTemplate}.
+    def get_template(args = {}, immediate = auto_call)
+      request(protocol::GetTemplate, args, immediate)
     end
-    
-    def delete_template(args = {})
-      request(protocol::DeleteTemplate, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:DeleteTemplate#parameters}
+    # {include:DeleteTemplate#source_param}
+    # {include:DeleteTemplate#multi_index}
+    # {include:DeleteTemplate#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::DeleteTemplate}.
+    def delete_template(args = {}, immediate = auto_call)
+      request(protocol::DeleteTemplate, args, immediate)
     end
-    
-    def get_settings(args = {})
-      request(protocol::GetSettings, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:GetSettings#parameters}
+    # {include:GetSettings#source_param}
+    # {include:GetSettings#multi_index}
+    # {include:GetSettings#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::GetSettings}.
+    def get_settings(args = {}, immediate = auto_call)
+      request(protocol::GetSettings, args, immediate)
     end
-    
-    def update_settings(args = {})
-      request(protocol::UpdateSettings, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:UpdateSettings#parameters}
+    # {include:UpdateSettings#source_param}
+    # {include:UpdateSettings#multi_index}
+    # {include:UpdateSettings#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::UpdateSettings}.
+    def update_settings(args = {}, immediate = auto_call)
+      request(protocol::UpdateSettings, args, immediate)
     end
-    
-    def flush(args = {})
-      request(protocol::Flush, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Flush#parameters}
+    # {include:Flush#source_param}
+    # {include:Flush#multi_index}
+    # {include:Flush#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Flush}.
+    def flush(args = {}, immediate = auto_call)
+      request(protocol::Flush, args, immediate)
     end
-    
-    def optimize(args = {})
-      request(protocol::Optimize, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Optimize#parameters}
+    # {include:Optimize#source_param}
+    # {include:Optimize#multi_index}
+    # {include:Optimize#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Optimize}.
+    def optimize(args = {}, immediate = auto_call)
+      request(protocol::Optimize, args, immediate)
     end
-    
-    def refresh(args = {})
-      request(protocol::Refresh, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Refresh#parameters}
+    # {include:Refresh#source_param}
+    # {include:Refresh#multi_index}
+    # {include:Refresh#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Refresh}.
+    def refresh(args = {}, immediate = auto_call)
+      request(protocol::Refresh, args, immediate)
     end
-    
-    def snapshot(args = {})
-      request(protocol::Snapshot, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Snapshot#parameters}
+    # {include:Snapshot#source_param}
+    # {include:Snapshot#multi_index}
+    # {include:Snapshot#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Snapshot}.
+    def snapshot(args = {}, immediate = auto_call)
+      request(protocol::Snapshot, args, immediate)
     end
-    
-    def status(args = {})
-      request(protocol::Status, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Status#parameters}
+    # {include:Status#source_param}
+    # {include:Status#multi_index}
+    # {include:Status#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Status}.
+    def status(args = {}, immediate = auto_call)
+      request(protocol::Status, args, immediate)
     end
-    
-    def index_stats(args = {})
-      request(protocol::IndexStats, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:IndexStats#parameters}
+    # {include:IndexStats#source_param}
+    # {include:IndexStats#multi_index}
+    # {include:IndexStats#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::IndexStats}.
+    def index_stats(args = {}, immediate = auto_call)
+      request(protocol::IndexStats, args, immediate)
     end
-    
-    def segments(args = {})
-      request(protocol::Segments, args)
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Segments#parameters}
+    # {include:Segments#source_param}
+    # {include:Segments#multi_index}
+    # {include:Segments#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Segments}.
+    def segments(args = {}, immediate = auto_call)
+      request(protocol::Segments, args, immediate)
     end
-    
-    def exists?(args = {})
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Exists#parameters}
+    # {include:Exists#source_param}
+    # {include:Exists#multi_index}
+    # {include:Exists#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Exists}.
+    def exists?(args = {}, immediate = auto_call)
       request(protocol::IndexExists, args)
     rescue Eson::NotFoundError
       false
     end
-    
+    # @!engroup Requests
+
     private
       def request(endpoint, args, auto_call = auto_call)
         r = protocol::Request.new(endpoint, plugins, self)

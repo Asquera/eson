@@ -1,15 +1,24 @@
 module Eson
   module Shared
+    # Requests using this API have the following properties:
+    #
+    # @note {include:DeleteByQuery#parameters}
+    # @note {include:DeleteByQuery#source_param}
+    # @note {include:DeleteByQuery#multi_index}
+    # @note {include:DeleteByQuery#multi_types}
     module DeleteByQuery
       extend API
 
       attr_accessor :type
 
+      # @!macro multi_index
       multi_index true
 
+      # @!macro source_param
       source_param :query
       
       # TODO: check the parameter list
+      # @!macro parameters
       parameters :timeout, 
                  :types, 
                  :routing,

@@ -1,12 +1,23 @@
 module Eson
   module Shared
+    # Requests using this API have the following properties:
+    #
+    # {include:Search#parameters}
+    # {include:Search#source_param}
+    # {include:Search#multi_index}
+    # {include:Search#multi_types}
     module Search
       extend API
 
       attr_accessor :type
 
+      # @!macro multi_index
       multi_index true
 
+      # @!macro multi_types
+      multi_types true
+
+      # @!macro source_param
       source_param :query,
                    :timeout,
                    :from,
@@ -23,6 +34,7 @@ module Eson
                    :version,
                    :min_score
 
+      # @!macro parameters
       parameters :timeout,
                  :types,
                  :routing,

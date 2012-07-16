@@ -1,9 +1,17 @@
 module Eson
   module Shared
+    # Requests using this API have the following properties:
+    #
+    # {include:Bulk#parameters}
+    # {include:Bulk#source_param}
+    # {include:Bulk#multi_index}
+    # {include:Bulk#multi_types}
     module Bulk
       extend API
 
+      # @!macro source_param
       source_param :bulk
+      # @!macro parameters
       parameters :bulk
 
       def bulk

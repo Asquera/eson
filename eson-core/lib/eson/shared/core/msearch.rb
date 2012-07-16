@@ -1,13 +1,22 @@
 module Eson
   module Shared
+    # Requests using this API have the following properties:
+    #
+    # @note {include:MultiSearch#parameters}
+    # @note {include:MultiSearch#source_param}
+    # @note {include:MultiSearch#multi_index}
+    # @note {include:MultiSearch#multi_types}
     module MultiSearch
       extend API
       
       attr_accessor :type
       
+      # @!macro multi_index
       multi_index true
       
+      # @!macro source_param
       source_param :msearch
+      # @!macro parameters
       parameters :msearch,
                  :types
 

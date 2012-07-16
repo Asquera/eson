@@ -1,12 +1,21 @@
 module Eson
   module Shared
+    # Requests using this API have the following properties:
+    #
+    # {include:Index#parameters}
+    # {include:Index#source_param}
+    # {include:Index#multi_index}
+    # {include:Index#multi_types}
     module Index
       extend API
 
+      # @!macro no_multi_index
       multi_index false
       
+      # @!macro source_param
       source_param :doc
       
+      # @!macro parameters
       parameters(
         :type, 
         :id,
