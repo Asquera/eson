@@ -10,7 +10,7 @@ context "Extract" do
   
   describe "extract_sources" do
     setup do
-      client.extract_sources(client.search :index => "extract_source")
+      client.extract_sources(client.simple_search :index => "extract_source", :q => "*")
     end
     
     asserts(:class).equals(Array)
@@ -19,7 +19,7 @@ context "Extract" do
   
   describe "extract_hits" do
     setup do
-      client.extract_hits(client.search :index => "extract_source")
+      client.extract_hits(client.simple_search :index => "extract_source", :q => "*")
     end
     
     asserts(:class).equals(Array)
