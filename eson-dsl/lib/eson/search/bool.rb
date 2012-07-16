@@ -4,11 +4,8 @@ module Eson
       include Filter
       include Query
       
-      # @macro bool
-      #   @yield the block containing all subqueries
-      #   Generates a `$1` filter or query, depending on context.
-      #   {include:file:eson-dsl/examples/filters/$1.rb}
-      #   {include:file:eson-dsl/examples/queries/$1.rb}
+      # @!macro eson.filter
+      # @!macro eson.query
       short_name :bool
 
       attr_accessor :options, :conditions

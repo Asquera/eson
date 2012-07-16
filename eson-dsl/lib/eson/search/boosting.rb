@@ -4,10 +4,7 @@ module Eson
       include Query
 
       ##
-      # @macro eson.query
-      #   @yield the block describing all subqueries 
-      #   Generates a `$1` query.
-      #   {include:file:eson-dsl/examples/queries/$1.rb}
+      # @!macro eson.query
       short_name :boosting
 
       attr_accessor :options, :conditions

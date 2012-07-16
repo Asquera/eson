@@ -62,3 +62,30 @@ require 'eson/search/geo_bounding_box'
 require 'eson/search/geo_distance'
 require 'eson/search/geo_distance_range'
 require 'eson/search/geo_polygon'
+
+##
+# @!macro [new] eson.filter
+#   @method $1
+#   @overload $1
+#     @yield the block containing further options and subfilters
+#     @return [self] the generated facet
+#     Generates a `$1` filter in a filter context.
+#     {include:file:eson-dsl/examples/filters/$1.rb}
+
+##
+# @!macro [new] eson.query
+#   @method $1
+#   @overload $1
+#     @yield the block containing further options and subqueries
+#     @return [self] the generated facet
+#     Generates a `$1` query in a query context.
+#     {include:file:eson-dsl/examples/queries/$1.rb}
+
+##
+# @!macro [new] eson.facet
+#   @method $1
+#   @overload $1
+#     @yield the block describing further options
+#     @return [self] the generated facet
+#     Generates a `$1` facet in a facets context.
+#     {include:file:eson-dsl/examples/facets/$1.rb}

@@ -4,10 +4,8 @@ module Eson
       include Query
       include Filter
 
-      # @macro term
-      #   Generates a `$1` filter, query, depending on context.
-      #   {include:file:eson-dsl/examples/filters/$1.rb}
-      #   {include:file:eson-dsl/examples/queries/$1.rb}
+      # @macro eson.filter
+      # @macro eson.facet
       short_name :term
 
       def to_query_hash

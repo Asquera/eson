@@ -5,11 +5,9 @@ module Eson
       include Filter
       include Facet
 
-      # @macro terms
-      #   Generates a `$1` filter, facet or  query, depending on context.
-      #   {include:file:eson-dsl/examples/filters/$1.rb}
-      #   {include:file:eson-dsl/examples/facet/$1.rb}
-      #   {include:file:eson-dsl/examples/queries/$1.rb}
+      # @macro eson.filter
+      # @macro eson.query
+      # @macro eson.facet
       short_name :terms
 
       attr_accessor :options, :field

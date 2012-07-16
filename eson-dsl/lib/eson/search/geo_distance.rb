@@ -4,11 +4,8 @@ module Eson
       include Filter
       include Facet
 
-      # @macro geo_distance
-      #   @yield a block defining options
-      #   Generates a `$1` filter or facet, depending on context.
-      #   {include:file:eson-dsl/examples/filters/$1.rb}
-      #   {include:file:eson-dsl/examples/facets/$1.rb}
+      # @macro eson.filter
+      # @macro eson.facet
       short_name :geo_distance
 
       attr_accessor :field, :options
