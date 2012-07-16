@@ -37,19 +37,21 @@ context "Queries" do
     end
   end
 
-  context "#prefix" do
-    query_name "test/search/queries/prefix"
+  unless ENV["ES_VERSION"] && ENV["ES_VERSION"] > "0.19.4"
+    context "#prefix" do
+      query_name "test/search/queries/prefix"
 
-    setup do
-      example("queries/prefix")
+      setup do
+        example("queries/prefix")
+      end
     end
-  end
 
-  context "#prefix short style" do
-    query_name "test/search/queries/prefix_short"
+    context "#prefix short style" do
+      query_name "test/search/queries/prefix_short"
 
-    setup do
-      example("queries/prefix_short")
+      setup do
+        example("queries/prefix_short")
+      end
     end
   end
 

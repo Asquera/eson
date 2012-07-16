@@ -37,7 +37,7 @@ context 'HTTP client quick api' do
       asserts("ok") { topic["ok"] }
     end
     
-    if ENV["ES_VERSION"] > "0.19.0"
+    if ENV["ES_VERSION"] && ENV["ES_VERSION"] > "0.19.0"
       context "update" do
         setup do
           client.update :type => "bar",
