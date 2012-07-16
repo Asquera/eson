@@ -48,7 +48,7 @@ All parameters can be set to default values by using `#with`. `#with` returns a 
 
     c.search :q => "message:trying" # this searches tweets/tweet/_search !!!
 
-    c.cound :q => "*" # same here
+    c.count :q => "*" # same here
 
 `#with` also has a block form that passes the new client as a parameters:
 
