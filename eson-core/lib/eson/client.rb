@@ -57,7 +57,13 @@ module Eson
     def default_index=(index_name)
       default_index[:index] = index_name
     end
-    
+
+    # Returns a clone of this client with new {#default_parameters}. The
+    # old parameters are merged with the new ones.
+    #
+    # @param [Hash] params The new parameters
+    #
+    # @returns [Eson::Client] a clone of the client
     def with(params = {})
       client = self.clone
       client.default_parameters = default_parameters.merge(params)
@@ -87,16 +93,6 @@ module Eson
     
     def auth
       opts[:auth]
-    end
-    
-    def index_name
-      @index_name
-    end
-    
-    def [](index_name)
-      c = self.clone
-      c.index_name = index_name
-      c
     end
 
     # @!group Requests
