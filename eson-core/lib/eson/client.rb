@@ -22,7 +22,9 @@ module Eson
     attr_accessor :opts
     attr_accessor :auto_call
     attr_accessor :logger
-    
+
+    alias :node :server
+
     DEFAULT_OPTS = {
                       :server => 'http://127.0.0.1:9200',
                       :plugins => [],
@@ -30,6 +32,17 @@ module Eson
                       :default_parameters => { :index => "default" }
                    }
 
+    # Create a new client. The client object is protocol-independent, but uses
+    # Eson::HTTP by default.
+    #
+    # @param [Hash] opts the options to create the client with.
+    # @option opts [String] :server ('http://127.0.0.1:9200') The base url of the server to connect to.
+    # @option opts [Module] :protocol (Eson::HTTP) The module providing the protocol implementation.
+    # @option opts [Array<Module>] :plugins ([]) An array of plugin modules
+    # @option opts [String, #<<] :logger (nil) A logger object or a String pointing to a log file.
+    # @option opts [true,false] :auto_call (true) Whether to immeditately run the request or return the
+    #   request object instead.
+    # @option opts [Hash] :auth (nil) Authentication information depending on protocol
     def initialize(opts = {})
       opts = DEFAULT_OPTS.merge(opts)
       self.opts          = opts
@@ -73,10 +86,6 @@ module Eson
       else
         client
       end
-    end
-    
-    def node
-      self.server
     end
 
     def auth?
