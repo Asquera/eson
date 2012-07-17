@@ -11,3 +11,5 @@
 * new subproject: eson-more, a collection if usage patterns for elasticsearch.
 * fix: scopes for facets were improperly assigned to the facets parameters
 * documentation: a lot more
+* enhancement: `logger` is now a property of the client option, not of the
+protocol in use
