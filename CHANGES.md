@@ -10,3 +10,4 @@
 * enhancement: added Client#with, which allows to temporarily set default parameters
 * new subproject: eson-more, a collection if usage patterns for elasticsearch.
 * fix: scopes for facets were improperly assigned to the facets parameters
+* documentation: a lot more
