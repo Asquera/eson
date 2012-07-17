@@ -21,6 +21,7 @@ module Eson
     attr_accessor :plugins
     attr_accessor :opts
     attr_accessor :auto_call
+    attr_accessor :logger
     
     DEFAULT_OPTS = {
                       :server => 'http://127.0.0.1:9200',
@@ -29,7 +30,6 @@ module Eson
                       :default_parameters => { :index => "default" }
                    }
 
-    
     def initialize(opts = {})
       opts = DEFAULT_OPTS.merge(opts)
       self.opts          = opts
@@ -78,21 +78,22 @@ module Eson
     def node
       self.server
     end
-    
-    def logger=(logger)
-      protocol.logger = logger
-    end
-    
-    def logger(logger)
-      protocol.logger
-    end
-    
+
     def auth?
       !!opts[:auth]
     end
     
     def auth
       opts[:auth]
+    end
+
+    def logger=(logger)
+      if String === logger
+        require 'logger'
+        @logger = Logger.new(logger)
+      else
+        @logger = logger
+      end
     end
 
     # @!group Requests

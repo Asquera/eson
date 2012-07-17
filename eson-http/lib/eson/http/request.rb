@@ -20,7 +20,7 @@ module Eson
 
       def base_resource
         conn = Faraday.new(:url => client.node) do |builder|
-          builder.use Faraday::Response::Logger, Eson::HTTP.logger
+          builder.use Faraday::Response::Logger, client.logger
           builder.use GetHackMiddleware
 
           builder.adapter :net_http
