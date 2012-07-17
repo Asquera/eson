@@ -26,7 +26,7 @@ module Eson
     # If the transport has no concept of a "source", this should be ignored.
     #
     # @example source_param call
-    #   params :settings, :mappings
+    #   parameters :settings, :mappings
     #   source_param :settings, :mappings
     # @example result
     #   {

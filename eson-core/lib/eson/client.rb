@@ -28,8 +28,8 @@ module Eson
                       :logger => nil,
                       :default_parameters => { :index => "default" }
                    }
+
     
-    # TODO: allow multiple servers and pick them at random
     def initialize(opts = {})
       opts = DEFAULT_OPTS.merge(opts)
       self.opts          = opts
