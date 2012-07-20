@@ -2,7 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/Asquera/eson-dsl.png?branch=master)](http://travis-ci.org/Asquera/eson-dsl)
 
-This gem provides a full implementation of the ElasticSearch query DSL, independent of a client. At the moment, it encodes the query DSL of ElasticSearch 0.19
+This gem provides a full implementation of the ElasticSearch query DSL, independent of a client. At the moment, it encodes the query DSL of ElasticSearch 0.19.
 
 Features:
 
@@ -87,6 +87,8 @@ will generate:
         }
       }
     }
+
+For a list of all available generation methods along with examples, have a look at {file:eson-dsl/MethodReference.md}.
 
 ## Parameters
 
