@@ -10,6 +10,8 @@ Eson is an ElasticSearch client for everyone that wants to use the full power of
 
 {include:file:eson-core/README.md}
 
+{include:file:eson-more/README.md}
+
 ## eson-native
 
 (unreleased, coming soon) `eson-native` implements a client using the elasticsearchs Java client.
