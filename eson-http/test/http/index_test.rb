@@ -37,7 +37,7 @@ context 'HTTP client quick api' do
       asserts("ok") { topic["ok"] }
     end
     
-    if ENV["ES_VERSION"] && ENV["ES_VERSION"] > "0.19.0"
+    if ElasticSearch::Node.version > "0.19.0"
       context "update" do
         setup do
           client.update :type => "bar",
@@ -96,7 +96,7 @@ context 'HTTP client quick api' do
     asserts("number of docs") { topic["docs"].length }.equals(2)
   end
 
-  unless ENV["ES_VERSION"] && ENV["ES_VERSION"] < "0.19.0"
+  unless ElasticSearch::Node.version < "0.19.0"
     context "delete_by_query" do
       setup do
         client.index :index => "delete_by_query",

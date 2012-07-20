@@ -37,7 +37,7 @@ context "Queries" do
     end
   end
 
-  unless ENV["ES_VERSION"] && ENV["ES_VERSION"] > "0.19.4"
+  unless ElasticSearch::Node.version > "0.19.4"
     context "#prefix" do
       query_name "test/search/queries/prefix"
 
