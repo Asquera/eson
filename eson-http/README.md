@@ -50,7 +50,7 @@ All parameters can be set to default values by using `#with`. `#with` returns a 
 
     c.count :q => "*" # same here
 
-`#with` also has a block form that passes the new client as a parameters:
+`#with` also has a block form that passes the new client as a parameter:
 
     c.with(:index => "twitter", :type => "tweet") do |modified_client|
       modified_client.get :id => 1
