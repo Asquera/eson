@@ -3,7 +3,8 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "eson-core"
-  s.version     = "0.7.0" #Echolon::VERSION
+  s.version     = "0.8.0"
+
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Florian Gilcher"]
   s.email       = ["florian.gilcher@asquera.de"]
