@@ -1,5 +1,6 @@
 --output-dir doc/
 --readme README.md
 --title Eson
+--files eson-dsl/MethodReference.md
 --no-api internal
 eson-*/lib/**/*.rb
