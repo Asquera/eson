@@ -11,8 +11,30 @@
 #     @return [Eson::Api] the request
 #   @param [true,false] immediate Whether to immediately call the request or not.
 
-
 module Eson
+  # Eson::Client is a protocol-agnostic client to elasticsearch. For an example
+  # of a protocol implementation, see {Eson::HTTP}. The client primarily 
+  # constructs {Eson::Request} objects. In default mode, it also calls the
+  # backend immediately. This behaviour can be controlled using the parameter
+  # `auto_call`.
+  #
+  # The client (like most parts of Eson) holds no state and can be reused. All
+  # operations that change parameters return a new Client object.
+  #
+  # By default, the client returns the backend response as a raw
+  # backend response, unless a set of plugins is specified.
+  #
+  # It is recommendable to use protocol-specific subclasses like
+  # {Eson::HTTP::Client} because they set sane defaults for the plugin-set and
+  # return better consumable data.
+  #
+  # @example Constructing an HTTP client
+  #   c = Eson::Client.new(:server => "http://127.0.0.1:9200", 
+  #                        :protocol => Eson::HTTP, 
+  #                        :plugins => [Eson::ResponseParser], 
+  #                        :logger => 'test/test.log')
+  #
+  #
   class Client
     attr_accessor :server
     attr_accessor :index_name
@@ -25,6 +47,7 @@ module Eson
 
     alias :node :server
 
+    # Default settings
     DEFAULT_OPTS = {
                       :server => 'http://127.0.0.1:9200',
                       :plugins => [],
@@ -76,7 +99,7 @@ module Eson
     #
     # @param [Hash] params The new parameters
     #
-    # @returns [Eson::Client] a clone of the client
+    # @return [Eson::Client] a clone of the client with the new parameters set.s
     def with(params = {})
       client = self.clone
       client.default_parameters = default_parameters.merge(params)
@@ -88,14 +111,28 @@ module Eson
       end
     end
 
+    # Check whether the client has auth options set at all.
+    # 
+    # @return [true,false] Whether auth parameters are set.
+    # @api internal
     def auth?
       !!opts[:auth]
     end
-    
+
+    # Returns the auth parameters
+    #
+    # @api interal
+    # @return [Hash] The auth parameters
     def auth
       opts[:auth]
     end
 
+    # Set the logger.
+    #
+    # @overload
+    #   @param [Logger, #<<] The logger object
+    # @overload
+    #   @param [String] A filepath to log to
     def logger=(logger)
       if String === logger
         require 'logger'
@@ -661,20 +698,21 @@ module Eson
     # @!macro request
     # @!macro immediate
     #
-    # {include:Exists#parameters}
-    # {include:Exists#source_param}
-    # {include:Exists#multi_index}
-    # {include:Exists#multi_types}
+    # {include:IndexExists#parameters}
+    # {include:IndexExists#source_param}
+    # {include:IndexExists#multi_index}
+    # {include:IndexExists#multi_types}
     #
-    # @param [Hash] args The arguments, as given in {Eson::Shared::Exists}.
+    # @param [Hash] args The arguments, as given in {Eson::Shared::IndexExists}.
     def exists?(args = {}, immediate = auto_call)
       request(protocol::IndexExists, args)
     rescue Eson::NotFoundError
       false
     end
-    # @!engroup Requests
+    # @!endgroup
 
     private
+      # @api internal
       def request(endpoint, args, auto_call = auto_call)
         r = protocol::Request.new(endpoint, plugins, self)
         

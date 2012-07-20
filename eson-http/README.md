@@ -101,19 +101,17 @@ The client has an additional mode that does not call elasticsearch  immediately,
 `bulk` and `msearch` requests can be constructed by calling the respective client methods on them:
 
 
-```
-c.bulk do |b|
-  b.index :index => "default",
-          :type => "bar"
-          :doc => {"foo" => "bar"}
-  b.delete :index => "default",
-           :id => '134'
-end
-
-c.msearch do |s|
-  s.search #....
-end
-```
+    c.bulk do |b|
+      b.index :index => "default",
+              :type => "bar"
+              :doc => {"foo" => "bar"}
+      b.delete :index => "default",
+               :id => '134'
+    end
+    
+    c.msearch do |s|
+      s.search #....
+    end
 
 ## The shell
 

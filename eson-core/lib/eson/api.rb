@@ -1,4 +1,13 @@
 module Eson
+  # Objects including API act as API descriptions. They mostly act as a
+  # description of parameter names and roles to use in protocol implementations. 
+  # Parameters are split in 2 sets: all parameters (params) and parameters
+  # that are transmitted in the body of a request (if the protocol has a
+  # notion of "body"). These descriptions are intended to be refined by
+  # protocol implementations.
+  #
+  # For examples of this strategy, see {Eson::Shared::Index} and 
+  # {Eson::HTTP::Index}.
   module API
     include Chainable
 
@@ -43,27 +52,26 @@ module Eson
         params
       end
     end
-    
+
+    # Indicates whether the api accepts multiple indices like `["index1", "index2"]
     def multi_index(bool)
       define_method :multi_index do
         bool
       end
     end
-    
+
+    # Indicates whether the api accepts multiple types like `["type1", "type2"]
     def multi_types(bool)
       define_method :multi_types do
         bool
       end
     end
-    
+
+    # Indicates whether the api does not operate on an index at all.
     def no_indices(bool)
       define_method :no_indices do
         bool
       end
-    end
-    
-    def register(mod)
-      include(mod)
     end
   end
 end

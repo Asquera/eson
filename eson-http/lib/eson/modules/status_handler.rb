@@ -1,9 +1,15 @@
 module Eson
+  # A plugin to handle status codes.
   module StatusHandler
     def call(*args)
       handle(super)
     end
 
+    # Handle the response status.
+    #
+    # @raise [Eson::IndexNotFoundError] if the index is missing
+    # @raise [Eson::NotFoundError] if the document is missing
+    # @raise [Eson::Error] otherwise
     def handle(response)
       case response.status
       when 404

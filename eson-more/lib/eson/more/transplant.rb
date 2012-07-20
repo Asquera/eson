@@ -56,7 +56,7 @@ module Eson
       #         either as an Object from which the ID can be retrieved.
       # @param [String, Hash, Object#id] new_parent the new parent document,
       #         either as an Object from which the ID can be retrieved.
-      # @param [String, Hash, Object#<id,to_h>] doc the document to transplant,
+      # @param [String, Hash, #id, #to_h] doc the document to transplant,
       #         either as an Object from which the ID can be retrieved.
       def transplant(old_parent, new_parent, doc = nil)
         old_pid, new_pid, doc_id = Functions.extract_ids(old_parent, new_parent, doc)

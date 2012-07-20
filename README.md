@@ -2,21 +2,13 @@
 
 Eson is an ElasticSearch client for everyone that wants to use the full power of ElasticSearch, but doesn't care about integrations. Eson implements the full ElasticSearch API and provides a complete generator for the ElasticSearch query DSL. It is implemented in multiple subprojects which can be used independently.
 
-## eson
+{include:file:eson/README.md}
 
-Eson is a metagem and depends on and requires `eson-core`, `eson-http` and `eson-dsl`, which should be the most common requirement. Use it to get started.
+{include:file:eson-http/README.md}
 
-## eson-dsl
+{include:file:eson-dsl/README.md}
 
-`eson-dsl` is a Ruby library for generating the ElasticSearch query DSL. It is complete and implements the full DSL. See `eson-dsl/README.md` for details. `eson-dsl` can be used standalone.
-
-## eson-core
-
-`eson-core` provides base modules for implementing a ElasticSearch client. It does not care about the protocol in use, but does describe which parameters are used by which request.
-
-## eson-http
-
-`eson-http` implements the HTTP interface of elasticsearch. Optionally, it can be integrated with `eson-dsl`. See `eson-http/README.md` for details. 
+{include:file:eson-core/README.md}
 
 ## eson-native
 
