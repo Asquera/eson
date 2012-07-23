@@ -1,7 +1,10 @@
 language: ruby
 rvm:
   - 1.9.3
+  - jruby-19mode
 env:
   - ES_VERSION=0.18.7
   - ES_VERSION=0.19.7
+jdk:
+  - openjdk7
 before_script: "install_elasticsearch"
