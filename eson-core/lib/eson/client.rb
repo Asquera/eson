@@ -482,7 +482,7 @@ module Eson
     # {include:CreateIndex#multi_index}
     # {include:CreateIndex#multi_types}
     #
-    # @param [Hash] args The arguments, as given in {Eson::Shared::Createindex}.
+    # @param [Hash] args The arguments, as given in {Eson::Shared::CreateIndex}.
     def create_index(args = {}, immediate = auto_call)
       request(protocol::CreateIndex, args, immediate)
     end
