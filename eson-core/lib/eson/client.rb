@@ -8,7 +8,7 @@
 #     @return [Object] result
 #   @overload
 #     Without immediate, this will method returns an request object.
-#     @return [Eson::Api] the request
+#     @return [Eson::API] the request
 #   @param [true,false] immediate Whether to immediately call the request or not.
 
 module Eson
