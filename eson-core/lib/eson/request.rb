@@ -122,23 +122,14 @@ module Eson
           return encode(obj)
         end
       else
-        pairs = source_param.map do |p|
+        obj = {}
+        source_param.each_with_object(obj) do |p, o|
           if v = self.send(p)
-            [p, v]
-          else
-            nil
+            o[p] = v
           end
         end
-        pairs.compact!
 
-        return nil if pairs.empty?
-
-        obj = {}
-
-        pairs.each do |p, v|
-          obj[p] = v
-        end
-
+        return nil if obj.empty?
         return encode(obj)
       end
     end
