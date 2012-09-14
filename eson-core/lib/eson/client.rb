@@ -417,7 +417,7 @@ module Eson
     #
     # @yield The block is evaluated in the context of the request 
     #   to define the aliases
-    # @param [Hash] args The arguments, as given in {Eson::Shared::Alias}.
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Aliases}.
     def aliases(args = {}, immediate = auto_call, &block)
       request(protocol::Aliases, args, immediate, &block)
     end
