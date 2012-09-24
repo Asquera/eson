@@ -153,6 +153,10 @@ Due to clever defaults, `and` can be omitted altogether:
       prefix "name.second" => "ba"
     end
 
+# Remarks
+
+* The `match` query is still named `text`, for backwards compatibility reasons. You can use `match` in the DSL, but `text` will be generated. Support for this feature will end once ES 0.18.x is not supported anymore.
+
 # TODO
 
 * Indices-Query is missing

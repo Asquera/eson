@@ -111,6 +111,15 @@ context "Queries" do
     end
   end
 
+  context "#match query" do
+    query_name "test/search/queries/text"
+
+    setup do
+      example("queries/match")
+    end
+  end
+
+
   context "#bool query" do
     query_name "test/search/queries/bool"
 

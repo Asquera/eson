@@ -63,6 +63,8 @@ require 'eson/search/geo_distance'
 require 'eson/search/geo_distance_range'
 require 'eson/search/geo_polygon'
 
+require 'compat'
+
 ##
 # @!macro [new] eson.filter
 #   @method $1
