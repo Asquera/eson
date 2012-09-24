@@ -410,10 +410,10 @@ module Eson
     # @!macro request
     # @!macro immediate
     #
-    # {include:Alias#parameters}
-    # {include:Alias#source_param}
-    # {include:Alias#multi_index}
-    # {include:Alias#multi_types}
+    # {include:Aliases#parameters}
+    # {include:Aliases#source_param}
+    # {include:Aliases#multi_index}
+    # {include:Aliases#multi_types}
     #
     # @yield The block is evaluated in the context of the request 
     #   to define the aliases
