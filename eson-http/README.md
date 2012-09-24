@@ -131,7 +131,6 @@ Eson-HTTP comes with a quick-and-dirty shell, if you have pry installed:
 ## TODO
 
 * Test suite needs to be reordered. Its the oldest part of the project and a bit messy.
-* Filters in aliases are not supported
 
 ## See also
 
