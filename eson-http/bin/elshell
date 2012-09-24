@@ -1,20 +1,12 @@
 #!/usr/bin/env ruby
 
-$LOAD_PATH << File.join(File.dirname(File.dirname(__FILE__)), "lib")
-
-require 'echolon-http'
-require 'echolon-search'
-
-require 'elsearch-node'
-
-require 'node/external'
-
-require 'rest-client'
-require 'addressable/template'
-
+require 'eson-core'
+require 'eson-http'
+require 'eson-dsl'
+require 'logger'
 require 'pry'
 
 c = Eson::HTTP::Client.new(:server => ARGV.first || 'http://localhost:9200',
-                                    :logger => Logger.new($stdout))
+                           :logger => Logger.new($stdout))
 
 c.pry
