@@ -28,3 +28,6 @@ c.open_index :index => "for_closing" rescue nil
 c.delete_index :index => "for_closing" rescue nil
 c.delete_index :index => "for_reopening" rescue nil
 c.delete_index :index => "mappings" rescue nil
+
+c.index :index => "explain", :type => "bar", :id => 1,
+        :doc => { :foo => :bar }

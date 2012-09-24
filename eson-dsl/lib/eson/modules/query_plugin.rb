@@ -29,7 +29,8 @@ module Eson
       [protocol::Search,
        protocol::Count,
        protocol::DeleteByQuery,
-       protocol::Percolate]
+       protocol::Percolate,
+       protocol::Explain]
     end
     
     def handle_block(&block)

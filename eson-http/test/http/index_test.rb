@@ -96,6 +96,15 @@ context 'HTTP client quick api' do
     asserts("number of docs") { topic["docs"].length }.equals(2)
   end
 
+  context "#explain" do
+    setup do
+      client.explain :index => "explain", :type => "bar", :id => 1,
+                     :query => { :match_all => { } }
+    end
+
+    asserts("explanation output") { topic["explanation"] }.kind_of Hash
+  end
+
   unless ElasticSearch::Node.version < "0.19.0"
     context "delete_by_query" do
       setup do
