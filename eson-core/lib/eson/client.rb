@@ -722,6 +722,19 @@ module Eson
     def explain(args = {}, immediate = auto_call)
       request(protocol::Explain, args)
     end
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Explain#parameters}
+    # {include:Explain#source_param}
+    # {include:Explain#multi_index}
+    # {include:Explain#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Explain}.
+    def validate(args = {}, immediate = auto_call)
+      request(protocol::Validate, args)
+    end
     # @!endgroup
 
     private

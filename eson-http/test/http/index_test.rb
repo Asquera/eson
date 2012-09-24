@@ -99,10 +99,20 @@ context 'HTTP client quick api' do
   context "#explain" do
     setup do
       client.explain :index => "explain", :type => "bar", :id => 1,
-                     :query => { :match_all => { } }
+                     :query => {:match_all => { }}
     end
 
     asserts("explanation output") { topic["explanation"] }.kind_of Hash
+  end
+
+  context "#validate" do
+    setup do
+      client.validate :index => "explain", :type => "bar",
+                      :query => { :match_all => { } },
+                      :explain => true
+    end
+
+    asserts("valid") { puts topic.inspect; topic["valid"] }
   end
 
   unless ElasticSearch::Node.version < "0.19.0"

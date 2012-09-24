@@ -17,3 +17,4 @@ protocol in use
 * CI: activated rbx-19mode for tests, now officially supported
 * api: Add `lowercase_expanded_terms` to search API
 * api: Add 0.19.9 `explain` API
+* api: Add `validate` API
