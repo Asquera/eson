@@ -128,7 +128,6 @@ context "Queries" do
     end
   end
 
-
   context "#boosting query" do
     query_name "test/search/queries/boosting"
 
@@ -325,6 +324,14 @@ context "Queries" do
 
     setup do
       example("queries/multi_match")
+    end
+  end
+
+  context "indices query" do
+    query_name "test/search/queries/indices"
+
+    setup do
+      example("queries/indices")
     end
   end
 end

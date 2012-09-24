@@ -159,6 +159,4 @@ Due to clever defaults, `and` can be omitted altogether:
 
 # TODO
 
-* Indices-Query is missing
 * Custom-Boost-Query is missing)
-* Testing on Ruby 1.8
