@@ -29,6 +29,7 @@ require 'eson/shared/cluster/stats'
 require 'eson/shared/cluster/shutdown'
 
 require 'eson/shared/indices/aliases'
+require 'eson/shared/indices/get_aliases'
 require 'eson/shared/indices/analyze'
 require 'eson/shared/indices/clear_cache'
 require 'eson/shared/indices/close_index'

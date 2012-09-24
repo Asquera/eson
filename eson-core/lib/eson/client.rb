@@ -425,6 +425,19 @@ module Eson
     # @!macro request
     # @!macro immediate
     #
+    # {include:GetAliases#parameters}
+    # {include:GetAliases#source_param}
+    # {include:GetAliases#multi_index}
+    # {include:GetAliases#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::GetAliases}.
+    def get_aliases(args = {}, immediate = auto_call, &block)
+      request(protocol::GetAliases, args, immediate, &block)
+    end
+
+    # @!macro request
+    # @!macro immediate
+    #
     # {include:Analyze#parameters}
     # {include:Analyze#source_param}
     # {include:Analyze#multi_index}

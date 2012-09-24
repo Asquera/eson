@@ -129,16 +129,23 @@ context 'HTTP client' do
     setup do
       client.create_index :index => "abc"
       client.create_index :index => "def"
+      client.create_index :index => "ghi"
+      client.create_index :index => "jkl"
       client.aliases do |r|
         r.add "abc", "alias"
         r.add "def", "alias"
+        r.add "ghi", "alias", :routing => 1
+        r.add "jkl", "alias", :filter => { "term" => { "user" => "kimchy" } }
       end
     end
     
     asserts("ok") { topic["ok"] }
     asserts("can be queried") do
       client.status :index => "alias"
-    end    
+    end
+    asserts("can be retrieved") do
+      client.get_aliases
+    end
   end
   
   context "refresh" do

@@ -35,6 +35,7 @@ require 'eson/http/cluster/stats'
 require 'eson/http/cluster/shutdown'
 
 require 'eson/http/indices/aliases'
+require 'eson/http/indices/get_aliases'
 require 'eson/http/indices/analyze'
 require 'eson/http/indices/clear_cache'
 require 'eson/http/indices/close_index'
