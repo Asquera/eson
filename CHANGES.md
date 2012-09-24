@@ -15,3 +15,4 @@
 protocol in use
 * CI: 0.19.9 and 0.18.7 are now the default versions for CI
 * CI: activated rbx-19mode for tests, now officially supported
+* api: Add `lowercase_expanded_terms` to search API

@@ -57,7 +57,8 @@ module Eson
                  :min_score,
                  :q,
                  :df,
-                 :analyzer
+                 :analyzer,
+                 :lowercase_expanded_terms
 
       def types
         if @types
