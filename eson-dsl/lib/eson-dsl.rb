@@ -62,6 +62,7 @@ require 'eson/search/geo_bounding_box'
 require 'eson/search/geo_distance'
 require 'eson/search/geo_distance_range'
 require 'eson/search/geo_polygon'
+require 'eson/search/multi_match'
 
 require 'compat'
 
