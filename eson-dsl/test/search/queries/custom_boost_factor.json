@@ -1,0 +1,10 @@
+{
+    "query": {
+        "custom_boost_factor" : {
+            "boost_factor" : 5,
+            "query" : {
+                "term": {"tag": "wow"}
+            }
+        }
+    }
+}

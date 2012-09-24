@@ -334,4 +334,12 @@ context "Queries" do
       example("queries/indices")
     end
   end
+
+  context "custom_boost_factor query" do
+    query_name "test/search/queries/custom_boost_factor"
+
+    setup do
+      example("queries/custom_boost_factor")
+    end
+  end
 end
