@@ -96,23 +96,25 @@ context 'HTTP client quick api' do
     asserts("number of docs") { topic["docs"].length }.equals(2)
   end
 
-  context "#explain" do
-    setup do
-      client.explain :index => "explain", :type => "bar", :id => 1,
-                     :query => {:match_all => { }}
+  if ENV["ES_VERSION"] > "0.19.0"
+    context "#explain" do
+      setup do
+        client.explain :index => "explain", :type => "bar", :id => 1,
+                       :query => {:match_all => { }}
+      end
+
+      asserts("explanation output") { topic["explanation"] }.kind_of Hash
     end
 
-    asserts("explanation output") { topic["explanation"] }.kind_of Hash
-  end
+    context "#validate" do
+      setup do
+        client.validate :index => "explain", :type => "bar",
+                        :query => { :match_all => { } },
+                        :explain => true
+      end
 
-  context "#validate" do
-    setup do
-      client.validate :index => "explain", :type => "bar",
-                      :query => { :match_all => { } },
-                      :explain => true
+      asserts("valid") { topic["valid"] }
     end
-
-    asserts("valid") { topic["valid"] }
   end
 
   context "delete_by_query" do

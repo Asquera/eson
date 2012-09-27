@@ -327,27 +327,29 @@ context "Queries" do
     end
   end
 
-  context "indices query" do
-    query_name "test/search/queries/indices"
+  if ENV["ES_VERSION"] > "0.19.0"
+    context "indices query" do
+      query_name "test/search/queries/indices"
 
-    setup do
-      example("queries/indices")
+      setup do
+        example("queries/indices")
+      end
     end
-  end
 
-  context "custom_boost_factor query" do
-    query_name "test/search/queries/custom_boost_factor"
+    context "custom_boost_factor query" do
+      query_name "test/search/queries/custom_boost_factor"
 
-    setup do
-      example("queries/custom_boost_factor")
+      setup do
+        example("queries/custom_boost_factor")
+      end
     end
-  end
 
-  context "custom_filters_score query" do
-    query_name "test/search/queries/custom_filters_score"
+    context "custom_filters_score query" do
+      query_name "test/search/queries/custom_filters_score"
 
-    setup do
-      example("queries/custom_filters_score")
+      setup do
+        example("queries/custom_filters_score")
+      end
     end
   end
 end
