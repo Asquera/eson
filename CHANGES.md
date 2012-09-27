@@ -18,3 +18,5 @@ protocol in use
 * api: Add `lowercase_expanded_terms` to search API
 * api: Add 0.19.9 `explain` API
 * api: Add `validate` API
+* api: Add custom_boost_factor query
+* api: Add custom_filters_score query

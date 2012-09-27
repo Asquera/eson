@@ -342,4 +342,12 @@ context "Queries" do
       example("queries/custom_boost_factor")
     end
   end
+
+  context "custom_filters_score query" do
+    query_name "test/search/queries/custom_filters_score"
+
+    setup do
+      example("queries/custom_filters_score")
+    end
+  end
 end

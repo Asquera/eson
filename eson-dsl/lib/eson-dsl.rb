@@ -65,6 +65,7 @@ require 'eson/search/geo_polygon'
 require 'eson/search/multi_match'
 require 'eson/search/indices'
 require 'eson/search/custom_boost_factor'
+require 'eson/search/custom_filters_score'
 
 require 'compat'
 
