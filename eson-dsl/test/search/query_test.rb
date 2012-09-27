@@ -319,15 +319,15 @@ context "Queries" do
     end
   end
 
-  context "multi_match query" do
-    query_name "test/search/queries/multi_match"
-
-    setup do
-      example("queries/multi_match")
-    end
-  end
-
   if ElasticSearch::Node.version > "0.19.0"
+    context "multi_match query" do
+      query_name "test/search/queries/multi_match"
+
+      setup do
+        example("queries/multi_match")
+      end
+    end
+
     context "indices query" do
       query_name "test/search/queries/indices"
 
