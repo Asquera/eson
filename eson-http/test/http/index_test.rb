@@ -112,26 +112,24 @@ context 'HTTP client quick api' do
                       :explain => true
     end
 
-    asserts("valid") { puts topic.inspect; topic["valid"] }
+    asserts("valid") { topic["valid"] }
   end
 
-  unless ElasticSearch::Node.version < "0.19.0"
-    context "delete_by_query" do
-      setup do
-        client.index :index => "delete_by_query",
-                     :type => "foo",
-                     :doc => {:foo => :bar}
-        client.index :index => "delete_by_query",
-                     :type => "foo",
-                     :doc => {:foo => :bar}
-        client.refresh :index => "delete_by_query"
-    
-        client.delete_by_query :index => "delete_by_query",
-                               :query => { :match_all => {} }
-      end
-    
-      asserts("no doc left") { client.search(:index => "delete_by_query")["hits"]["total"] }.equals(0)
+  context "delete_by_query" do
+    setup do
+      client.index :index => "delete_by_query",
+                   :type => "foo",
+                   :doc => {:foo => :bar}
+      client.index :index => "delete_by_query",
+                   :type => "foo",
+                   :doc => {:foo => :bar}
+      client.refresh :index => "delete_by_query"
+
+      client.delete_by_query :index => "delete_by_query",
+                             :query => { :match_all => {} }
     end
+
+    asserts("no doc left") { client.search(:index => "delete_by_query")["hits"]["total"] }.equals(0)
   end
 end
 
