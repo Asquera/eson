@@ -327,7 +327,7 @@ context "Queries" do
     end
   end
 
-  if ENV["ES_VERSION"] > "0.19.0"
+  if ElasticSearch::Node.version > "0.19.0"
     context "indices query" do
       query_name "test/search/queries/indices"
 

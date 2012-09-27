@@ -96,7 +96,7 @@ context 'HTTP client quick api' do
     asserts("number of docs") { topic["docs"].length }.equals(2)
   end
 
-  if ENV["ES_VERSION"] > "0.19.0"
+  unless ElasticSearch::Node.version < "0.19.0"
     context "#explain" do
       setup do
         client.explain :index => "explain", :type => "bar", :id => 1,
@@ -115,23 +115,24 @@ context 'HTTP client quick api' do
 
       asserts("valid") { topic["valid"] }
     end
-  end
 
-  context "delete_by_query" do
-    setup do
-      client.index :index => "delete_by_query",
-                   :type => "foo",
-                   :doc => {:foo => :bar}
-      client.index :index => "delete_by_query",
-                   :type => "foo",
-                   :doc => {:foo => :bar}
-      client.refresh :index => "delete_by_query"
 
-      client.delete_by_query :index => "delete_by_query",
-                             :query => { :match_all => {} }
+    context "delete_by_query" do
+      setup do
+        client.index :index => "delete_by_query",
+                     :type => "foo",
+                     :doc => {:foo => :bar}
+        client.index :index => "delete_by_query",
+                     :type => "foo",
+                     :doc => {:foo => :bar}
+        client.refresh :index => "delete_by_query"
+
+        client.delete_by_query :index => "delete_by_query",
+                               :query => { :match_all => {} }
+      end
+
+      asserts("no doc left") { client.search(:index => "delete_by_query")["hits"]["total"] }.equals(0)
     end
-
-    asserts("no doc left") { client.search(:index => "delete_by_query")["hits"]["total"] }.equals(0)
   end
 end
 
