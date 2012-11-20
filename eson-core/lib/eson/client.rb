@@ -99,7 +99,7 @@ module Eson
     #
     # @param [Hash] params The new parameters
     #
-    # @return [Eson::Client] a clone of the client with the new parameters set.s
+    # @return [Eson::Client] a clone of the client with the new parameters set.
     def with(params = {})
       client = self.clone
       client.default_parameters = default_parameters.merge(params)
