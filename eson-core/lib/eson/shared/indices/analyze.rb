@@ -12,7 +12,7 @@ module Eson
       # @!macro no_multi_index
       multi_index false
       
-      attr_accessor :text, :analyzer, :format
+      attr_accessor :text, :analyzer, :format, :tokenizer, :field
     end
   end
 end
