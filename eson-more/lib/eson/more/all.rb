@@ -23,12 +23,19 @@ module Eson
         scroll_response = search(DEFAULT_OPTS.merge(opts))
         scroll_id = scroll_response["_scroll_id"]
 
-        docs = []
-        while scroll_id
-          scroll_id, results = Functions.fetch_more_results(self, scroll_id)
-          docs += results
+        if block_given?
+          while scroll_id
+            scroll_id, results = Functions.fetch_more_results(self, scroll_id)
+            yield results
+          end
+        else
+          docs = []
+          while scroll_id
+            scroll_id, results = Functions.fetch_more_results(self, scroll_id)
+            docs += results
+          end
+          docs
         end
-        docs
       end
     end
   end
