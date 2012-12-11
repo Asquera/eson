@@ -20,3 +20,4 @@ protocol in use
 * api: Add `validate` API
 * api: Add custom_boost_factor query
 * api: Add custom_filters_score query
+* enhancement: eson now uses persistent http
