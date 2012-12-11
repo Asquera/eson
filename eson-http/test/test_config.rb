@@ -18,7 +18,7 @@ module Node
   module External
     def self.instance
       @node ||= begin
-        node = ElasticSearch::Node::External.new("gateway.type" => "none")
+        node = ElasticSearch::Node::External.new("gateway.type" => "none", "cluster.name" => "eson-test")
         at_exit do
           node.close
         end

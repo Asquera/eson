@@ -8,7 +8,7 @@ module Eson
       request_method :post
       
       def path
-        '/_cluster/nodes/{-list|,|nodes}/_shutdown'
+        '/_cluster/nodes/{nodes}/_shutdown'
       end
     end
   end

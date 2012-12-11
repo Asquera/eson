@@ -35,9 +35,9 @@ module Eson
 
       def path
         unless types.empty?
-          path = "{-list|,|indices}/{-list|,|types}/"
+          path = "{indices}/{types}/"
         else
-          path = "{-list|,|indices}/"
+          path = "{indices}/"
         end
 
         path << "_msearch"

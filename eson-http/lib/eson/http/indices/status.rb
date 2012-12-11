@@ -8,7 +8,7 @@ module Eson
           
       def path
         if !indices.empty?
-          "/{-list|,|indices}/_status"
+          "/{indices}/_status"
         else
           "/_status"
         end

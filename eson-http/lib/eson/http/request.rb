@@ -29,7 +29,7 @@ module Eson
           builder.use Faraday::Response::Logger, client.logger
           builder.use GetHackMiddleware
 
-          builder.adapter :net_http
+          builder.adapter :net_http_persistent
         end
 
         conn.basic_auth(*client.auth) if client.auth?

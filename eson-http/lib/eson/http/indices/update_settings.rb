@@ -8,7 +8,7 @@ module Eson
       
       def path
         unless indices.empty?
-          "/{-list|,|indices}/_settings"
+          "/{indices}/_settings"
         else
           "/_settings"
         end

@@ -8,7 +8,7 @@ module Eson
             
       def path
         unless indices.empty?
-          "/{-list|,|indices}/_flush"
+          "/{indices}/_flush"
         else
           "/_flush"
         end

@@ -8,7 +8,7 @@ module Eson
       
       def path
         if index
-          "/{-list|,|indices}/_refresh"
+          "/{indices}/_refresh"
         else
           "/_refresh"
         end

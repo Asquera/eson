@@ -8,9 +8,9 @@ module Eson
       
       def path
         unless types.empty?
-          "{-list|,|indices}/{-list|,|types}/_search"
+          "{indices}/{types}/_search"
         else
-          "{-list|,|indices}/_search"
+          "{indices}/_search"
         end
       end
     end

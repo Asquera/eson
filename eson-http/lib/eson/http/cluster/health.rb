@@ -7,7 +7,7 @@ module Eson
       request_method :get
              
       def path
-        '/_cluster/health/{-list|,|indices}'
+        '/_cluster/health/{indices}'
       end
       
     end

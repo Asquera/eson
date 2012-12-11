@@ -7,7 +7,7 @@ module Eson
       request_method :delete
       
       def path
-        "/{-list|,|indices}"
+        "/{indices}"
       end
     end
   end

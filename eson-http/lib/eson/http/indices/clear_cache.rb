@@ -8,7 +8,7 @@ module Eson
       
       def path
         if index
-          "/{-list|,|indices}/_cache/clear"
+          "/{indices}/_cache/clear"
         else
           "/_cache/clear"
         end

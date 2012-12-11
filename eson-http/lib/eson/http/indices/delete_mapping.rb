@@ -9,7 +9,7 @@ module Eson
       
       def path
         if type && !indices.empty?
-          "/{-list|,|indices}/{type}"        
+          "/{indices}/{type}"        
         end
       end
     end

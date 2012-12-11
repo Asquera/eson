@@ -7,7 +7,7 @@ module Eson
       request_method :head
       
       def path
-        "/{-list|,|indices}"
+        "/{indices}"
       end 
     end
   end

@@ -7,7 +7,7 @@ module Eson
       request_method :post
       
       def path
-        "/{-list|,|indices}/_open"
+        "/{indices}/_open"
       end
     end
   end

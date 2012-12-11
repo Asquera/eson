@@ -8,7 +8,7 @@ module Eson
           
       def path
         unless indices.empty?
-          "/{-list|,|indices}/_gateway/snapshot"
+          "/{indices}/_gateway/snapshot"
         else
           "/_gateway/snapshot"
         end

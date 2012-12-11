@@ -7,7 +7,7 @@ module Eson
       request_method :get
     
       def path
-        '/_cluster/nodes/{-list|,|nodes}'
+        '/_cluster/nodes/{nodes}'
       end
     end
   end

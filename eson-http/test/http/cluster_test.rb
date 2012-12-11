@@ -13,7 +13,7 @@ context 'HTTP client cluster api' do
       client.health
     end
     
-    asserts("returns cluster info") { topic["cluster_name"]}.equals("elasticsearch")
+    asserts("returns cluster info") { topic["cluster_name"]}.equals("eson-test")
   end
   
   context "cluster state" do

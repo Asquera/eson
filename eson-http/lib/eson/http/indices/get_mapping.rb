@@ -8,9 +8,9 @@ module Eson
       
       def path
         if !types.empty? && !indices.empty?
-          "/{-list|,|indices}/{-list|,|types}/_mapping"
+          "/{indices}/{types}/_mapping"
         elsif !indices.empty?
-          "/{-list|,|indices}/_mapping"
+          "/{indices}/_mapping"
         else
           "/_mapping"
         end
