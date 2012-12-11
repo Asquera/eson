@@ -5,8 +5,8 @@ rvm:
   - rbx-19mode
 env:
   - ES_VERSION=0.18.7
-  - ES_VERSION=0.19.9
-  - ES_VERSION=0.20.0.RC1
+  - ES_VERSION=0.19.12
+  - ES_VERSION=0.20.1
 jdk:
   - openjdk7
 before_script: "install_elasticsearch"
