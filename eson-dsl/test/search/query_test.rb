@@ -112,15 +112,16 @@ context "Queries" do
       end
     end
   end
+  
+  if ElasticSearch::Node.version > "0.19.8"
+    context "#match query" do
+      query_name "test/search/queries/match"
 
-  context "#match query" do
-    query_name "test/search/queries/match"
-
-    setup do
-      example("queries/match")
+      setup do
+        example("queries/match")
+      end
     end
   end
-
 
   context "#bool query" do
     query_name "test/search/queries/bool"
