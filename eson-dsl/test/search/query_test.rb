@@ -103,16 +103,18 @@ context "Queries" do
     end
   end
 
-  context "#text query" do
-    query_name "test/search/queries/text"
+  if ElasticSearch::Node.version < "0.20.0"
+    context "#text query" do
+      query_name "test/search/queries/text"
 
-    setup do
-      example("queries/text")
+      setup do
+        example("queries/text")
+      end
     end
   end
 
   context "#match query" do
-    query_name "test/search/queries/text"
+    query_name "test/search/queries/match"
 
     setup do
       example("queries/match")

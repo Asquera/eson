@@ -8,7 +8,7 @@ module Eson
   module Search
     module Queries
       module QueryMethods
-        alias :match :text
+        #alias :match :text
       end
     end
   end

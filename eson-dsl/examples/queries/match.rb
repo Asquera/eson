@@ -2,6 +2,6 @@
 # any case.
 Eson::Search::BaseQuery.new do
   query do
-    match :type => :phrase_prefix, :message => "this is a text"
+    match "message", :type => :phrase_prefix, :query => "this is a text"
   end
 end

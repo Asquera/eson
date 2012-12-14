@@ -43,6 +43,7 @@ require 'eson/search/or'
 require 'eson/search/not'
 require 'eson/search/numeric_range'
 require 'eson/search/missing'
+require 'eson/search/match'
 require 'eson/search/exists'
 require 'eson/search/type'
 require 'eson/search/fquery'
@@ -67,7 +68,7 @@ require 'eson/search/indices'
 require 'eson/search/custom_boost_factor'
 require 'eson/search/custom_filters_score'
 
-require 'compat'
+#require 'compat'
 
 ##
 # @!macro [new] eson.filter
