@@ -1,6 +1,6 @@
 require 'rubygems' unless defined?(Gem)
 require 'rubygems/specification'
-require 'rake/gempackagetask'
+require 'rubygems/package_task'
 require 'rake/testtask'
 
 def gemspec
@@ -15,7 +15,7 @@ task :gemspec do
   gemspec.validate
 end
 
-Rake::GemPackageTask.new(gemspec) do |pkg|
+Gem::PackageTask.new(gemspec) do |pkg|
   pkg.gem_spec = gemspec
 end
 
