@@ -12,7 +12,6 @@ gem 'jruby-openssl', :platform => 'jruby'
 gem 'json'
 gem 'rake'
 gem 'elasticsearch-node'
-gem 'pry'
 
 gem 'eson', :path => File.join(basedir, "eson"), :require => false
 gem 'eson-core', :path => File.join(basedir, "eson-core"), :require => false
