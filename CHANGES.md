@@ -13,7 +13,7 @@
 * documentation: a lot more
 * enhancement: `logger` is now a property of the client option, not of the
 protocol in use
-* CI: 0.19.9 and 0.18.7 are now the default versions for CI
+* CI: 0.18.7, 0.19.12 and 0.20.1 are now the official testing versions
 * CI: activated rbx-19mode for tests, now officially supported
 * api: Add `lowercase_expanded_terms` to search API
 * api: Add 0.19.9 `explain` API
@@ -21,3 +21,5 @@ protocol in use
 * api: Add custom_boost_factor query
 * api: Add custom_filters_score query
 * enhancement: eson now uses persistent http
+* api: Auto-generation of filtered queries is removed
+* api: Introduce a proper "filtered" query method

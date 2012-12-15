@@ -354,5 +354,13 @@ context "Queries" do
         example("queries/custom_filters_score")
       end
     end
+    
+    context "filtered query" do
+      query_name "test/search/queries/filtered"
+
+      setup do
+        example("queries/filtered")
+      end
+    end
   end
 end

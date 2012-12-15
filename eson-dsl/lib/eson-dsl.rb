@@ -67,6 +67,7 @@ require 'eson/search/multi_match'
 require 'eson/search/indices'
 require 'eson/search/custom_boost_factor'
 require 'eson/search/custom_filters_score'
+require 'eson/search/filtered'
 
 #require 'compat'
 

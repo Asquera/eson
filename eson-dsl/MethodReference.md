@@ -12,6 +12,7 @@ elasticsearch reference.
 {render:Eson::Search::DateHistogram#date_histogram}
 {render:Eson::Search::DisMax#dis_max}
 {render:Eson::Search::Exists#exists}
+{render:Eson::Search::Filtered#filtered}
 {render:Eson::Search::FilterFacet#filter}
 {render:Eson::Search::FQuery#fquery}
 {render:Eson::Search::Fuzzy#fuzzy}

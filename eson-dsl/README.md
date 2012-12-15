@@ -34,22 +34,18 @@ This example yields:
 
     {
       "query": {
-        "filtered": {
-          "query": {
-            "wildcard": {
-              "user": {
-                "value": "kim*y",
-                "boost": 2.0}
-              }
-            }
-          },
-          "filter": {
-            "range": {
-              "age": {
-                "from": 10,
-                "to": 20
-              }
-            }
+        "wildcard": {
+          "user": {
+            "value": "kim*y",
+            "boost": 2.0}
+          }
+        }
+      },
+      "filter": {
+        "range": {
+          "age": {
+            "from": 10,
+            "to": 20
           }
         }
       },
@@ -58,31 +54,6 @@ This example yields:
           "histogram": {
             "field": "age",
             "interval": 2
-          }
-        }
-      }
-    }
-
-The query generator does its best to avoid extra work. For example, if filtering is all you want, you can omit the query part - a `filtered` query with a `match_all`-query will be generated automatically:
-
-    q.filter do
-      term "foo", :value => 'bar'
-    end
-
-will generate:
-
-    {
-      "query": {
-        "filtered": {
-          "query": {
-            "match_all": { }
-          },
-          "filter": {
-            "term": {
-              "foo": {
-                "value": "bar"
-              }
-            }
           }
         }
       }
@@ -152,11 +123,3 @@ Due to clever defaults, `and` can be omitted altogether:
       range :post_date, {:from => "2010-03-01", :to => "2010-04-01"}
       prefix "name.second" => "ba"
     end
-
-# Remarks
-
-* The `match` query is still named `text`, for backwards compatibility reasons. You can use `match` in the DSL, but `text` will be generated. Support for this feature will end once ES 0.18.x is not supported anymore.
-
-# TODO
-
-* Custom-Boost-Query is missing)
