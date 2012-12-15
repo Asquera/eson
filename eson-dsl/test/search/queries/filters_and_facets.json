@@ -1,1 +1,1 @@
-{"query":{"filtered":{"query":{"match_all":{}},"filter":{"range":{"age":{"from":10,"to":20}}}}},"facets":{"hist1":{"histogram":{"field":"age","interval":2}}}}
+{"query": {"match_all":{}},"filter":{"range":{"age":{"from":10,"to":20}}},"facets":{"hist1":{"histogram":{"field":"age","interval":2}}}}

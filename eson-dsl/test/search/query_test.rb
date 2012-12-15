@@ -266,7 +266,7 @@ context "Queries" do
     end
   end
 
-  context "query with filter and facets" do
+  context "with filter and facets" do
     query_name "test/search/queries/filters_and_facets"
 
     setup do

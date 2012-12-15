@@ -75,7 +75,7 @@ context "Filter" do
   end
 
   context "#and filter" do
-    query_name "test/search/queries/and_filter"
+    query_name "test/search/filters/and"
 
     setup do
       example("filters/and")
@@ -83,7 +83,7 @@ context "Filter" do
   end
 
   context "#and filter using default" do
-     query_name "test/search/queries/and_filter"
+     query_name "test/search/filters/and"
 
      setup do
        example("filters/and_without_keyword")

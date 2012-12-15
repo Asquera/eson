@@ -1,15 +1,11 @@
 {
   :query => {
-    :filtered => {
-      :query => {
-         :term => {:tag => "something"}
-      },
+     :term => {:tag => "something"}
+  },
+  :filter => {
+    :not => {
       :filter => {
-        "not" => {
-          :filter => {
-            :term => { "name.first" => "Florian"}
-          }
-        }
+        :term => { "name.first" => "Florian"}
       }
     }
   }

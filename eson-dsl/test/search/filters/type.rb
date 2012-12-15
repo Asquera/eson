@@ -1,1 +1,1 @@
-{:query => {:filtered => {:query => {:match_all => {}}, :filter => {:type => {:value => :my_type}}}}}
+{:query => {:match_all => {}}, :filter => {:type => {:value => :my_type}}}

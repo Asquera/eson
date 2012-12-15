@@ -18,14 +18,11 @@ module Eson
         end
 
         if filters && !filters.empty?
-          hash = {
-            :query => {
-              :filtered => {
-                :query => hash[:query],
-                :filter => filters.to_query_hash
-              }
-            }
-          }
+          if filters.length > 1
+            hash[:filter] = {:and => filter.to_query_hash}
+          else
+            hash[:filter] = filter.to_query_hash
+          end
         end
 
         if facets.length > 0

@@ -3,6 +3,7 @@ module Eson
     module Query
       module ClassMethods
         def short_name(name)
+          name = name.to_sym
           define_method :name do
             name
           end
