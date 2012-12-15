@@ -3,7 +3,7 @@ source :rubygems
 basedir = File.dirname(__FILE__)
 
 gem 'ZenTest', '4.3.0'
-gem "riot", :git => "git://github.com/Asquera/riot.git", :branch => 'option-inheritance-fix', :group => 'test', :require => false
+gem 'riot', :require => false
 
 gem 'faraday'
 gem 'faraday_middleware', :group => 'test'
