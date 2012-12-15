@@ -1,0 +1,1 @@
+{"query":{"match":{"message":{"type":"phrase_prefix","query":"this is a text"}}}}
