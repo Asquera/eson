@@ -739,12 +739,12 @@ module Eson
     # @!macro request
     # @!macro immediate
     #
-    # {include:Explain#parameters}
-    # {include:Explain#source_param}
-    # {include:Explain#multi_index}
-    # {include:Explain#multi_types}
+    # {include:Validate#parameters}
+    # {include:Validate#source_param}
+    # {include:Validate#multi_index}
+    # {include:Validate#multi_types}
     #
-    # @param [Hash] args The arguments, as given in {Eson::Shared::Explain}.
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Validate}.
     def validate(args = {}, immediate = auto_call)
       request(protocol::Validate, args)
     end
