@@ -32,7 +32,8 @@ module Eson
                    :indices_boost,
                    :explain,
                    :version,
-                   :min_score
+                   :min_score,
+                   :suggest
 
       # @!macro parameters
       parameters :timeout,
@@ -58,7 +59,8 @@ module Eson
                  :q,
                  :df,
                  :analyzer,
-                 :lowercase_expanded_terms
+                 :lowercase_expanded_terms,
+                 :suggest
 
       def types
         if @types
