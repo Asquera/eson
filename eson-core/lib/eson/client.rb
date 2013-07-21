@@ -349,7 +349,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Health}.
     def health(args = {}, immediate = auto_call)
-      request(protocol::Health, args, immediate)
+      request(protocol::Cluster::Health, args, immediate)
     end
 
     # @!macro request
@@ -362,7 +362,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::State}.
     def state(args = {}, immediate = auto_call)
-      request(protocol::State, args, immediate)
+      request(protocol::Cluster::State, args, immediate)
     end
 
     # @!macro request
@@ -375,7 +375,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Stats}.
     def stats(args = {}, immediate = auto_call)
-      request(protocol::Stats, args, immediate)
+      request(protocol::Cluster::Stats, args, immediate)
     end
 
     # @!macro request
@@ -388,7 +388,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Nodes}.
     def nodes(args = {}, immediate = auto_call)
-      request(protocol::Nodes, args, immediate)
+      request(protocol::Cluster::Nodes, args, immediate)
     end
 
     # @!macro request
@@ -404,7 +404,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Shutdown}.
     def shutdown(args = {}, immediate = auto_call)
-      request(protocol::Shutdown, args, immediate)
+      request(protocol::Cluster::Shutdown, args, immediate)
     end
 
     # @!macro request
