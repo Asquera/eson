@@ -33,7 +33,7 @@ PATH
       eson-core
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     ZenTest (4.3.0)
     activesupport (3.2.3)
@@ -41,7 +41,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.2)
     bouncy-castle-java (1.5.0146.1)
-    elasticsearch-node (0.7.4)
+    elasticsearch-node (0.7.5)
     faraday (0.8.4)
       multipart-post (~> 1.1)
     faraday_middleware (0.8.8)
