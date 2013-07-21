@@ -13,7 +13,7 @@
 
 module Eson
   # Eson::Client is a protocol-agnostic client to elasticsearch. For an example
-  # of a protocol implementation, see {Eson::HTTP}. The client primarily 
+  # of a protocol implementation, see {Eson::HTTP}. The client primarily
   # constructs {Eson::Request} objects. In default mode, it also calls the
   # backend immediately. This behaviour can be controlled using the parameter
   # `auto_call`.
@@ -29,9 +29,9 @@ module Eson
   # return better consumable data.
   #
   # @example Constructing an HTTP client
-  #   c = Eson::Client.new(:server => "http://127.0.0.1:9200", 
-  #                        :protocol => Eson::HTTP, 
-  #                        :plugins => [Eson::ResponseParser], 
+  #   c = Eson::Client.new(:server => "http://127.0.0.1:9200",
+  #                        :protocol => Eson::HTTP,
+  #                        :plugins => [Eson::ResponseParser],
   #                        :logger => 'test/test.log')
   #
   #
@@ -88,7 +88,7 @@ module Eson
         self.auto_call = true
       end
     end
-    
+
     # @deprecated
     def default_index=(index_name)
       default_index[:index] = index_name
