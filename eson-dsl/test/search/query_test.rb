@@ -335,6 +335,8 @@ context "Queries" do
       query_name "test/search/queries/indices"
 
       setup do
+        create_index :index => "index1"
+        create_index :index => "index2"
         example("queries/indices")
       end
     end

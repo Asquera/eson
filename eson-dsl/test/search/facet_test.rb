@@ -64,11 +64,14 @@ context "Facets" do
     end
   end
 
-  context '#nested scoped facet' do
-    set :query_name, "test/search/facets/scoped"
+  #scoped facets are gone in 0.90.0
+  if ElasticSearch::Node.version < "0.90.0"
+    context '#nested scoped facet' do
+      set :query_name, "test/search/facets/scoped"
 
-    setup do
-      example("facets/scoped")
+      setup do
+        example("facets/scoped")
+      end
     end
   end
 
