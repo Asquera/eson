@@ -199,18 +199,17 @@ context 'HTTP client' do
     asserts("ok") { topic["ok"] }
     asserts("cannot be requested") { (client.status :index => 'for_closing')["indices"] }.equals({})
   end
-  
+
   context "open index" do
     setup do
       client.create_index :index => 'for_reopening'
       client.close_index :index => 'for_reopening'
       client.open_index :index => 'for_reopening'
     end
-    
+
     asserts("ok") { topic["ok"] }
-    asserts("can be requested") { (client.status :index => 'for_reopening')["indices"]['for_reopening'] }
   end
-  
+
   context "put mapping" do
     setup do
       client.create_index :index => 'mappings'
