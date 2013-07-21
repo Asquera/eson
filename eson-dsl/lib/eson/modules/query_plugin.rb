@@ -26,14 +26,14 @@ module Eson
     end
 
     def self.plugin_for(protocol)
-      [protocol::Search,
-       protocol::Count,
-       protocol::DeleteByQuery,
-       protocol::Percolate,
-       protocol::Explain,
-       protocol::Validate]
+      [protocol::Core::Search,
+       protocol::Core::Count,
+       protocol::Core::DeleteByQuery,
+       protocol::Core::Percolate,
+       protocol::Core::Explain,
+       protocol::Core::Validate]
     end
-    
+
     def handle_block(&block)
       # in ruby 1.8.7, `lambda {}.arity == -1`
       if (block.arity == 0) || (block.arity == -1)

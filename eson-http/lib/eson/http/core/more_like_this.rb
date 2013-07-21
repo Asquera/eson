@@ -1,13 +1,15 @@
 module Eson
   module HTTP
-    module MoreLikeThis
-      include Shared::MoreLikeThis
-      extend API
+    module Core
+      module MoreLikeThis
+        include Shared::Core::MoreLikeThis
+        extend API
 
-      request_method :get
+        request_method :get
 
-      def path
-        "{index}/{type}/{id}/_mlt"
+        def path
+          "{index}/{type}/{id}/_mlt"
+        end
       end
     end
   end

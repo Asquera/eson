@@ -1,13 +1,15 @@
 module Eson
   module HTTP
-    module Update
-      include Shared::Update
-      extend API
-      
-      request_method :post
+    module Core
+      module Update
+        include Shared::Core::Update
+        extend API
 
-      def path
-        "/{index}/{type}/{id}/_update"
+        request_method :post
+
+        def path
+          "/{index}/{type}/{id}/_update"
+        end
       end
     end
   end

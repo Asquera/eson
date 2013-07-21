@@ -2,7 +2,7 @@ require './test/test_config'
 
 context 'HTTP client quick api' do
   helper(:node) { Node::External.instance }
-  
+
   helper(:client) do
     Eson::Client.new(:server => "http://#{node.ip}:#{node.port}",
                      :protocol => Eson::HTTP,
@@ -16,27 +16,27 @@ context 'HTTP client quick api' do
                    :type => "bar",
                    :id => 600
     end
-    
+
     asserts("is stored in correct index") {topic["_index"]}.equals('default')
-    
+
     context "get request" do
       setup do
         client.get :type => "bar",
                    :id => 600
       end
-      
+
       asserts("id") { topic["_id"] }.equals("600")
     end
-    
+
     context "delete" do
       setup do
         client.delete :type => "bar",
                       :id => 600
       end
-      
+
       asserts("ok") { topic["ok"] }
     end
-    
+
     if ElasticSearch::Node.version > "0.19.0"
       context "update" do
         setup do
@@ -46,12 +46,12 @@ context 'HTTP client quick api' do
                         :params => { :value => "foo" },
                         :refresh => true
         end
-        
+
         asserts("ok") { topic["ok"] }
       end
     end
   end
-  
+
   context "percolate" do
     setup do
       client.create_index :index => 'test'
@@ -65,7 +65,7 @@ context 'HTTP client quick api' do
                    }
       client.refresh
     end
-    
+
     asserts("ok") { topic["ok"] }
     asserts("responds to percolation requests") do
       (
@@ -77,7 +77,7 @@ context 'HTTP client quick api' do
       )["matches"]
     end.equals(["kuku"])
   end
-  
+
   context "mget" do
     setup do
       client.create_index :index => 'mget'
@@ -140,13 +140,13 @@ context 'HTTP client verbose API' do
   helper(:client) do
     Eson::HTTP::Client.new(:auto_call => false)
   end
-  
+
   context "returns request objects" do
     setup do 
       client.index
     end
-    
-    asserts_topic("is an Index request").kind_of?(Eson::HTTP::Index)
+
+    asserts_topic("is an Index request").kind_of?(Eson::HTTP::Core::Index)
   end
 
   context "#msearch without block" do

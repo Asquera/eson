@@ -112,7 +112,7 @@ module Eson
     end
 
     # Check whether the client has auth options set at all.
-    # 
+    #
     # @return [true,false] Whether auth parameters are set.
     # @api internal
     def auth?
@@ -142,7 +142,7 @@ module Eson
       end
     end
 
-    # @!group Requests
+    # @!group Core Requests
 
     # @!macro request
     # @!macro immediate
@@ -154,9 +154,9 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Index}.
     def index(args = {}, immediate = auto_call)
-      request(protocol::Index, args, immediate)
+      request(protocol::Core::Index, args, immediate)
     end
-    
+
     # @!macro request
     # @!macro immediate
     #
@@ -166,7 +166,7 @@ module Eson
     # {include:Delete#multi_types}
     # @param [Hash] args The arguments, as given in {Eson::Shared::Delete}.
     def delete(args = {}, immediate = auto_call)
-      request(protocol::Delete, args, immediate)
+      request(protocol::Core::Delete, args, immediate)
     end
 
     # @!macro request
@@ -178,7 +178,7 @@ module Eson
     # {include:Get#multi_types}
     # @param [Hash] args The arguments, as given in {Eson::Shared::Get}.
     def get(args = {}, immediate = auto_call)
-      request(protocol::Get, args, immediate)
+      request(protocol::Core::Get, args, immediate)
     end
 
     # @!macro request
@@ -190,7 +190,7 @@ module Eson
     # {include:MGet#multi_types}
     # @param [Hash] args The arguments, as given in {Eson::Shared::MGet}.
     def mget(args = {}, immediate = auto_call)
-      request(protocol::MultiGet, args, immediate)
+      request(protocol::Core::MultiGet, args, immediate)
     end
 
     # @!macro request
@@ -204,7 +204,7 @@ module Eson
     # @yield If eson-dsl is used, the given block will be used as DSL defintion.
     # @param [Hash] args The arguments, as given in {Eson::Shared::Search}.
     def search(args = {}, immediate = auto_call, &block)
-      request(protocol::Search, args, immediate, &block)
+      request(protocol::Core::Search, args, immediate, &block)
     end
     alias :query :search
 
@@ -218,7 +218,7 @@ module Eson
     #
     # @yield If eson-dsl is used, the given block will be used as DSL defintion.
     def scroll(args = {}, immediate = auto_call, &block)
-      request(protocol::Scroll, args, immediate, &block)
+      request(protocol::Core::Scroll, args, immediate, &block)
     end
 
     # @!macro request
@@ -228,10 +228,10 @@ module Eson
     # {include:SimpleSearch#source_param}
     # {include:SimpleSearch#multi_index}
     # {include:SimpleSearch#multi_types}
-    # 
+    #
     # @param [Hash] args The arguments, as given in {Eson::Shared::SimpleSearch}.
     def simple_search(args = {}, immediate = auto_call)
-      request(protocol::SimpleSearch, args, immediate)
+      request(protocol::Core::SimpleSearch, args, immediate)
     end
 
     # @!macro request
@@ -243,7 +243,7 @@ module Eson
     # {include:Count#multi_types}
     # @param [Hash] args The arguments, as given in {Eson::Shared::Count}.
     def count(args = {}, immediate = auto_call)
-      request(protocol::Count, args, immediate)
+      request(protocol::Core::Count, args, immediate)
     end
 
     # @!macro request
@@ -255,7 +255,7 @@ module Eson
     # {include:Update#multi_types}
     # @param [Hash] args The arguments, as given in {Eson::Shared::Update}.
     def update(args = {}, immediate = auto_call)
-      request(protocol::Update, args, immediate)
+      request(protocol::Core::Update, args, immediate)
     end
 
     # @!macro request
@@ -268,7 +268,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Percolate}.
     def percolate(args = {}, immediate = auto_call, &block)
-      request(protocol::Percolate, args, immediate, &block)
+      request(protocol::Core::Percolate, args, immediate, &block)
     end
 
     # @!macro request
@@ -285,9 +285,9 @@ module Eson
     # @param [Hash] args The arguments, as given in {Eson::Shared::Bulk}.
     def bulk(args = {}, &block)
       if block_given?
-        request(protocol::Bulk, args, &block)
+        request(protocol::Core::Bulk, args, &block)
       else
-        request(protocol::Bulk, args, false)
+        request(protocol::Core::Bulk, args, false)
       end
     end
 
@@ -305,9 +305,9 @@ module Eson
     # @param [Hash] args The arguments, as given in {Eson::Shared::MultiSearch}.
     def msearch(args = {}, &block)
       if block_given?
-        request(protocol::MultiSearch, args, &block)
+        request(protocol::Core::MultiSearch, args, &block)
       else
-        request(protocol::MultiSearch, args, false)
+        request(protocol::Core::MultiSearch, args, false)
       end
     end
 
@@ -322,7 +322,7 @@ module Eson
     # @yield If eson-dsl is used, the given block will be used as DSL defintion.
     # # @param [Hash] args The arguments, as given in {Eson::Shared::DeleteByQuery}.
     def delete_by_query(args = {}, immediate = auto_call, &block)
-      request(protocol::DeleteByQuery, args, immediate, &block)
+      request(protocol::Core::DeleteByQuery, args, immediate, &block)
     end
 
     # @!macro request
@@ -336,9 +336,36 @@ module Eson
     # @yield If eson-dsl is used, the given block will be used as DSL defintion.
     # # @param [Hash] args The arguments, as given in {Eson::Shared::MoreLikeThis}.
     def more_like_this(args = {}, immediate = auto_call)
-      request(protocol::MoreLikeThis, args, immediate)
+      request(protocol::Core::MoreLikeThis, args, immediate)
     end
 
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Explain#parameters}
+    # {include:Explain#source_param}
+    # {include:Explain#multi_index}
+    # {include:Explain#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Explain}.
+    def explain(args = {}, immediate = auto_call)
+      request(protocol::Core::Explain, args)
+    end
+
+    # @!macro request
+    # @!macro immediate
+    #
+    # {include:Validate#parameters}
+    # {include:Validate#source_param}
+    # {include:Validate#multi_index}
+    # {include:Validate#multi_types}
+    #
+    # @param [Hash] args The arguments, as given in {Eson::Shared::Validate}.
+    def validate(args = {}, immediate = auto_call)
+      request(protocol::Core::Validate, args)
+    end
+
+    # @!group Cluster Requests
     # @!macro request
     # @!macro immediate
     #
@@ -406,6 +433,8 @@ module Eson
     def shutdown(args = {}, immediate = auto_call)
       request(protocol::Cluster::Shutdown, args, immediate)
     end
+
+    # @!group Indices Requests
 
     # @!macro request
     # @!macro immediate
@@ -723,38 +752,13 @@ module Eson
       false
     end
 
-    # @!macro request
-    # @!macro immediate
-    #
-    # {include:Explain#parameters}
-    # {include:Explain#source_param}
-    # {include:Explain#multi_index}
-    # {include:Explain#multi_types}
-    #
-    # @param [Hash] args The arguments, as given in {Eson::Shared::Explain}.
-    def explain(args = {}, immediate = auto_call)
-      request(protocol::Explain, args)
-    end
-
-    # @!macro request
-    # @!macro immediate
-    #
-    # {include:Validate#parameters}
-    # {include:Validate#source_param}
-    # {include:Validate#multi_index}
-    # {include:Validate#multi_types}
-    #
-    # @param [Hash] args The arguments, as given in {Eson::Shared::Validate}.
-    def validate(args = {}, immediate = auto_call)
-      request(protocol::Validate, args)
-    end
     # @!endgroup
 
     private
       # @api internal
       def request(endpoint, args, auto_call = auto_call)
         r = protocol::Request.new(endpoint, plugins, self)
-        
+
         r.set_parameters_without_exceptions(default_parameters)
         r.parameters = args
         
