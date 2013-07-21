@@ -1,16 +1,18 @@
 module Eson
   module HTTP
-    module Optimize
-      include Shared::Optimize
-      extend API
-    
-      request_method :post
-      
-      def path
-        if index
-          "/{indices}/_refresh"
-        else
-          "/_refresh"
+    module Indices
+      module Optimize
+        include Shared::Indices::Optimize
+        extend API
+
+        request_method :post
+
+        def path
+          if index
+            "/{indices}/_refresh"
+          else
+            "/_refresh"
+          end
         end
       end
     end

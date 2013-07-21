@@ -1,16 +1,18 @@
 module Eson
   module HTTP
-    module GetSettings
-      include Shared::GetSettings
-      extend API
-      
-      request_method :get
-      
-      def path
-        if index
-          "/{indices}/_settings"
-        else
-          "/_settings"
+    module Indices
+      module GetSettings
+        include Shared::Indices::GetSettings
+        extend API
+
+        request_method :get
+
+        def path
+          if index
+            "/{indices}/_settings"
+          else
+            "/_settings"
+          end
         end
       end
     end

@@ -448,7 +448,7 @@ module Eson
     #   to define the aliases
     # @param [Hash] args The arguments, as given in {Eson::Shared::Aliases}.
     def aliases(args = {}, immediate = auto_call, &block)
-      request(protocol::Aliases, args, immediate, &block)
+      request(protocol::Indices::Aliases, args, immediate, &block)
     end
 
     # @!macro request
@@ -461,7 +461,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::GetAliases}.
     def get_aliases(args = {}, immediate = auto_call, &block)
-      request(protocol::GetAliases, args, immediate, &block)
+      request(protocol::Indices::GetAliases, args, immediate, &block)
     end
 
     # @!macro request
@@ -474,7 +474,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Analyze}.
     def analyze(args = {}, immediate = auto_call)
-      request(protocol::Analyze, args, immediate)
+      request(protocol::Indices::Analyze, args, immediate)
     end
 
     # @!macro request
@@ -487,7 +487,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::ClearCache}.
     def clear_cache(args = {}, immediate = auto_call)
-      request(protocol::ClearCache, args, immediate)
+      request(protocol::Indices::ClearCache, args, immediate)
     end
 
     # @!macro request
@@ -500,7 +500,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::CloseIndex}.
     def close_index(args = {}, immediate = auto_call)
-      request(protocol::CloseIndex, args, immediate)
+      request(protocol::Indices::CloseIndex, args, immediate)
     end
 
     # @!macro request
@@ -513,7 +513,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::OpenIndex}.
     def open_index(args = {}, immediate = auto_call)
-      request(protocol::OpenIndex, args, immediate)
+      request(protocol::Indices::OpenIndex, args, immediate)
     end
 
     # @!macro request
@@ -526,7 +526,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::CreateIndex}.
     def create_index(args = {}, immediate = auto_call)
-      request(protocol::CreateIndex, args, immediate)
+      request(protocol::Indices::CreateIndex, args, immediate)
     end
 
     # @!macro request
@@ -539,7 +539,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::DeleteIndex}.
     def delete_index(args = {}, immediate = auto_call)
-      request(protocol::DeleteIndex, args, immediate)
+      request(protocol::Indices::DeleteIndex, args, immediate)
     end
 
     # @!macro request
@@ -552,7 +552,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::DeleteMapping}.
     def delete_mapping(args = {}, immediate = auto_call)
-      request(protocol::DeleteMapping, args, immediate)
+      request(protocol::Indices::DeleteMapping, args, immediate)
     end
 
     # @!macro request
@@ -565,7 +565,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::GetMapping}.
     def get_mapping(args = {}, immediate = auto_call)
-      request(protocol::GetMapping, args, immediate)
+      request(protocol::Indices::GetMapping, args, immediate)
     end
 
     # @!macro request
@@ -578,7 +578,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::PutMapping}.
     def put_mapping(args = {}, immediate = auto_call)
-      request(protocol::PutMapping, args, immediate)
+      request(protocol::Indices::PutMapping, args, immediate)
     end
 
     # @!macro request
@@ -591,7 +591,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::PutTemplate}.
     def put_template(args = {}, immediate = auto_call)
-      request(protocol::PutTemplate, args, immediate)
+      request(protocol::Indices::PutTemplate, args, immediate)
     end
 
     # @!macro request
@@ -604,7 +604,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::GetTemplate}.
     def get_template(args = {}, immediate = auto_call)
-      request(protocol::GetTemplate, args, immediate)
+      request(protocol::Indices::GetTemplate, args, immediate)
     end
 
     # @!macro request
@@ -617,7 +617,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::DeleteTemplate}.
     def delete_template(args = {}, immediate = auto_call)
-      request(protocol::DeleteTemplate, args, immediate)
+      request(protocol::Indices::DeleteTemplate, args, immediate)
     end
 
     # @!macro request
@@ -630,7 +630,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::GetSettings}.
     def get_settings(args = {}, immediate = auto_call)
-      request(protocol::GetSettings, args, immediate)
+      request(protocol::Indices::GetSettings, args, immediate)
     end
 
     # @!macro request
@@ -643,7 +643,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::UpdateSettings}.
     def update_settings(args = {}, immediate = auto_call)
-      request(protocol::UpdateSettings, args, immediate)
+      request(protocol::Indices::UpdateSettings, args, immediate)
     end
 
     # @!macro request
@@ -656,7 +656,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Flush}.
     def flush(args = {}, immediate = auto_call)
-      request(protocol::Flush, args, immediate)
+      request(protocol::Indices::Flush, args, immediate)
     end
 
     # @!macro request
@@ -669,7 +669,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Optimize}.
     def optimize(args = {}, immediate = auto_call)
-      request(protocol::Optimize, args, immediate)
+      request(protocol::Indices::Optimize, args, immediate)
     end
 
     # @!macro request
@@ -682,7 +682,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Refresh}.
     def refresh(args = {}, immediate = auto_call)
-      request(protocol::Refresh, args, immediate)
+      request(protocol::Indices::Refresh, args, immediate)
     end
 
     # @!macro request
@@ -695,7 +695,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Snapshot}.
     def snapshot(args = {}, immediate = auto_call)
-      request(protocol::Snapshot, args, immediate)
+      request(protocol::Indices::Snapshot, args, immediate)
     end
 
     # @!macro request
@@ -708,7 +708,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Status}.
     def status(args = {}, immediate = auto_call)
-      request(protocol::Status, args, immediate)
+      request(protocol::Indices::Status, args, immediate)
     end
 
     # @!macro request
@@ -721,7 +721,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::IndexStats}.
     def index_stats(args = {}, immediate = auto_call)
-      request(protocol::IndexStats, args, immediate)
+      request(protocol::Indices::IndexStats, args, immediate)
     end
 
     # @!macro request
@@ -734,7 +734,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::Segments}.
     def segments(args = {}, immediate = auto_call)
-      request(protocol::Segments, args, immediate)
+      request(protocol::Indices::Segments, args, immediate)
     end
 
     # @!macro request
@@ -747,7 +747,7 @@ module Eson
     #
     # @param [Hash] args The arguments, as given in {Eson::Shared::IndexExists}.
     def exists?(args = {}, immediate = auto_call)
-      request(protocol::IndexExists, args)
+      request(protocol::Indices::IndexExists, args)
     rescue Eson::NotFoundError
       false
     end
@@ -761,11 +761,11 @@ module Eson
 
         r.set_parameters_without_exceptions(default_parameters)
         r.parameters = args
-        
+
         if block_given?
           r.handle_block(&Proc.new)
         end
-        
+
         if auto_call
           r.call
         else
