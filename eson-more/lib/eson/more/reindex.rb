@@ -1,9 +1,9 @@
 module Eson
   module More
     module Reindex
-      # Reindex a whole index by scrolling the old one and writing to the 
+      # Reindex a whole index by scrolling the old one and writing to the
       # new one using a bulk request.
-      # 
+      #
       # @param [String] from the index to reindex from
       # @param [String] to the index to reindex to
       def reindex(from, to)
@@ -11,6 +11,7 @@ module Eson
           if chunk.size > 0
             bulk do |b|
               chunk.each do |doc|
+                doc = yield doc if block_given?
                 b.index :index => to,
                         :type => doc["_type"],
                         :id => doc["_id"],
