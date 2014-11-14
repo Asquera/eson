@@ -6,6 +6,11 @@ module Eson
   module Shared
     module <%= top_level_name %>
       module <%= module_name %>
+        extend API
+        <% unless parameters.empty? %>
+        # Define all parameters allowed to API endpoint
+        parameters <%= parameters %>
+        <% end %>
       end
     end
   end

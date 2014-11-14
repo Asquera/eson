@@ -1,12 +1,18 @@
+require 'virtus'
+
 module Eson
   module Transform
     class ApiEndpoint
-      attr_reader :top_level_name, :module_name
-      attr_reader :documentation
+      include Virtus.model
 
-      def initialize(hash)
-        @name, @root  = hash.first
-        @documenation = @root.fetch('documentation')
+      attribute :name, String, default: ''
+      attribute :documentation, String, default: ''
+      attribute :methods, Array[String], default: ''
+      attribute :url, Eson::Transform::Api::Url
+      attribute :body, Hash, default: {}
+
+      def parameters
+        url.params.keys.map{ |k| ":#{k}" }.join(', ')
       end
 
       def get_binding

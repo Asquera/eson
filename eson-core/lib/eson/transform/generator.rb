@@ -9,10 +9,6 @@ class Converter
 
   def initialize(hash)
     @api_endpoint = Eson::Transform::ApiEndpoint.new(hash)
-    @root          = hash.fetch('cluster.state')
-    @documentation = @root.fetch('documentation')
-    @methods       = @root.fetch('methods')
-    @url           = @root.fetch('url')
   end
 
   def ruby_content
@@ -25,13 +21,5 @@ class Converter
     Unparser.unparse(node)
 
     content
-  end
-
-  def top_level_name
-    'Cluster'
-  end
-
-  def module_name
-    'State'
   end
 end
