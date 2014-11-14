@@ -20,5 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   
   s.add_dependency "multi_json"
+  s.add_dependency "parser"
+  s.add_dependency "unparser"
   s.add_development_dependency "elasticsearch-node"
 end
