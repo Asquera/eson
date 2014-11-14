@@ -1,3 +1,4 @@
+require './lib/eson/transform/api_endpoint'
 require './lib/eson/transform/generator'
 
 file = File.open('cluster.state.json', 'r') { |f| f.read }
