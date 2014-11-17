@@ -6,7 +6,8 @@ class GeneratorCLI < Thor
   option :input,  aliases: '-i', type: :string, required: true, desc: "Specifies the input JSON file"
   option :output, aliases: '-o', type: :string, retuired: true, desc: "Specifies the generated output ruby file"
   def generate
-    hash = JSON.parse(File.read(options[:input]))
+    input_name = options[:input]
+    hash = JSON.parse(File.read(input_name))
     name, root = hash.first
     args = {
       name:          name,
@@ -16,7 +17,8 @@ class GeneratorCLI < Thor
       documentation: root.fetch('documentation')
     }
     generated = Converter.new(args).ruby_content
-    File.open(options[:output], 'w') { |f| f.write(generated) }
+    output_file = options[:output] || File.basename(input_name, File.extname(input_name)) + ".rb"
+    File.open(output_file, 'w') { |f| f.write(generated) }
   end
 end
 

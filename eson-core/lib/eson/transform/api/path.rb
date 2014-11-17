@@ -6,8 +6,8 @@ module Eson
       class Path
         include Virtus.model
 
-        attribute :type, String
-        attribute :required, Boolean
+        attribute :type, Array[String]
+        attribute :required, Boolean, default: true
         attribute :description, String, default: ''
       end
     end
