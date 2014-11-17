@@ -24,4 +24,5 @@ Gem::Specification.new do |s|
   s.add_dependency "parser"
   s.add_dependency "unparser"
   s.add_development_dependency "elasticsearch-node"
+  s.add_development_dependency "thor"
 end

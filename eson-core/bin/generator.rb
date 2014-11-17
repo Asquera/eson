@@ -1,8 +1,4 @@
-require './lib/eson/transform/api/param'
-require './lib/eson/transform/api/path'
-require './lib/eson/transform/api/url'
-require './lib/eson/transform/api_endpoint'
-require './lib/eson/transform/generator'
+require 'eson-core'
 
 file = File.open('cluster.state.json', 'r') { |f| f.read }
 hash = JSON.parse(file)
