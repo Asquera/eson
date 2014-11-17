@@ -1,16 +1,23 @@
+require 'thor'
 require 'eson-core'
 
-file = File.open('cluster.state.json', 'r') { |f| f.read }
-hash = JSON.parse(file)
-STDOUT.puts "HASH: #{hash}"
+class GeneratorCLI < Thor
+  desc "generate", "Generates a Ruby class file from a API description in JSON"
+  option :input,  aliases: '-i', type: :string, required: true, desc: "Specifies the input JSON file"
+  option :output, aliases: '-o', type: :string, retuired: true, desc: "Specifies the generated output ruby file"
+  def generate
+    hash = JSON.parse(File.read(options[:input]))
+    name, root = hash.first
+    args = {
+      name:          name,
+      url:           root.fetch('url'),
+      methods:       root.fetch('methods'),
+      body:          root.fetch('body'),
+      documentation: root.fetch('documentation')
+    }
+    generated = Converter.new(args).ruby_content
+    File.open(options[:output], 'w') { |f| f.write(generated) }
+  end
+end
 
-name, root = hash.first
-ARGS = {
-  name:          name,
-  url:           root.fetch('url'),
-  methods:       root.fetch('methods'),
-  body:          root.fetch('body'),
-  documentation: root.fetch('documentation')
-}
-
-STDOUT.puts Converter.new(ARGS).ruby_content
+GeneratorCLI.start(ARGV)
