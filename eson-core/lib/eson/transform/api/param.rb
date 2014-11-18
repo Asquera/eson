@@ -7,6 +7,8 @@ module Eson
         include Virtus.model
 
         attribute :type, String
+        attribute :options, Array[String], default: []
+        attribute :default, String
         attribute :description, String
       end
     end

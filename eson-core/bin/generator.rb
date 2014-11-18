@@ -16,7 +16,7 @@ class GeneratorCLI < Thor
       body:          root.fetch('body'),
       documentation: root.fetch('documentation')
     }
-    generated = Converter.new(args).ruby_content
+    generated = Eson::Transform::Generator.new(args).ruby_content
     output_file = options[:output] || File.basename(input_name, File.extname(input_name)) + ".rb"
     File.open(output_file, 'w') { |f| f.write(generated) }
   end

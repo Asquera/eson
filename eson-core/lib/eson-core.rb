@@ -1,16 +1,12 @@
 require 'multi_json'
 
+require 'eson/transform'
+
 require 'eson/client'
 require 'eson/request'
 require 'eson/chainable'
 require 'eson/api'
 require 'eson/error'
-
-require 'eson/transform/api/param'
-require 'eson/transform/api/path'
-require 'eson/transform/api/url'
-require 'eson/transform/api_endpoint'
-require 'eson/transform/generator'
 
 require 'eson/shared/core/index'
 require 'eson/shared/core/get'

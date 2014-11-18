@@ -1,0 +1,5 @@
+require 'eson/transform/api/param'
+require 'eson/transform/api/path'
+require 'eson/transform/api/url'
+require 'eson/transform/api_endpoint'
+require 'eson/transform/generator'
