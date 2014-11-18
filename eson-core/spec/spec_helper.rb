@@ -1,3 +1,4 @@
+require 'json'
 require 'simplecov'
 require 'simplecov-console'
 
@@ -15,3 +16,16 @@ SimpleCov.start do
 end
 
 require 'eson/transform'
+
+def load_api_sample(file_name)
+  root = File.dirname(__FILE__)
+  hash = JSON.parse(File.read(File.join(root, 'samples', "#{file_name}.json")))
+  name, root = hash.first
+  args = {
+    name:          name,
+    url:           root.fetch('url'),
+    methods:       root.fetch('methods'),
+    body:          root.fetch('body'),
+    documentation: root.fetch('documentation')
+  }
+end

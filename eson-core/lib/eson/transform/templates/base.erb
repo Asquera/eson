@@ -1,13 +1,10 @@
 # See documentation <%= documentation %>
 
-require 'virtus'
-
 module Eson
   module Shared
     module <%= top_level_name %>
       module <%= module_name %>
-        include Virtus.model
-        extend API
+        extend Eson::API
 
         <% unless parameters.empty? %>
         # Define all parameters allowed to API endpoint

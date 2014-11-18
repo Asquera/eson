@@ -1,3 +1,5 @@
+require 'virtus'
+
 module Eson
   # Objects including API act as API descriptions. They mostly act as a
   # description of parameter names and roles to use in protocol implementations. 
@@ -22,6 +24,23 @@ module Eson
         params.each do |p|
           attr_accessor p
         end
+      end
+    end
+
+    def parameter_enum(name, enum_values = [], default = nil)
+      name = name.to_s
+      extend(Virtus.model)
+
+      # create specific attribute and set to default
+      attribute name.to_sym, String
+      self.send("#{name}=", default)
+
+      # overload setter method
+      self.define_singleton_method("#{name}=") do |value|
+        unless enum_values.include?(value)
+          raise ArgumentError, "#{value} not a valid enum value"
+        end
+        super value
       end
     end
 
