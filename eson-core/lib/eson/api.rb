@@ -28,27 +28,29 @@ module Eson
     end
 
     def parameter_string(name)
-      extend(Virtus.model)
-
       attribute name.to_sym, String
     end
 
-    def parameter_bool(name)
-      extend(Virtus.model)
+    def parameter_boolean(name)
+      attribute name.to_sym, 'Boolean'
+    end
 
-      attribute name.to_sym, Boolean, default: true
+    def parameter_time(name)
+      attribute name.to_sym, DateTime
+    end
+
+    def parameter_number(name)
+      attribute name.to_sym, Fixnum
     end
 
     def parameter_enum(name, enum_values = [], default = nil)
-      name = name.to_s
-      extend(Virtus.model)
+      name = name.to_sym
 
       # create specific attribute and set to default
-      attribute name.to_sym, String
-      self.send("#{name}=", default)
+      attribute name, String, default: default
 
       # overload virtus setter method
-      define_singleton_method("#{name}=") do |value|
+      define_method("#{name}=") do |value|
         unless enum_values.include?(value) || value.nil?
           raise ArgumentError, "#{value} not a valid enum value"
         end

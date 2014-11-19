@@ -12,7 +12,7 @@ module Eson
       attribute :body, Hash, default: {}
 
       def parameters
-        url.params.keys.map{ |k| ":#{k}" }.join(', ')
+        url.parameter_definitions
       end
 
       def get_binding

@@ -1,15 +1,21 @@
 # See documentation <%= documentation %>
 
+require 'virtus'
+
 module Eson
   module Shared
     module <%= top_level_name %>
       module <%= module_name %>
+        include Virtus.module
         extend Eson::API
 
         <% unless parameters.empty? %>
         # Define all parameters allowed to API endpoint
-        parameters <%= parameters %>
+        <% for parameter in parameters %><%= parameter %>
         <% end %>
+        <% end %>
+
+        attribute :hello, String, default: 'World'
       end
     end
   end
