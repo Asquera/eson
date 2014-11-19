@@ -12,6 +12,22 @@ describe 'Eson::Api' do
 
   it { is_expected.to respond_to(:parameter_enum) }
 
+  describe '#parameter_string' do
+    before do
+      subject.parameter_string(:bar)
+    end
+
+    it { is_expected.to respond_to(:bar) }
+  end
+
+  describe '#parameter_bool' do
+    before do
+      subject.parameter_bool(:local)
+    end
+
+    it { is_expected.to respond_to(:local) }
+  end
+
   describe '#parameter_enum' do
     before do
       subject.parameter_enum(:foo, ['1', '2'], '1')

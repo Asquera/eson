@@ -27,6 +27,18 @@ module Eson
       end
     end
 
+    def parameter_string(name)
+      extend(Virtus.model)
+
+      attribute name.to_sym, String
+    end
+
+    def parameter_bool(name)
+      extend(Virtus.model)
+
+      attribute name.to_sym, Boolean, default: true
+    end
+
     def parameter_enum(name, enum_values = [], default = nil)
       name = name.to_s
       extend(Virtus.model)
@@ -35,7 +47,7 @@ module Eson
       attribute name.to_sym, String
       self.send("#{name}=", default)
 
-      # overload setter method
+      # overload virtus setter method
       self.define_singleton_method("#{name}=") do |value|
         unless enum_values.include?(value)
           raise ArgumentError, "#{value} not a valid enum value"
