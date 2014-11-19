@@ -48,8 +48,8 @@ module Eson
       self.send("#{name}=", default)
 
       # overload virtus setter method
-      self.define_singleton_method("#{name}=") do |value|
-        unless enum_values.include?(value)
+      define_singleton_method("#{name}=") do |value|
+        unless enum_values.include?(value) || value.nil?
           raise ArgumentError, "#{value} not a valid enum value"
         end
         super value

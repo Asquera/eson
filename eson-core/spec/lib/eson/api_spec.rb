@@ -40,6 +40,10 @@ describe 'Eson::Api' do
       expect(klass.foo).to eq '1'
     end
 
+    it 'sets nil as value' do
+      expect { klass.foo = nil }.to_not raise_error
+    end
+
     it 'can set default value' do
       expect { klass.foo = '1' }.to_not raise_error
     end
