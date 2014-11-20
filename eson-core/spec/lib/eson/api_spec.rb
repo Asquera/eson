@@ -83,7 +83,6 @@ describe 'Eson::Api' do
     end
 
     it 'raise ArgumentError if unknown enum value' do
-      # pending 'enum values are not evaluated right now'
       expect { subject.foo = '3' }.to raise_error(ArgumentError)
     end
   end

@@ -33,31 +33,23 @@ module Eson
       def parameter_enum(name, enum_values = [], default = nil)
         mod = Module.new do
           include Virtus.module
-          # create specific attribute and set to default
-          attribute name.to_sym, String, default: default
+          attribute name.to_sym, String, default: default, coercer: proc { |value|
+            unless enum_values.include?(value) || value.nil?
+              raise ArgumentError
+            end
+            value
+          }
         end
         self.include(mod)
-
-        define_method("#{name.to_sym}=") do |value|
-          binding.pry
-          unless enum_values.include?(value) || value.nil?
-            raise ArgumentError
-          end
-          super value
-        end
       end
     end
 
     def self.included(base)
-      base.class_eval do
-        extend ParameterMethods
-      end
+      base.extend(ParameterMethods)
     end
 
     def self.extended(base)
-      base.class_eval do
-        extend ParameterMethods
-      end
+      base.extend(ParameterMethods)
     end
 
     # Designates the names of all parameters supported by this request, including

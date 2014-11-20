@@ -115,7 +115,6 @@ GEM
     simplecov-html (0.8.0)
     slop (3.6.0)
     thread_safe (0.3.4)
-    thread_safe (0.3.4-java)
     unparser (0.1.14)
       abstract_type (~> 0.0.7)
       adamantium (~> 0.2.0)
