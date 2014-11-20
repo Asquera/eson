@@ -31,11 +31,14 @@ module Eson
       end
 
       def parameter_enum(name, enum_values = [], default = nil)
-        # create specific attribute and set to default
-        attribute name.to_sym, String, default: default
+        mod = Module.new do
+          include Virtus.module
+          # create specific attribute and set to default
+          attribute name.to_sym, String, default: default
+        end
+        self.include(mod)
 
-        # overload virtus setter method
-        define_method "#{name.to_s}=" do |value|
+        define_method("#{name.to_sym}=") do |value|
           binding.pry
           unless enum_values.include?(value) || value.nil?
             raise ArgumentError
