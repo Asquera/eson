@@ -13,6 +13,50 @@ module Eson
   module API
     include Chainable
 
+    module ParameterMethods
+      def parameter_string(name)
+        attribute name.to_sym, String
+      end
+
+      def parameter_boolean(name)
+        attribute name.to_sym, 'Boolean'
+      end
+
+      def parameter_time(name)
+        attribute name.to_sym, DateTime
+      end
+
+      def parameter_number(name)
+        attribute name.to_sym, Fixnum
+      end
+
+      def parameter_enum(name, enum_values = [], default = nil)
+        # create specific attribute and set to default
+        attribute name.to_sym, String, default: default
+
+        # overload virtus setter method
+        define_method "#{name.to_s}=" do |value|
+          binding.pry
+          unless enum_values.include?(value) || value.nil?
+            raise ArgumentError
+          end
+          super value
+        end
+      end
+    end
+
+    def self.included(base)
+      base.class_eval do
+        extend ParameterMethods
+      end
+    end
+
+    def self.extended(base)
+      base.class_eval do
+        extend ParameterMethods
+      end
+    end
+
     # Designates the names of all parameters supported by this request, including
     # those used in the source later on.
     def parameters(*params)
@@ -24,37 +68,6 @@ module Eson
         params.each do |p|
           attr_accessor p
         end
-      end
-    end
-
-    def parameter_string(name)
-      attribute name.to_sym, String
-    end
-
-    def parameter_boolean(name)
-      attribute name.to_sym, 'Boolean'
-    end
-
-    def parameter_time(name)
-      attribute name.to_sym, DateTime
-    end
-
-    def parameter_number(name)
-      attribute name.to_sym, Fixnum
-    end
-
-    def parameter_enum(name, enum_values = [], default = nil)
-      name = name.to_sym
-
-      # create specific attribute and set to default
-      attribute name, String, default: default
-
-      # overload virtus setter method
-      define_method("#{name}=") do |value|
-        unless enum_values.include?(value) || value.nil?
-          raise ArgumentError, "#{value} not a valid enum value"
-        end
-        super value
       end
     end
 
