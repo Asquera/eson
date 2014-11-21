@@ -86,5 +86,21 @@ describe 'Eson::Api::DSL' do
         expect(subject.paths).to eq expected
       end
     end
+
+    describe '#params' do
+      subject do
+        C.class_eval do
+          url do
+            params do
+            end
+          end
+        end
+        C.new
+      end
+
+      it 'does not raise error when calling params' do
+        expect { subject }.to_not raise_error
+      end
+    end
   end
 end
