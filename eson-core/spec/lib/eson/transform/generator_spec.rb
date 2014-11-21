@@ -39,7 +39,7 @@ describe Eson::Transform::Generator do
             include Eson::Shared::Cluster::Health
           end
         end
-        subject(:api) { ApiTest.new }
+        subject(:api) { ApiTest.new.url.params }
 
         it { is_expected.to respond_to(:level) }
         it { is_expected.to respond_to(:local) }

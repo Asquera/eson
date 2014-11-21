@@ -38,7 +38,7 @@ describe 'Eson::Api' do
     end
 
     it 'creates correct parameter' do
-      expect(subject.url.bar).to respond_to :bar
+      expect(subject.url.params).to respond_to :bar
     end
   end
 end
