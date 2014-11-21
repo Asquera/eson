@@ -1,7 +1,6 @@
 require 'virtus'
 
 require 'eson/dsl'
-require 'eson/parameter_methods'
 
 module Eson
   # Objects including API act as API descriptions. They mostly act as a
@@ -17,12 +16,10 @@ module Eson
     include Chainable
 
     def self.included(base)
-      base.extend(ParameterMethods)
       base.include(DSL)
     end
 
     def self.extended(base)
-      base.extend(ParameterMethods)
       base.include(DSL)
     end
 

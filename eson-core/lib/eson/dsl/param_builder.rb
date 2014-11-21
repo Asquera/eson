@@ -28,6 +28,21 @@ module Eson
           end
           extend mod
         end
+
+        def boolean(name, default = nil)
+          mod = Module.new do
+            include Virtus.module
+            attribute name.to_sym, 'Boolean', default: default
+          end
+          extend mod
+        end
+
+        def numnber(name, default = nil)
+          mod = Module.new do
+            include Virtus.module
+            attribute name.to_sym, Fixnum, default: default
+          end
+        end
       end
     end
   end

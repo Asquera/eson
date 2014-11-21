@@ -6,6 +6,23 @@ require 'eson/dsl'
 require 'eson/dsl/param_builder'
 
 describe Eson::API::DSL::ParamBuilder do
+  shared_examples 'a valid parameter' do |name, default|
+    it 'does not raise error' do
+      expect { subject }.to_not raise_error
+    end
+
+    it { is_expected.to respond_to(name.to_sym) }
+
+    it "returns default value #{default}" do
+      expect(subject.send(name.to_sym)).to eq default
+    end
+
+    it 'sets nil as value' do
+      expect { subject.send("#{name.to_sym}=", nil) }.to_not raise_error
+      expect(subject.send(name.to_sym)).to eq nil
+    end
+  end
+
   describe '#initialize' do
     context 'without block' do
       subject { Eson::API::DSL::ParamBuilder.new }
@@ -30,19 +47,7 @@ describe Eson::API::DSL::ParamBuilder do
         end
       end
 
-      it 'does not raise error' do
-        expect { subject }.to_not raise_error
-      end
-
-      it { is_expected.to respond_to(:foo) }
-
-      it 'returns default value' do
-        expect(subject.foo).to eq '1'
-      end
-
-      it 'sets nil as value' do
-        expect { subject.foo = nil }.to_not raise_error
-      end
+      it_behaves_like 'a valid parameter', :foo, '1'
 
       it 'can set default value' do
         expect { subject.foo = '1' }.to_not raise_error
@@ -60,20 +65,17 @@ describe Eson::API::DSL::ParamBuilder do
         end
       end
 
-      it 'does not raise error' do
-        expect { subject }.to_not raise_error
+      it_behaves_like 'a valid parameter', :bar, 'haha'
+    end
+
+    describe 'add boolean paramter' do
+      subject do
+        Eson::API::DSL::ParamBuilder.new do
+          boolean :foo, false
+        end
       end
 
-      it { is_expected.to respond_to(:bar) }
-
-      it 'returns default value' do
-        expect(subject.bar).to eq 'haha'
-      end
-
-      it 'sets nil as value' do
-        expect { subject.bar = nil }.to_not raise_error
-        expect(subject.bar).to be nil
-      end
+      it_behaves_like 'a valid parameter', :foo, false
     end
   end
 end
