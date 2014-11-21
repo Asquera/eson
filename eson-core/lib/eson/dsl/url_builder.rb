@@ -1,3 +1,5 @@
+require 'eson/dsl/param_builder'
+
 module Eson
   module API
     module DSL
@@ -8,6 +10,7 @@ module Eson
         attr_reader :params
 
         def initialize(&block)
+          @params = ParamBuilder.new
           instance_eval(&block) if block_given?
         end
 
@@ -21,7 +24,8 @@ module Eson
         end
 
         def params(&block)
-          params = ParamBuilder.new(&block)
+          @params.instance_eval(&block) if block_given?
+          @params
         end
 
         def paths
