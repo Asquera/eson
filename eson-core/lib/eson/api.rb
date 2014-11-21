@@ -1,5 +1,8 @@
 require 'virtus'
 
+require 'eson/dsl'
+require 'eson/parameter_methods'
+
 module Eson
   # Objects including API act as API descriptions. They mostly act as a
   # description of parameter names and roles to use in protocol implementations. 
@@ -13,43 +16,14 @@ module Eson
   module API
     include Chainable
 
-    module ParameterMethods
-      def parameter_string(name)
-        attribute name.to_sym, String
-      end
-
-      def parameter_boolean(name)
-        attribute name.to_sym, 'Boolean'
-      end
-
-      def parameter_time(name)
-        attribute name.to_sym, DateTime
-      end
-
-      def parameter_number(name)
-        attribute name.to_sym, Fixnum
-      end
-
-      def parameter_enum(name, enum_values = [], default = nil)
-        mod = Module.new do
-          include Virtus.module
-          attribute name.to_sym, String, default: default, coercer: proc { |value|
-            unless enum_values.include?(value) || value.nil?
-              raise ArgumentError
-            end
-            value
-          }
-        end
-        self.include(mod)
-      end
-    end
-
     def self.included(base)
       base.extend(ParameterMethods)
+      base.include(DSL)
     end
 
     def self.extended(base)
       base.extend(ParameterMethods)
+      base.include(DSL)
     end
 
     # Designates the names of all parameters supported by this request, including

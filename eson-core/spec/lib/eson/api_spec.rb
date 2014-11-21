@@ -2,6 +2,7 @@ require 'spec_helper'
 
 require 'eson/chainable'
 require 'eson/api'
+require 'eson/dsl'
 
 describe 'Eson::Api' do
   before do
