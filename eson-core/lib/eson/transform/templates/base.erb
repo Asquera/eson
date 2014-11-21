@@ -6,11 +6,13 @@ module Eson
       module <%= module_name %>
         extend Eson::API
 
-        <% unless parameters.empty? %>
-        # Define all parameters allowed to API endpoint
-        <% for parameter in parameters %><%= parameter %>
-        <% end %>
-        <% end %>
+        url do
+          base_path '<%= url.path %>'
+          <% for path in url.paths %>path '<%= path %>'
+          <% end %>
+          <% for part in url.render_parts %><%= part %>
+          <% end %>
+        end
       end
     end
   end
