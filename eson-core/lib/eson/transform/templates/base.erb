@@ -6,15 +6,14 @@ module Eson
       module <%= module_name %>
         extend Eson::API
 
-        url do
-          set_base_path '<%= url.path %>'
+        url '<%= url.path %>' do
           <% for path in url.paths %>path '<%= path %>'
           <% end %>
           <% for part in url.render_parts %><%= part %>
           <% end %>
-          <% unless url.params.empty? %> params do
-          <% for param in url.render_params %><%= param %>
-          <% end %>
+          <% unless url.params.empty? %>params do
+            <% for param in url.render_params %><%= param %>
+            <% end %>
           end
           <% end %>
         end

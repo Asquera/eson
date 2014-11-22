@@ -35,8 +35,7 @@ describe 'Eson::Api::DSL' do
     describe 'sets base_path' do
       subject do
         C.class_eval do
-          url do
-            set_base_path 'test'
+          url 'test' do
           end
         end
         C.new.url
@@ -56,7 +55,7 @@ describe 'Eson::Api::DSL' do
     describe 'sets path' do
       subject do
         C.class_eval do
-          url do
+          url 'test' do
             path '/_cluster/health'
             path '/_cluster/health/{index}'
           end
