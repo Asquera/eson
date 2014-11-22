@@ -37,7 +37,7 @@ describe 'Eson::Api' do
       expect { subject }.to_not raise_error
     end
 
-    it 'creates correct parameter' do
+    it 'creates correct parameter :bar' do
       expect(subject.url.params).to respond_to :bar
     end
   end
@@ -51,6 +51,11 @@ describe 'Eson::Api' do
           path '/_cluster/health/{index}'
 
           part :index, type: String, required: true
+
+          params do
+            string :foo, 'foo'
+            enum :bar, [1, 2]
+          end
         end
       end
       C.new
