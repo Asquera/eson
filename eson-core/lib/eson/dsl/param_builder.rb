@@ -31,7 +31,7 @@ module Eson
           end
         end
 
-        def numnber(name, default = nil)
+        def number(name, default = nil)
           in_module do
             attribute name.to_sym, Fixnum, default: default
           end
