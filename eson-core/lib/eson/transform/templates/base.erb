@@ -7,7 +7,7 @@ module Eson
         extend Eson::API
 
         url do
-          base_path '<%= url.path %>'
+          set_base_path '<%= url.path %>'
           <% for path in url.paths %>path '<%= path %>'
           <% end %>
           <% for part in url.render_parts %><%= part %>
