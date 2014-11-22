@@ -37,6 +37,12 @@ module Eson
           end
         end
 
+        def time(name, default = nil)
+          in_module do
+            attribute name.to_sym, DateTime, default: default
+          end
+        end
+
         private
 
         def in_module(&block)
