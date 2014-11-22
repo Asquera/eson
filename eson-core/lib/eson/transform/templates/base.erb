@@ -12,6 +12,11 @@ module Eson
           <% end %>
           <% for part in url.render_parts %><%= part %>
           <% end %>
+          <% unless url.params.empty? %> params do
+          <% for param in url.render_params %><%= param %>
+          <% end %>
+          end
+          <% end %>
         end
       end
     end
