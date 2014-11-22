@@ -89,7 +89,7 @@ describe 'Eson::Api::DSL' do
     describe '#params' do
       subject do
         C.class_eval do
-          url do
+          url 'foo' do
             params do
             end
           end
@@ -98,7 +98,7 @@ describe 'Eson::Api::DSL' do
       end
 
       it 'does not raise error when calling params' do
-        expect { subject }.to_not raise_error
+        expect { subject.url.params }.to_not raise_error
       end
     end
   end
