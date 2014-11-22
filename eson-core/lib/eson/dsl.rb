@@ -6,7 +6,7 @@ module Eson
       module ClassMethods
         def url(&block)
           define_method :url do
-            UrlBuilder.new(&block)
+            @builder ||= UrlBuilder.new(&block)
           end
         end
       end

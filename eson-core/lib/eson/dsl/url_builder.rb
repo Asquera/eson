@@ -5,7 +5,6 @@ module Eson
     module DSL
       class UrlBuilder
         attr_reader :base_path
-        attr_reader :paths
         attr_reader :parts
         attr_reader :params
 
@@ -15,7 +14,8 @@ module Eson
         end
 
         def path(path)
-          paths << path
+          @paths ||= []
+          @paths << path
         end
 
         def part(path, args = {})
@@ -29,7 +29,7 @@ module Eson
         end
 
         def paths
-          @paths ||= []
+          @paths
         end
 
         def parts

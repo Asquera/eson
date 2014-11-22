@@ -39,16 +39,25 @@ describe Eson::Transform::Generator do
             include Eson::Shared::Cluster::Health
           end
         end
-        subject(:api) { ApiTest.new.url.params }
+        subject(:api) { ApiTest.new }
 
-        it { is_expected.to respond_to(:level) }
-        it { is_expected.to respond_to(:local) }
-        it { is_expected.to respond_to(:master_timeout) }
-        it { is_expected.to respond_to(:timeout) }
-        it { is_expected.to respond_to(:wait_for_active_shards) }
-        it { is_expected.to respond_to(:wait_for_nodes) }
-        it { is_expected.to respond_to(:wait_for_relocating_shards) }
-        it { is_expected.to respond_to(:wait_for_status) }
+        it 'does not increase paths array' do
+          expect(subject.url.paths.size).to eq 2
+          expect(subject.url.paths.size).to eq 2
+        end
+
+        describe 'the params list' do
+          subject { api.url.params }
+
+          it { is_expected.to respond_to(:level) }
+          it { is_expected.to respond_to(:local) }
+          it { is_expected.to respond_to(:master_timeout) }
+          it { is_expected.to respond_to(:timeout) }
+          it { is_expected.to respond_to(:wait_for_active_shards) }
+          it { is_expected.to respond_to(:wait_for_nodes) }
+          it { is_expected.to respond_to(:wait_for_relocating_shards) }
+          it { is_expected.to respond_to(:wait_for_status) }
+        end
       end
     end
   end

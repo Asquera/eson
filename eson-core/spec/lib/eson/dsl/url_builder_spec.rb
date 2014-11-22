@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'rspec/its'
 
 require 'eson/chainable'
 require 'eson/api'
@@ -8,6 +9,24 @@ require 'eson/dsl/url_builder'
 require 'pry'
 
 describe Eson::API::DSL::UrlBuilder do
+  describe '#paths' do
+    let(:builder) do
+      Eson::API::DSL::UrlBuilder.new do
+        path '/_cluster/health'
+        path '/_cluster/health/{index}'
+      end
+    end
+    subject { builder.paths }
+
+    it { is_expected.to be_a(Array) }
+    its(:size) { is_expected.to eq 2 }
+
+    it 'returns two paths when fetchting multiple times' do
+      expect(subject.size).to eq 2
+      expect(subject.size).to eq 2
+    end
+  end
+
   describe '#params' do
     context 'with single block' do
       let(:builder) do
