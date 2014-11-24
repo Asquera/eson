@@ -2,7 +2,8 @@
 
 module Eson
   module Shared
-    module <%= top_level_name %>
+    <% unless top_level_name.empty? %>module <%= top_level_name %><% end %>
+      <%= top_level_name %>
       module <%= module_name %>
         extend Eson::API
 
@@ -20,6 +21,6 @@ module Eson
           <% end %>
         end
       end
-    end
+    <% unless top_level_name.empty? %>end<% end %>
   end
 end

@@ -7,12 +7,14 @@ module Eson
         include Virtus.model
 
         attribute :type, Array[String]
-        attribute :required, Boolean, default: true
+        attribute :required, Boolean
         attribute :description, String, default: ''
 
         def render
           temp = (type.size == 1) ? 'String' : 'Array[String]'
-          "type: #{temp}, required: #{required}"
+          result  = "type: #{temp}"
+          result += ", required: #{required}" unless required.nil?
+          result
         end
       end
     end

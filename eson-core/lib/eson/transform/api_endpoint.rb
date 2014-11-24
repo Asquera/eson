@@ -24,11 +24,15 @@ module Eson
       end
 
       def top_level_name
-        @name.split('.').first.capitalize
+        names = @name.split('.')
+        result = names.shift(names.size - 1)
+        result.empty? ? '' : result.first.capitalize
       end
 
       def module_name
-        @name.split('.').last.capitalize
+        names = @name.split('.')
+        names.shift(names.size - 1)
+        names.empty? ? '' : names.first.capitalize
       end
     end
   end

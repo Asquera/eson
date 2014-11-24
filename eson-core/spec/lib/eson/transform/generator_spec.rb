@@ -19,6 +19,31 @@ describe Eson::Transform::Generator do
       it 'does not raise error' do
         expect { subject }.to_not raise_error
       end
+
+      it 'returns top level module name' do
+        expect(subject.api_endpoint.top_level_name).to eq 'Cluster'
+      end
+
+      it 'returns module name "Health"' do
+        expect(subject.api_endpoint.module_name).to eq 'Health'
+      end
+    end
+
+    context 'with sample "bulk"' do
+      let(:sample) { load_api_sample('bulk') }
+      subject { Eson::Transform::Generator.new(sample) }
+
+      it 'does not raise error' do
+        expect { subject }.to_not raise_error
+      end
+
+      it 'returns empty top level module name' do
+        expect(subject.api_endpoint.top_level_name).to eq ''
+      end
+
+      it 'returns module name "Bulk"' do
+        expect(subject.api_endpoint.module_name).to eq 'Bulk'
+      end
     end
   end
 
@@ -69,6 +94,22 @@ describe Eson::Transform::Generator do
           it { is_expected.to respond_to(:wait_for_relocating_shards) }
           it { is_expected.to respond_to(:wait_for_status) }
         end
+      end
+    end
+
+    context 'with sample "bulk.json"' do
+      let(:sample) { load_api_sample('bulk') }
+      let(:source) { Eson::Transform::Generator.new(sample).ruby_content }
+      let!(:module) { eval(source) }
+
+      it 'creates module Eson::Shared::Bulk' do
+        exists = Object.const_defined?('Eson::Shared::Bulk')
+        expect(exists).to eq true
+      end
+
+      it 'does not create Eson::Shared::Bulk::Bulk' do
+        exists = Object.const_defined?('Eson::Shared::Bulk::Bulk')
+        expect(exists).to eq false
       end
     end
   end
