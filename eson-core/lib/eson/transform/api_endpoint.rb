@@ -7,12 +7,12 @@ module Eson
 
       attribute :name, String, default: ''
       attribute :documentation, String, default: ''
-      attribute :methods, Array[String], default: ''
+      attribute :request_methods, Array[String], default: []
       attribute :url, Eson::Transform::Api::Url
       attribute :body, Hash, default: {}
 
       def request_methods
-        methods.map { |m| ":#{m.to_s.downcase}" }.join(', ')
+        @request_methods.map { |m| ":#{m.to_s.downcase}" }.join(', ')
       end
 
       def parameters

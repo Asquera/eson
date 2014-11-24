@@ -17,28 +17,28 @@ describe 'Eson::Api::DSL' do
 
   subject { C.new }
 
-  describe '#methods' do
+  describe '#request_methods' do
     context 'with single method' do
       before do
         C.class_eval do
-          methods :get
+          request_methods :get
         end
       end
 
       it 'returns correct list' do
-        expect(subject.methods).to eq [:get]
+        expect(subject.request_methods).to eq [:get]
       end
     end
 
     context 'with multiple methods' do
       before do
         C.class_eval do
-          methods :post, :get
+          request_methods :post, :get
         end
       end
 
       it 'returns correct list' do
-        expect(subject.methods).to eq [:post, :get]
+        expect(subject.request_methods).to eq [:post, :get]
       end
     end
   end

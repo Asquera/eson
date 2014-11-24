@@ -10,11 +10,11 @@ class GeneratorCLI < Thor
     hash = JSON.parse(File.read(input_name))
     name, root = hash.first
     args = {
-      name:          name,
-      url:           root.fetch('url'),
-      methods:       root.fetch('methods'),
-      body:          root.fetch('body'),
-      documentation: root.fetch('documentation')
+      name:            name,
+      url:             root.fetch('url'),
+      request_methods: root.fetch('methods'),
+      body:            root.fetch('body'),
+      documentation:   root.fetch('documentation')
     }
     generated = Eson::Transform::Generator.new(args).ruby_content
     output_file = options[:output] || File.basename(input_name, File.extname(input_name)) + ".rb"

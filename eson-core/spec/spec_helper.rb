@@ -22,10 +22,10 @@ def load_api_sample(file_name)
   hash = JSON.parse(File.read(File.join(root, 'samples', "#{file_name}.json")))
   name, root = hash.first
   args = {
-    name:          name,
-    url:           root.fetch('url'),
-    methods:       root.fetch('methods'),
-    body:          root.fetch('body'),
-    documentation: root.fetch('documentation')
+    name:            name,
+    url:             root.fetch('url'),
+    request_methods: root.fetch('methods'),
+    body:            root.fetch('body'),
+    documentation:   root.fetch('documentation')
   }
 end

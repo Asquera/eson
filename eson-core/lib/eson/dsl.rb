@@ -10,8 +10,8 @@ module Eson
           end
         end
 
-        def methods(*list)
-          define_method :methods do
+        def request_methods(*list)
+          define_method :request_methods do
             list.map { |e| e.to_sym }
           end
         end

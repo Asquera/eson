@@ -72,7 +72,7 @@ describe Eson::Transform::Generator do
         end
 
         it 'contains correct methods list' do
-          expect(subject.methods).to eq [:get]
+          expect(subject.request_methods).to eq [:get]
         end
 
         describe 'paths array' do

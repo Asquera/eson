@@ -3,11 +3,10 @@
 module Eson
   module Shared
     <% unless top_level_name.empty? %>module <%= top_level_name %><% end %>
-      <%= top_level_name %>
       module <%= module_name %>
         extend Eson::API
 
-        methods <%= request_methods %>
+        request_methods <%= request_methods %>
 
         url '<%= url.path %>' do
           <% for path in url.paths %>path '<%= path %>'
