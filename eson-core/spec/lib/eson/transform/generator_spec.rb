@@ -46,6 +46,13 @@ describe Eson::Transform::Generator do
           expect(subject.url.paths.size).to eq 2
         end
 
+        describe 'paths array' do
+          it "returns correct list of paths" do
+            expected = ['/_cluster/health', '/_cluster/health/{index}']
+            expect(subject.url.paths).to eq expected
+          end
+        end
+
         describe 'the params list' do
           subject { api.url.params }
 

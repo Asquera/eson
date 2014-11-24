@@ -77,5 +77,25 @@ describe Eson::API::DSL::ParamBuilder do
 
       it_behaves_like 'a valid parameter', :foo, false
     end
+
+    describe 'add number parameter' do
+      subject do
+        Eson::API::DSL::ParamBuilder.new do
+          number :level, 123
+        end
+      end
+
+      it_behaves_like 'a valid parameter', :level, 123
+    end
+
+    describe 'add time parameter' do
+      subject do
+        Eson::API::DSL::ParamBuilder.new do
+          time :created_at, DateTime.new(2014, 10, 12)
+        end
+      end
+
+      it_behaves_like 'a valid parameter', :created_at, DateTime.new(2014, 10, 12)
+    end
   end
 end
