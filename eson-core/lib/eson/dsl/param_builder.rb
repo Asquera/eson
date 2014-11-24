@@ -46,11 +46,11 @@ module Eson
         private
 
         def in_module(&block)
-          mod = Module.new do
+          @mod ||= Module.new do
             include Virtus.module
-            instance_eval(&block) if block_given?
           end
-          extend mod
+          @mod.instance_eval(&block) if block_given?
+          extend @mod
         end
       end
     end
