@@ -46,6 +46,10 @@ describe Eson::Transform::Generator do
           expect(subject.url.paths.size).to eq 2
         end
 
+        it 'contains correct methods list' do
+          expect(subject.methods).to eq [:get]
+        end
+
         describe 'paths array' do
           it "returns correct list of paths" do
             expected = ['/_cluster/health', '/_cluster/health/{index}']

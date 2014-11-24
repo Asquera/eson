@@ -11,6 +11,10 @@ module Eson
       attribute :url, Eson::Transform::Api::Url
       attribute :body, Hash, default: {}
 
+      def request_methods
+        methods.map { |m| ":#{m.to_s.downcase}" }.join(', ')
+      end
+
       def parameters
         url.parameter_definitions
       end

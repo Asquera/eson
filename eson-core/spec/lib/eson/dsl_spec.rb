@@ -17,6 +17,32 @@ describe 'Eson::Api::DSL' do
 
   subject { C.new }
 
+  describe '#methods' do
+    context 'with single method' do
+      before do
+        C.class_eval do
+          methods :get
+        end
+      end
+
+      it 'returns correct list' do
+        expect(subject.methods).to eq [:get]
+      end
+    end
+
+    context 'with multiple methods' do
+      before do
+        C.class_eval do
+          methods :post, :get
+        end
+      end
+
+      it 'returns correct list' do
+        expect(subject.methods).to eq [:post, :get]
+      end
+    end
+  end
+
   describe '#url' do
     context 'with empty block' do
       before do

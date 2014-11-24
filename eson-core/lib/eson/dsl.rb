@@ -9,6 +9,12 @@ module Eson
             @builder ||= UrlBuilder.new(url_path, &block)
           end
         end
+
+        def methods(*list)
+          define_method :methods do
+            list.map { |e| e.to_sym }
+          end
+        end
       end
 
       def self.included(base)

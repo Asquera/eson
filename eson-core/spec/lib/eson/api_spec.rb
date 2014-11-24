@@ -45,6 +45,7 @@ describe 'Eson::Api' do
   describe 'more complete example' do
     subject do
       M.class_eval do
+        methods :get
         url '/_cluster/health' do
           path '/_cluster/health'
           path '/_cluster/health/{index}'
