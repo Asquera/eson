@@ -73,4 +73,18 @@ describe Eson::API::DSL::UrlBuilder do
       it { is_expected.to respond_to(:bar) }
     end
   end
+
+  describe '#part' do
+    context 'with a single index' do
+      let(:builder) do
+        Eson::API::DSL::UrlBuilder.new do
+          path '/_cluster/health/{index}'
+          part :index, type: String, required: true
+        end
+      end
+      subject { builder.parts }
+
+      it { is_expected.to respond_to(:index) }
+    end
+  end
 end
