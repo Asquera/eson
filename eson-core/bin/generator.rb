@@ -28,9 +28,9 @@ module Helpers
     args = {
       name:            name,
       url:             root.fetch('url'),
-      request_methods: root.fetch('methods'),
-      body:            root.fetch('body'),
-      documentation:   root.fetch('documentation')
+      request_methods: root['methods'],
+      body:            root['body'],
+      documentation:   root['documentation']
     }
     Eson::Transform::Generator.new(args).ruby_content
   end
