@@ -6,20 +6,20 @@ require 'eson/dsl'
 require 'eson/dsl/param_builder'
 
 describe Eson::API::DSL::ParamBuilder do
-  shared_examples 'a valid parameter' do |name, default|
+  shared_examples 'a valid parameter' do |name, value, default = nil|
     it 'does not raise error' do
       expect { subject }.to_not raise_error
     end
 
     it { is_expected.to respond_to(name.to_sym) }
 
-    it "returns default value #{default}" do
-      expect(subject.send(name.to_sym)).to eq default
+    it "returns set value #{value}" do
+      expect(subject.send(name.to_sym)).to eq value
     end
 
     it 'sets nil as value' do
-      expect { subject.send("#{name.to_sym}=", nil) }.to_not raise_error
-      expect(subject.send(name.to_sym)).to eq nil
+      expect { subject.send("#{name.to_sym}=", default) }.to_not raise_error
+      expect(subject.send(name.to_sym)).to eq default
     end
   end
 
@@ -96,6 +96,16 @@ describe Eson::API::DSL::ParamBuilder do
       end
 
       it_behaves_like 'a valid parameter', :created_at, DateTime.new(2014, 10, 12)
+    end
+
+    describe 'add list parameter' do
+      subject do
+        Eson::API::DSL::ParamBuilder.new do
+          list :h, ['name', 'email']
+        end
+      end
+
+      it_behaves_like 'a valid parameter', :h, ['name', 'email'], []
     end
   end
 end

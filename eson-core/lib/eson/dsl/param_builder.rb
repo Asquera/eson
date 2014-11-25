@@ -25,6 +25,12 @@ module Eson
           end
         end
 
+        def list(name, default = nil)
+          in_module do
+            attribute name.to_sym, Array[String], default: default
+          end
+        end
+
         def boolean(name, default = nil)
           in_module do
             attribute name.to_sym, 'Boolean', default: default
