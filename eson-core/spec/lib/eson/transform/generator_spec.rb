@@ -87,6 +87,37 @@ describe Eson::Transform::Generator do
       end
     end
 
+    context 'with unsupported type' do
+      let(:sample) do
+        hash = {
+          "indices.refresh" => {
+            "url" => {
+              "methods" => "get",
+              "params" => {
+                "operation_threading" => {
+                  "type" => 'unknown',
+                  "description" => "TODO: ?"
+                }
+              }
+            }
+          }
+        }
+        load_from_hash(hash)
+      end
+      let(:source) { Eson::Transform::Generator.new(sample).ruby_content }
+      subject(:api) do
+        eval(source)
+        class ApiTest
+          include Eson::Shared::Indices::Refresh
+        end
+        ApiTest.new
+      end
+
+      it 'raises an ArgumentError' do
+        expect { subject }.to raise_error(ArgumentError)
+      end
+    end
+
     context 'with sample "cluster.health"' do
       let(:sample) { load_api_sample('cluster.health') }
       let(:source) { Eson::Transform::Generator.new(sample).ruby_content }
