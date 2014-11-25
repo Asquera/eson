@@ -16,14 +16,18 @@ module Eson
           when 'boolean', 'string', 'time', 'number'
             "#{type} :#{name.to_s}"
           when 'enum'
-            "#{type} :#{name.to_s}, #{options}, #{default_value}"
+            "#{type} :#{name.to_s}, #{options}, #{render_value}"
           else
-            raise ArgumentError, "unsupported type #{type} found"
+            raise ArgumentError, "Unsupported type #{type} found"
           end
         end
 
-        def default_value
-          default ? "\"#{default}\"" : "nil"
+        def render_value
+          if default.is_a?(Array)
+            "#{default}"
+          else
+            default.nil? ? "nil" : "\"#{default}\""
+          end
         end
       end
     end

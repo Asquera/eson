@@ -11,7 +11,8 @@ module Eson
         def enum(name, enum_values = [], default = nil)
           in_module do
             attribute name.to_sym, String, default: default, coercer: proc { |value|
-              unless enum_values.include?(value) || value.nil?
+              values = Array(value)
+              unless values.all?{ |v| enum_values.include?(v) } || value.nil?
                 raise ArgumentError
               end
               value

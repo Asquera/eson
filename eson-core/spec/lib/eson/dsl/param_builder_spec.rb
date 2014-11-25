@@ -49,8 +49,12 @@ describe Eson::API::DSL::ParamBuilder do
 
       it_behaves_like 'a valid parameter', :foo, '1'
 
-      it 'can set default value' do
+      it 'can set default value 1' do
         expect { subject.foo = '1' }.to_not raise_error
+      end
+
+      it 'can set default value to a list of enum values' do
+        expect { subject.foo = ['1', '2'] }.to_not raise_error
       end
 
       it 'raise ArgumentError if unknown enum value' do

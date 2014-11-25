@@ -112,5 +112,15 @@ describe Eson::Transform::Generator do
         expect(exists).to eq false
       end
     end
+
+    context 'with sample "indices.exists_alias"' do
+      let(:sample) { load_api_sample('indices.exists_alias') }
+      let(:source) { Eson::Transform::Generator.new(sample).ruby_content }
+      subject { eval(source) }
+
+      it 'does not raise error' do
+        expect { subject }.to_not raise_error
+      end
+    end
   end
 end
