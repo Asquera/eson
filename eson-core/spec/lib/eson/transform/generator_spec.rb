@@ -48,6 +48,45 @@ describe Eson::Transform::Generator do
   end
 
   describe '#ruby_content' do
+    context 'with incomplete parameter' do
+      let(:sample) do
+        hash = {
+          "indices.refresh" => {
+            "url" => {
+              "methods" => "get",
+              "params" => {
+                "operation_threading" => {
+                  "description" => "TODO: ?"
+                }
+              }
+            }
+          }
+        }
+        load_from_hash(hash)
+      end
+
+      let(:source) { Eson::Transform::Generator.new(sample).ruby_content }
+      subject(:api) do
+        eval(source)
+        class ApiTest
+          include Eson::Shared::Indices::Refresh
+        end
+        ApiTest.new
+      end
+
+      it 'does not raise error' do
+        expect { subject }.to_not raise_error
+      end
+
+      it 'creates parameter :operation_threading' do
+        expect(subject.url.params).to respond_to(:operation_threading)
+      end
+
+      it 'returns nil value for parameter :operation_threading' do
+        expect(subject.url.params.operation_threading).to eq nil
+      end
+    end
+
     context 'with sample "cluster.health"' do
       let(:sample) { load_api_sample('cluster.health') }
       let(:source) { Eson::Transform::Generator.new(sample).ruby_content }

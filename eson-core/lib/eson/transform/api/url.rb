@@ -9,7 +9,7 @@ module Eson
         attribute :path, String
         attribute :paths, Array[String], default: []
         attribute :parts, Hash[String => Path], default: {}
-        attribute :params, Hash[String => Param]
+        attribute :params, Hash[String => Param], default: {}
 
         def render_parts
           parts.map do |k, v|

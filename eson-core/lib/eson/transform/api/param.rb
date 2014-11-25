@@ -6,14 +6,14 @@ module Eson
       class Param
         include Virtus.model
 
-        attribute :type, String
+        attribute :type, String, default: 'string'
         attribute :options, Array[String], default: []
         attribute :default, String, default: nil
         attribute :description, String, default: ''
 
         def definition(name)
           case type
-          when 'boolean', 'string', 'time', 'number'
+          when 'boolean', 'string', 'time', 'number', 'duration', 'list'
             "#{type} :#{name.to_s}"
           when 'enum'
             "#{type} :#{name.to_s}, #{options}, #{render_value}"

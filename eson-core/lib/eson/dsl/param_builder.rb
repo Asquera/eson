@@ -44,6 +44,12 @@ module Eson
           end
         end
 
+        def duration(name, default = nil)
+          in_module do
+            attribute name.to_sym, Integer, default: default
+          end
+        end
+
         def time(name, default = nil)
           in_module do
             attribute name.to_sym, DateTime, default: default
