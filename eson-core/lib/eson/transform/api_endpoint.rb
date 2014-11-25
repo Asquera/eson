@@ -15,10 +15,6 @@ module Eson
         @request_methods.map { |m| ":#{m.to_s.downcase}" }.join(', ')
       end
 
-      def parameters
-        url.parameter_definitions
-      end
-
       def get_binding
         binding
       end
