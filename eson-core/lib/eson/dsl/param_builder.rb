@@ -26,6 +26,8 @@ module Eson
           end
         end
 
+        alias :text :string
+
         def list(name, default = nil)
           in_module do
             attribute name.to_sym, Array[String], default: default

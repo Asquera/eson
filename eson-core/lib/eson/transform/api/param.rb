@@ -13,7 +13,7 @@ module Eson
 
         def definition(name)
           case type
-          when 'boolean', 'string', 'time', 'number', 'duration', 'list'
+          when 'boolean', 'string', 'text', 'time', 'number', 'duration', 'list'
             "#{type} :#{name.to_s}"
           when 'enum'
             "#{type} :#{name.to_s}, #{options}, #{render_value}"

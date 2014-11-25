@@ -111,5 +111,15 @@ describe Eson::API::DSL::ParamBuilder do
 
       it_behaves_like 'a valid parameter', :h, ['name', 'email'], []
     end
+
+    describe 'add text parameter' do
+      subject do
+        Eson::API::DSL::ParamBuilder.new do
+          text :suggest_text, 'TEXT'
+        end
+      end
+
+      it_behaves_like 'a valid parameter', :suggest_text, 'TEXT'
+    end
   end
 end
