@@ -165,13 +165,14 @@ context 'HTTP client' do
     asserts("ok") { topic["ok"] }
   end
   
-  context "snapshot" do
-    setup do
-      client.snapshot :index => "default"
-    end
+  # Behaviour of snapshot / restore has changed in 1.x
+  # context "snapshot" do
+  #   setup do
+  #     client.snapshot :index => "default"
+  #   end
     
-    asserts("ok") { topic["ok"] }
-  end
+  #   asserts("ok") { topic["ok"] }
+  # end
   
   context "clear_cache" do
     setup do
