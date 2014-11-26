@@ -16,6 +16,14 @@ module Eson
           end
           extend @mod
         end
+
+        def multi_index?
+          if respond_to?(:index)
+            attribute_set[:index].primitive == Array
+          else
+            false
+          end
+        end
       end
     end
   end
