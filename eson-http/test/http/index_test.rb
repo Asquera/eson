@@ -55,7 +55,7 @@ context 'HTTP client quick api' do
   context "percolate" do
     setup do
       client.create_index :index => 'test'
-      client.index :index => '_percolator',
+      client.index :index => 'percolator',
                    :type => 'test',
                    :id => 'kuku',
                    :doc => {
@@ -128,7 +128,7 @@ context 'HTTP client quick api' do
         client.refresh :index => "delete_by_query"
 
         client.delete_by_query :index => "delete_by_query",
-                               :query => { :match_all => {} }
+                               :query => { :query => { :match_all => {} } }
       end
 
       asserts("no doc left") { client.search(:index => "delete_by_query")["hits"]["total"] }.equals(0)

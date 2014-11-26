@@ -8,7 +8,7 @@ module Eson
         request_method :get
 
         def path
-          '/_cluster/nodes/{nodes}'
+          '/_nodes/{nodes}'
         end
       end
     end
