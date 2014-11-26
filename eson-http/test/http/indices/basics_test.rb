@@ -131,6 +131,15 @@ context 'HTTP client' do
       client.create_index :index => "def"
       client.create_index :index => "ghi"
       client.create_index :index => "jkl"
+      # since ES 1.4 a mapping needs to exist for alias with filter
+      mappings = {
+        "type1" => {
+          "properties" => {
+            "user" => { "type" => "string", "index" => "not_analyzed" }
+          }
+        }
+      }
+      client.put_mapping :index => "jkl", :type => 'type1', :mapping => mappings
       client.aliases do |r|
         r.add "abc", "alias"
         r.add "def", "alias"
