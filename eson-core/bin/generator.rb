@@ -10,6 +10,7 @@ module Helpers
   def folder_name(filename)
     names = filename.split('.')
     names = names.shift(names.size - 2)
+    names << 'core' if names.empty?
     File.join(names)
   end
 
