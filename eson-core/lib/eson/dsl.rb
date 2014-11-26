@@ -4,9 +4,9 @@ module Eson
   module API
     module DSL
       module ClassMethods
-        def url(url_path = nil, &block)
+        def url(&block)
           define_method :url do
-            @builder ||= UrlBuilder.new(url_path, &block)
+            @builder ||= UrlBuilder.new(&block)
           end
         end
 

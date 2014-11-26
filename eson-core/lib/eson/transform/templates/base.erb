@@ -8,7 +8,8 @@ module Eson
 
         request_methods <%= request_methods %>
 
-        url '<%= url.path %>' do
+        url do
+          set_base_path '<%= url.path %>'
           <% for path in url.paths %>path '<%= path %>'
           <% end %>
           <% for part in url.render_parts %><%= part %>

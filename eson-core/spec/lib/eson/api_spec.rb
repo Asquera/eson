@@ -46,7 +46,8 @@ describe 'Eson::Api' do
     subject do
       M.class_eval do
         methods :get
-        url '/_cluster/health' do
+        url do
+          set_base_path '/_cluster/health'
           path '/_cluster/health'
           path '/_cluster/health/{index}'
 

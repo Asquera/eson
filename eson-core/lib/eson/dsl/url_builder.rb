@@ -10,11 +10,14 @@ module Eson
         attr_reader :parts
         attr_reader :params
 
-        def initialize(base_path = nil, &block)
+        def initialize(&block)
           @params = ParamBuilder.new
           @parts  = PartBuilder.new
-          @base_path = base_path
           instance_eval(&block) if block_given?
+        end
+
+        def set_base_path(path)
+          @base_path = path
         end
 
         def path(path)
