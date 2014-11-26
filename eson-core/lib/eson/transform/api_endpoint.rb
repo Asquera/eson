@@ -28,7 +28,11 @@ module Eson
       def module_name
         names = @name.split('.')
         names.shift(names.size - 1)
-        names.empty? ? '' : names.first.capitalize
+        unless names.empty?
+          names.first.split('_').map(&:capitalize).join('')
+        else
+          ''
+        end
       end
     end
   end
