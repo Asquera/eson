@@ -9,6 +9,7 @@ module Eson
         attr_reader :paths
         attr_reader :parts
         attr_reader :params
+        attr_reader :source_params
 
         def initialize(&block)
           @params = ParamBuilder.new
@@ -34,6 +35,13 @@ module Eson
         def params(&block)
           @params.instance_eval(&block) if block_given?
           @params
+        end
+
+        def source_param(*params)
+          @source_params ||= []
+          params.each do |param|
+            @source_params << param
+          end
         end
       end
     end

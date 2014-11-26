@@ -130,5 +130,20 @@ describe 'Eson::Api::DSL' do
         expect { subject.url.params }.to_not raise_error
       end
     end
+
+    describe '#source_param' do
+      subject do
+        C.class_eval do
+          url do
+            source_param :foo, :bar
+          end
+        end
+        C.new
+      end
+
+      it 'returns list of source parameters' do
+        expect(subject.url.source_params).to eq [:foo, :bar]
+      end
+    end
   end
 end
