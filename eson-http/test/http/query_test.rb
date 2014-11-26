@@ -29,7 +29,7 @@ context 'HTTP client quickapi' do
   context "count query" do
     setup do 
       client.count :query => {
-        :match_all => { }
+        :query => { :match_all => { } }
       }
     end
 

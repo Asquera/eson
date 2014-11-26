@@ -202,6 +202,7 @@ context 'HTTP client' do
   context "close index" do
     setup do
       client.create_index :index => 'for_closing'
+      sleep(1)
       client.close_index :index => 'for_closing'
       client.refresh
     end
@@ -213,6 +214,7 @@ context 'HTTP client' do
   context "open index" do
     setup do
       client.create_index :index => 'for_reopening'
+      sleep(1)
       client.close_index :index => 'for_reopening'
       client.open_index :index => 'for_reopening'
     end
