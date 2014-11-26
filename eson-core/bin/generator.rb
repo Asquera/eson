@@ -3,20 +3,21 @@ require 'thor'
 require 'eson-core'
 
 module Helpers
-  def ruby_file_name(filename)
-    File.basename(filename, File.extname(filename)) + ".rb"
+  def get_base_name(filename)
+    File.basename(filename, File.extname(filename))
   end
 
   def folder_name(filename)
-    names = filename.split('.')
-    names = names.shift(names.size - 2)
+    basename = get_base_name(filename)
+    names = basename.split('.').slice(0..-2)
     names << 'core' if names.empty?
     File.join(names)
   end
 
   def short_name(filename)
-    names = filename.split('.')
-    names.shift(names.size - 2)
+    basename = get_base_name(filename)
+    names = basename.split('.')
+    names.slice!(0..-2)
     names.first
   end
 
@@ -74,14 +75,14 @@ class GeneratorCLI < Thor
     result = {}
     json_files.each do |file|
       STDOUT.puts "Transforming file #{file}"
-      result[ruby_file_name(file)] = transform(file)
+      result[file] = transform(file)
     end
 
     # write folders / files
     result.each do |file, content|
       folder = File.join(output_folder, folder_name(file))
-      output_file = File.join(folder, short_name(file)) + ".rb"
 
+      output_file = File.join(folder, short_name(file)) + ".rb"
       unless Dir.exists?(folder) || folder.empty?
         Dir.mkdir(folder)
       end

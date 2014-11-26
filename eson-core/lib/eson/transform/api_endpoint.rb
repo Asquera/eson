@@ -22,7 +22,7 @@ module Eson
       def top_level_name
         names = @name.split('.')
         result = names.shift(names.size - 1)
-        result.empty? ? '' : result.first.capitalize
+        result.empty? ? 'Core' : result.first.capitalize
       end
 
       def module_name

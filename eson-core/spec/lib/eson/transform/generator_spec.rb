@@ -37,8 +37,8 @@ describe Eson::Transform::Generator do
         expect { subject }.to_not raise_error
       end
 
-      it 'returns empty top level module name' do
-        expect(subject.api_endpoint.top_level_name).to eq ''
+      it 'returns default top level module name' do
+        expect(subject.api_endpoint.top_level_name).to eq 'Core'
       end
 
       it 'returns module name "Bulk"' do
@@ -172,8 +172,8 @@ describe Eson::Transform::Generator do
       let(:source) { Eson::Transform::Generator.new(sample).ruby_content }
       let!(:module) { eval(source) }
 
-      it 'creates module Eson::Shared::Bulk' do
-        exists = Object.const_defined?('Eson::Shared::Bulk')
+      it 'creates module Eson::Shared::Core::Bulk' do
+        exists = Object.const_defined?('Eson::Shared::Core::Bulk')
         expect(exists).to eq true
       end
 
