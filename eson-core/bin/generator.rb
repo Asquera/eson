@@ -3,6 +3,15 @@ require 'thor'
 require 'eson-core'
 
 module Helpers
+  def setup_dir(output_folder, overwrite)
+    if Dir.exists?(output_folder)
+      if !options['overwrite']
+        raise ArgumentError, "Folder #{output_folder} exists"
+      end
+    end
+    Dir.mkdir(output_folder) unless Dir.exists?(output_folder)
+  end
+
   def get_base_name(filename)
     File.basename(filename, File.extname(filename))
   end
@@ -34,7 +43,7 @@ module Helpers
       body:            root['body'],
       documentation:   root['documentation']
     }
-    Eson::Transform::Generator.new(args).ruby_content
+    Eson::Transform::Generator.new(args)
   end
 end
 
@@ -45,7 +54,7 @@ class GeneratorCLI < Thor
   option :input,  aliases: '-i', type: :string, required: true, desc: "Specifies the input JSON file"
   option :output, aliases: '-o', type: :string, retuired: true, desc: "Specifies the generated output ruby file"
   def transform_file
-    generated   = transform(options[:input])
+    generated   = transform(options[:input]).description
     output_file = options[:output] || ruby_file_name(input_name)
     File.open(output_file, 'w') { |f| f.write(generated) }
   end
@@ -58,23 +67,14 @@ class GeneratorCLI < Thor
     json_files = Dir.glob(File.join(options[:input_folder], '**/*.json'))
     output_folder = File.absolute_path(options.fetch('output_folder'))
 
-    # if folder exists warn
-    if Dir.exists?(output_folder)
-      if options['overwrite']
-        # Dir.rmdir(output_folder)
-        FileUtils.rm_rf(output_folder)
-      else
-        raise ArgumentError, "Folder #{output_folder} exists"
-      end
-    end
-    Dir.mkdir(output_folder)
+    setup_dir(output_folder, options['overwrite'])
 
     # generate all ruby contents for all files put into a map
     # create folders / files
     result = {}
     json_files.each do |file|
       STDOUT.puts "Transforming file #{file}"
-      result[file] = transform(file)
+      result[file] = transform(file).description
     end
 
     # write folders / files
@@ -96,22 +96,27 @@ class GeneratorCLI < Thor
   option :output_folder, aliases: '-o', type: :string,  required: true,  desc: "Specifies output folder where to put HTTP request ruby files"
   option :overwrite,                    type: :boolean, required: false, desc: "If set it overwrites the content of the output folder"
   def requests_http
-    ruby_files = Dir.chdir(options[:input_folder]) { Dir.glob('**/*.rb') }
+    json_files = Dir.glob(File.join(options[:input_folder], '**/*.json'))
     output_folder = File.absolute_path(options.fetch('output_folder'))
 
-    STDOUT.puts "OUTPUT_FOLDER: #{output_folder}"
+    setup_dir(output_folder, options['overwrite'])
 
-    # if folder exists warn
-    if Dir.exists?(output_folder)
-      if !options['overwrite']
-        raise ArgumentError, "Folder #{output_folder} exists"
-      end
+    result = {}
+    json_files.each do |file|
+      STDOUT.puts "FILE: #{file}"
+      result[file] = transform(file).request
     end
-    Dir.mkdir(output_folder) unless Dir.exists?(output_folder)
 
-    ruby_files.each do |file|
-      output_file = File.join(output_folder, file)
-      STDOUT.puts "FILE: #{output_file}"
+    result.each do |file, content|
+      folder = File.join(output_folder, folder_name(file))
+
+      output_file = File.join(folder, short_name(file)) + ".rb"
+      unless Dir.exists?(folder) || folder.empty?
+        Dir.mkdir(folder)
+      end
+
+      STDOUT.puts "writing file: #{output_file}"
+      File.open(output_file, "w") { |f| f.write(content) }
     end
   end
 end

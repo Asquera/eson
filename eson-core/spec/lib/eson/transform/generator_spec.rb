@@ -65,7 +65,7 @@ describe Eson::Transform::Generator do
         load_from_hash(hash)
       end
 
-      let(:source) { Eson::Transform::Generator.new(sample).ruby_content }
+      let(:source) { Eson::Transform::Generator.new(sample).description }
       subject(:api) do
         eval(source)
         class ApiTest
@@ -104,7 +104,7 @@ describe Eson::Transform::Generator do
         }
         load_from_hash(hash)
       end
-      let(:source) { Eson::Transform::Generator.new(sample).ruby_content }
+      let(:source) { Eson::Transform::Generator.new(sample).description }
       subject(:api) do
         eval(source)
         class ApiTest
@@ -120,7 +120,7 @@ describe Eson::Transform::Generator do
 
     context 'with sample "cluster.health"' do
       let(:sample) { load_api_sample('cluster.health') }
-      let(:source) { Eson::Transform::Generator.new(sample).ruby_content }
+      let(:source) { Eson::Transform::Generator.new(sample).description }
       let!(:module) { eval(source) }
 
       it 'creates module Eson::Shared::Cluster::Health' do
@@ -169,7 +169,7 @@ describe Eson::Transform::Generator do
 
     context 'with sample "bulk.json"' do
       let(:sample) { load_api_sample('bulk') }
-      let(:source) { Eson::Transform::Generator.new(sample).ruby_content }
+      let(:source) { Eson::Transform::Generator.new(sample).description }
       let!(:module) { eval(source) }
 
       it 'creates module Eson::Shared::Core::Bulk' do
@@ -185,7 +185,7 @@ describe Eson::Transform::Generator do
 
     context 'with sample "indices.exists_alias"' do
       let(:sample) { load_api_sample('indices.exists_alias') }
-      let(:source) { Eson::Transform::Generator.new(sample).ruby_content }
+      let(:source) { Eson::Transform::Generator.new(sample).description }
       subject { eval(source) }
 
       it 'does not raise error' do

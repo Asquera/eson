@@ -13,10 +13,8 @@ module Eson
         @api_endpoint = Eson::Transform::ApiEndpoint.new(hash)
       end
 
-      def ruby_content
-        root = File.dirname(__FILE__)
-        template = File.read(File.join(root, 'templates', 'description.erb'))
-        content  = ERB.new(template).result(api_endpoint.get_binding)
+      def description
+        content = convert('description.erb')
 
         # Check if there are no Ruby errors
         node = Parser::CurrentRuby.parse(content)
@@ -24,6 +22,18 @@ module Eson
 
         content
       end
+
+      def request
+        convert('request.erb')
+      end
+
+      private
+
+        def convert(template)
+          root = File.dirname(__FILE__)
+          template = File.read(File.join(root, 'templates', template))
+          ERB.new(template).result(api_endpoint.get_binding)
+        end
     end
   end
 end
