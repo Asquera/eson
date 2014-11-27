@@ -4,7 +4,7 @@ module Eson
   module Shared
     <% unless top_level_name.empty? %>module <%= top_level_name %><% end %>
       module <%= module_name %>
-        extend Eson::API
+        include Eson::API::DSL
 
         request_methods <%= request_methods %>
 

@@ -15,7 +15,7 @@ module Eson
 
       def ruby_content
         root = File.dirname(__FILE__)
-        template = File.read(File.join(root, 'templates', 'base.erb'))
+        template = File.read(File.join(root, 'templates', 'description.erb'))
         content  = ERB.new(template).result(api_endpoint.get_binding)
 
         # Check if there are no Ruby errors
