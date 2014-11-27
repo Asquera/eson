@@ -2,7 +2,7 @@
 
 module Eson
   module Shared
-    <% unless top_level_name.empty? %>module <%= top_level_name %><% end %>
+    module <%= top_level_name %>
       module <%= module_name %>
         include Eson::API::DSL
 
@@ -21,6 +21,6 @@ module Eson
           <% end %>
         end
       end
-    <% unless top_level_name.empty? %>end<% end %>
+    end
   end
 end
