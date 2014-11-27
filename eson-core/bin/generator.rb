@@ -41,7 +41,7 @@ end
 class GeneratorCLI < Thor
   include Helpers
 
-  desc "transform file", "Generates a Ruby class file from a API description in JSON"
+  desc "transform", "Generates a Ruby class file from a API description in JSON"
   option :input,  aliases: '-i', type: :string, required: true, desc: "Specifies the input JSON file"
   option :output, aliases: '-o', type: :string, retuired: true, desc: "Specifies the generated output ruby file"
   def transform_file
@@ -67,7 +67,6 @@ class GeneratorCLI < Thor
         raise ArgumentError, "Folder #{output_folder} exists"
       end
     end
-
     Dir.mkdir(output_folder)
 
     # generate all ruby contents for all files put into a map
@@ -89,6 +88,30 @@ class GeneratorCLI < Thor
 
       STDOUT.puts "writing file: #{output_file}"
       File.open(output_file, "w") { |f| f.write(content) }
+    end
+  end
+
+  desc "requests", "Generates HTTP requests ruby files"
+  option :input_folder,  aliases: '-i', type: :string,  required: true,  desc: "Specifies the input folder with API descriptions in Ruby"
+  option :output_folder, aliases: '-o', type: :string,  required: true,  desc: "Specifies output folder where to put HTTP request ruby files"
+  option :overwrite,                    type: :boolean, required: false, desc: "If set it overwrites the content of the output folder"
+  def requests_http
+    ruby_files = Dir.chdir(options[:input_folder]) { Dir.glob('**/*.rb') }
+    output_folder = File.absolute_path(options.fetch('output_folder'))
+
+    STDOUT.puts "OUTPUT_FOLDER: #{output_folder}"
+
+    # if folder exists warn
+    if Dir.exists?(output_folder)
+      if !options['overwrite']
+        raise ArgumentError, "Folder #{output_folder} exists"
+      end
+    end
+    Dir.mkdir(output_folder) unless Dir.exists?(output_folder)
+
+    ruby_files.each do |file|
+      output_file = File.join(output_folder, file)
+      STDOUT.puts "FILE: #{output_file}"
     end
   end
 end
