@@ -10,15 +10,12 @@ module Eson
 
         url do
           set_base_path '<%= url.path %>'
-          <% for path in url.paths %>path '<%= path %>'
-          <% end %>
-          <% for part in url.render_parts %><%= part %>
-          <% end %>
+<% for path in url.paths %>          path '<%= path %>'
+<% end %>
+<% for part in url.render_parts %>          <%= part %>
+<% end %>
           <% unless url.params.empty? %>params do
-            <% for param in url.render_params %><%= param %>
-            <% end %>
-          end
-          <% end %>
+<% for param in url.render_params %>            <%= param %><% end %>          end<% end %>
         end
       end
     end

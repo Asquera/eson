@@ -18,7 +18,7 @@ module Eson
         end
 
         def render_params
-          params.map { |k, v| v.definition(k) }
+          params.map { |k, v| "#{v.definition(k)}\n" }
         end
       end
     end
