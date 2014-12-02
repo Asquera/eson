@@ -58,6 +58,27 @@ describe 'Eson::Api::DSL' do
       end
     end
 
+    context 'with reopening url again' do
+      before do
+        C.class_eval do
+          url do
+            params do
+              string :foo
+            end
+          end
+          url do
+            params do
+              string :bar
+            end
+          end
+        end
+      end
+
+      it 'contains two parameters' do
+        expect(subject.url.params.attributes).to eq({ foo: nil, bar: nil })
+      end
+    end
+
     describe 'sets base_path' do
       subject do
         C.class_eval do
