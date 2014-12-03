@@ -5,9 +5,11 @@ module Eson
     module DSL
       module ClassMethods
         def url(&block)
-          define_method :url do
-            @builder ||= UrlBuilder.new(&block)
-          end
+          builder.instance_eval(&block)
+        end
+
+        def builder
+          @builder
         end
 
         def request_methods(*list)
@@ -18,7 +20,12 @@ module Eson
       end
 
       def self.included(base)
-        base.extend ClassMethods
+        base.extend(ClassMethods)
+        builder = UrlBuilder.new
+        base.instance_variable_set(:@builder, builder)
+        base.send(:define_method, :url) do
+          builder
+        end
       end
     end
   end
