@@ -28,11 +28,7 @@ context "QueryPlugin" do
   
   context "#delete_by_query" do
     setup do
-      client.delete_by_query do
-        query {
-          match_all
-        }
-      end
+      client.delete_by_query :query => { :query => { :match_all => {} } }
     end
     
     asserts("ok"){ topic["ok"] }.equals(true)

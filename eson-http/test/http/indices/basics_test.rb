@@ -131,6 +131,15 @@ context 'HTTP client' do
       client.create_index :index => "def"
       client.create_index :index => "ghi"
       client.create_index :index => "jkl"
+      # since ES 1.4 a mapping needs to exist for alias with filter
+      mappings = {
+        "type1" => {
+          "properties" => {
+            "user" => { "type" => "string", "index" => "not_analyzed" }
+          }
+        }
+      }
+      client.put_mapping :index => "jkl", :type => 'type1', :mapping => mappings
       client.aliases do |r|
         r.add "abc", "alias"
         r.add "def", "alias"
@@ -156,13 +165,14 @@ context 'HTTP client' do
     asserts("ok") { topic["ok"] }
   end
   
-  context "snapshot" do
-    setup do
-      client.snapshot :index => "default"
-    end
+  # Behaviour of snapshot / restore has changed in 1.x
+  # context "snapshot" do
+  #   setup do
+  #     client.snapshot :index => "default"
+  #   end
     
-    asserts("ok") { topic["ok"] }
-  end
+  #   asserts("ok") { topic["ok"] }
+  # end
   
   context "clear_cache" do
     setup do
@@ -192,6 +202,7 @@ context 'HTTP client' do
   context "close index" do
     setup do
       client.create_index :index => 'for_closing'
+      sleep(1)
       client.close_index :index => 'for_closing'
       client.refresh
     end
@@ -203,6 +214,7 @@ context 'HTTP client' do
   context "open index" do
     setup do
       client.create_index :index => 'for_reopening'
+      sleep(1)
       client.close_index :index => 'for_reopening'
       client.open_index :index => 'for_reopening'
     end

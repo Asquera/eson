@@ -9,9 +9,9 @@ module Eson
 
         def path
           if nodes.empty?
-            '/_cluster/nodes/stats'
+            '/_nodes/stats'
           else
-            '/_cluster/nodes/{nodes}/stats'
+            '/_nodes/{nodes}/stats'
           end
         end
       end
