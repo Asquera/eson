@@ -5,7 +5,7 @@ module Eson
     module DSL
       class ParamBuilder
         def initialize(&block)
-          @mod = create_module
+          @mod = setup_module
           instance_eval(&block) if block_given?
         end
 
@@ -48,7 +48,7 @@ module Eson
 
         private
 
-        def create_module
+        def setup_module
           m = Module.new do
             include Virtus.module
           end
