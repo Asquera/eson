@@ -1,9 +1,6 @@
 require 'erb'
 require 'json'
 
-require 'parser/current'
-require 'unparser'
-
 module Eson
   module Transform
     class Generator
@@ -14,13 +11,7 @@ module Eson
       end
 
       def description
-        content = convert('description.erb')
-
-        # Check if there are no Ruby errors
-        node = Parser::CurrentRuby.parse(content)
-        Unparser.unparse(node)
-
-        content
+        convert('description.erb')
       end
 
       def request

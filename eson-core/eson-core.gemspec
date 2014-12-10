@@ -21,8 +21,6 @@ Gem::Specification.new do |s|
   
   s.add_dependency "virtus", '~> 1.0.3'
   s.add_dependency "multi_json"
-  s.add_dependency "parser"
-  s.add_dependency "unparser"
   s.add_development_dependency "elasticsearch-node"
   s.add_development_dependency "thor"
 end
