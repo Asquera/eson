@@ -13,7 +13,7 @@ module Eson
           coercer = proc { |value|
             values = Array(value)
             unless values.all?{ |v| enum_values.include?(v) } || value.nil?
-              raise ArgumentError
+              raise ArgumentError, "Unknown enum value #{value} given."
             end
             value
           }
