@@ -11,6 +11,7 @@ PATH
   specs:
     eson-core (0.8.0)
       multi_json
+      virtus (~> 1.0.3)
 
 PATH
   remote: eson-dsl
@@ -40,24 +41,75 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.3.2)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     bouncy-castle-java (1.5.0146.1)
+    coderay (1.1.0)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
+    colorize (0.7.3)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
+    diff-lcs (1.2.5)
+    docile (1.1.5)
     elasticsearch-node (0.7.5)
+    equalizer (0.0.9)
     faraday (0.8.4)
       multipart-post (~> 1.1)
     faraday_middleware (0.8.8)
       faraday (>= 0.7.4, < 0.9)
+    hirb (0.7.2)
     i18n (0.6.0)
+    ice_nine (0.11.0)
     jruby-openssl (0.7.6.1)
       bouncy-castle-java (>= 1.5.0146.1)
     json (1.6.6)
     json (1.6.6-java)
+    method_source (0.8.2)
     multi_json (1.2.0)
     multipart-post (1.1.5)
     net-http-persistent (2.7)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rake (0.9.2.2)
     riot (0.12.5)
       rr
     rr (1.0.4)
+    rspec (3.1.0)
+      rspec-core (~> 3.1.0)
+      rspec-expectations (~> 3.1.0)
+      rspec-mocks (~> 3.1.0)
+    rspec-core (3.1.7)
+      rspec-support (~> 3.1.0)
+    rspec-expectations (3.1.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.1.0)
+    rspec-its (1.1.0)
+      rspec-core (>= 3.0.0)
+      rspec-expectations (>= 3.0.0)
+    rspec-mocks (3.1.3)
+      rspec-support (~> 3.1.0)
+    rspec-support (3.1.2)
+    simplecov (0.9.1)
+      docile (~> 1.1.0)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.8.0)
+    simplecov-console (0.2.0)
+      colorize
+      hirb
+      simplecov
+    simplecov-html (0.8.0)
+    slop (3.6.0)
+    thread_safe (0.3.4)
+    virtus (1.0.3)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
 
 PLATFORMS
   java
@@ -76,5 +128,10 @@ DEPENDENCIES
   faraday_middleware
   jruby-openssl
   json
+  pry
   rake
   riot
+  rspec (~> 3.1)
+  rspec-its
+  simplecov
+  simplecov-console

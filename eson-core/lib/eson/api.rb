@@ -1,3 +1,7 @@
+require 'virtus'
+
+require 'eson/dsl'
+
 module Eson
   # Objects including API act as API descriptions. They mostly act as a
   # description of parameter names and roles to use in protocol implementations. 
@@ -10,6 +14,10 @@ module Eson
   # {Eson::HTTP::Index}.
   module API
     include Chainable
+
+    def self.extended(base)
+      base.include(DSL)
+    end
 
     # Designates the names of all parameters supported by this request, including
     # those used in the source later on.

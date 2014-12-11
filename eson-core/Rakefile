@@ -1,5 +1,11 @@
-require 'rake/testtask'
 require 'rubygems/package_task'
+
+begin
+  load 'spec/spec.rake'
+rescue LoadError => e
+  STDERR.puts "Could not load spec.rake, specs will not be available"
+end
+
 require 'rake/testtask'
 
 def gemspec

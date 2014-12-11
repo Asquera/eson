@@ -2,6 +2,12 @@ source "https://rubygems.org"
 
 basedir = File.dirname(__FILE__)
 
+gem 'rspec', '~> 3.1', :require => false
+gem 'rspec-its', :require => false
+gem 'simplecov', :require => false
+gem 'simplecov-console', :require => false
+gem 'pry', :require => false
+
 gem 'ZenTest', '4.3.0'
 gem 'riot', :require => false
 

@@ -1,5 +1,7 @@
 require 'multi_json'
 
+require 'eson/transform'
+
 require 'eson/client'
 require 'eson/request'
 require 'eson/chainable'
