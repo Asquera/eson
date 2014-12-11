@@ -15,10 +15,6 @@ module Eson
   module API
     include Chainable
 
-    def self.included(base)
-      base.include(DSL)
-    end
-
     def self.extended(base)
       base.include(DSL)
     end
