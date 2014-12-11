@@ -5,7 +5,6 @@ module Eson
   module API
     module DSL
       class UrlBuilder
-        attr_reader :base_path
         attr_reader :paths
         attr_reader :parts
         attr_reader :params
@@ -17,8 +16,9 @@ module Eson
           instance_eval(&block) if block_given?
         end
 
-        def set_base_path(path)
-          @base_path = path
+        def base_path(path = nil)
+          @base_path = path if path
+          @base_path
         end
 
         def path(path)
@@ -27,7 +27,6 @@ module Eson
         end
 
         def part(path, args = {})
-          # parse to its own object, add validation?
           @parts.add_part(path, args)
           @parts
         end
